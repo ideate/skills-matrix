@@ -1,23 +1,25 @@
-import ActionBuild from 'material-ui/lib/svg-icons/action/build'
-import ActionExplore from 'material-ui/lib/svg-icons/action/explore'
-import ActionGroupWork from 'material-ui/lib/svg-icons/action/group-work'
-import ActionHelp from 'material-ui/lib/svg-icons/action/help'
-import ActionInfo from 'material-ui/lib/svg-icons/action/info'
-import ActionLightbulbOutline from 'material-ui/lib/svg-icons/action/lightbulb-outline'
-import ActionSettings from 'material-ui/lib/svg-icons/action/settings'
-import AppBar from 'material-ui/lib/app-bar'
+import ActionBuild from 'material-ui/svg-icons/action/build'
+import ActionDashboard from 'material-ui/svg-icons/action/dashboard'
+import ActionGroupWork from 'material-ui/svg-icons/action/group-work'
+import ActionHelp from 'material-ui/svg-icons/action/help'
+import ActionLightbulbOutline from 'material-ui/svg-icons/action/lightbulb-outline'
+import ActionSettings from 'material-ui/svg-icons/action/settings'
+import AppBar from 'material-ui/AppBar'
+import AppCanvas from 'material-ui/internal/AppCanvas'
 import {browserHistory} from 'react-router'
+import CircularProgress from 'material-ui/CircularProgress'
 import {connect} from 'react-redux'
-import Divider from 'material-ui/lib/divider'
-import {fetchUser} from '../modules/user'
+import Divider from 'material-ui/Divider'
+import {fetchUser} from '../modules/async/user'
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import {GlobalStyles} from './GlobalStyles'
-import IconButton from 'material-ui/lib/icon-button'
-import IconMenu from 'material-ui/lib/menus/icon-menu'
-import MenuItem from 'material-ui/lib/menus/menu-item'
-import MoreVertIcon from 'material-ui/lib/svg-icons/navigation/more-vert'
-import NavigationClose from 'material-ui/lib/svg-icons/navigation/close'
+import IconButton from 'material-ui/IconButton'
+import IconMenu from 'material-ui/IconMenu'
+import MenuItem from 'material-ui/MenuItem'
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import SocialPerson from 'material-ui/svg-icons/social/person'
 import {Wrapper} from './Wrapper'
-import {AppCanvas, CircularProgress} from 'material-ui'
 import Radium, {StyleRoot} from 'radium'
 import React, {Component, PropTypes} from 'react'
 
@@ -88,41 +90,46 @@ class App extends Component {
                     targetOrigin={{horizontal: 'right', vertical: 'top'}}
                   >
                     <MenuItem
-                      leftIcon={<ActionExplore />}
-                      primaryText="Explore"
-                      onTouchTap={() => (browserHistory.push('/explore'))}
+                      leftIcon={<ActionDashboard />}
+                      primaryText='Dashboards'
+                      onTouchTap={() => (browserHistory.push('/dashboards'))}
+                    />
+                    <MenuItem
+                      leftIcon={<ActionGroupWork />}
+                      primaryText='Organizations'
+                      onTouchTap={() => (browserHistory.push('/organizations'))}
+                    />
+                    <MenuItem
+                      leftIcon={<SocialPerson />}
+                      primaryText='People'
+                      onTouchTap={() => (browserHistory.push('/people'))}
                     />
                     <MenuItem
                       leftIcon={<ActionLightbulbOutline />}
-                      primaryText="Capabilities"
+                      primaryText='Capabilities'
                       onTouchTap={() => (browserHistory.push('/capabilities'))}
                     />
                     <MenuItem
                       leftIcon={<ActionBuild />}
-                      primaryText="Skills"
+                      primaryText='Skills'
                       onTouchTap={() => (browserHistory.push('/skills'))}
-                    />
-                    <MenuItem
-                      leftIcon={<ActionGroupWork />}
-                      primaryText="Organizations"
-                      onTouchTap={() => (browserHistory.push('/organizations'))}
                     />
                     <Divider />
                     <MenuItem
                       leftIcon={<ActionHelp />}
-                      primaryText="Help"
+                      primaryText='Help'
                       onTouchTap={() => (browserHistory.push('/help'))}
                     />
                     <Divider />
                     <MenuItem
                       leftIcon={<ActionSettings />}
-                      primaryText="Settings"
+                      primaryText='Settings'
                       onTouchTap={() => (browserHistory.push('/settings'))}
                     />
                   </IconMenu>
                 }
                 showMenuIconButton={false}
-                title="Skills Matrix"
+                title='Skills Matrix'
               />
             {children}
           </Wrapper>
@@ -132,10 +139,12 @@ class App extends Component {
 
     return (
       <StyleRoot>
-        <AppCanvas>
-          <GlobalStyles />
-          {content}
-        </AppCanvas>
+        <MuiThemeProvider muiTheme={getMuiTheme()}>
+          <AppCanvas>
+            <GlobalStyles />
+            {content}
+          </AppCanvas>
+        </MuiThemeProvider>
       </StyleRoot>
     )
   }

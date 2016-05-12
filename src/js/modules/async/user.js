@@ -1,4 +1,4 @@
-import {apiUri} from '../../../config'
+import {apiUri} from '../../../../config'
 import {checkFetchStatus} from './utilities'
 import fetch from 'isomorphic-fetch'
 

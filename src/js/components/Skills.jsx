@@ -1,20 +1,45 @@
-import {header, main} from '../styles/common'
-import React, {Component} from 'react'
+import {browserHistory} from 'react-router'
+import {connect} from 'react-redux'
+import {main} from '../styles/common'
+import RaisedButton from 'material-ui/RaisedButton'
+import {skillsRead} from '../modules/async/skills-read'
+import React, {Component, PropTypes} from 'react'
+import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
 
 class Skills extends Component {
+  static propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    skills: PropTypes.object.isRequired
+  }
+
+  componentWillMount () {
+    const {dispatch} = this.props
+
+    dispatch(skillsRead())
+  }
+
   render () {
     return (
       <div>
-        <header style={header}>
-          <h1>Skills</h1>
-          <p>View and create skills</p>
-        </header>
+        <Toolbar>
+          <ToolbarGroup float='left'>
+            <ToolbarTitle text='Skills' />
+          </ToolbarGroup>
+          <ToolbarGroup float='right'>
+            <RaisedButton
+              label='Create'
+              primary={true}
+              onTouchTap={() => (browserHistory.push('/skills/create'))}
+            />
+          </ToolbarGroup>
+        </Toolbar>
         <main style={main}>
-          <h3>Main</h3>
         </main>
       </div>
     )
   }
 }
 
-export default Skills
+export default connect((state) => ({
+  skills: state.skills
+}))(Skills)

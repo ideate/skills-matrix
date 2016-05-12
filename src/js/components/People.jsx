@@ -1,13 +1,12 @@
 import {header, main} from '../styles/common'
 import React, {Component} from 'react'
 
-class Explore extends Component {
+class People extends Component {
   render () {
     return (
       <div>
         <header style={header}>
-          <h1>Explore</h1>
-          <p>High-level information about Organizations</p>
+          <h1>People</h1>
         </header>
         <main style={main}>
           <h3>Main</h3>
@@ -17,4 +16,4 @@ class Explore extends Component {
   }
 }
 
-export default Explore
+export default People

@@ -1,17 +1,20 @@
 import App from './components/App'
 import Capabilities from './components/Capabilities'
-import Explore from './components/Explore'
+import Dashboards from './components/Dashboards'
 import Help from './components/Help'
+import {IndexRoute} from 'react-router'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import Organizations from './components/Organizations'
+import People from './components/People'
 import {Provider} from 'react-redux'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Settings from './components/Settings'
 import Skills from './components/Skills'
+import SkillsCreate from './components/SkillsCreate'
 import {store} from './store'
 import {syncHistoryWithStore} from 'react-router-redux'
-import {browserHistory, IndexRoute, Route, Router} from 'react-router'
+import {browserHistory, Route, Router} from 'react-router'
 
 injectTapEventPlugin()
 
@@ -29,8 +32,8 @@ ReactDOM.render((
           path='capabilities'
         />
         <Route
-          component={Explore}
-          path='explore'
+          component={Dashboards}
+          path='dashboards'
         />
         <Route
           component={Help}
@@ -41,13 +44,24 @@ ReactDOM.render((
           path='organizations'
         />
         <Route
+          component={People}
+          path='people'
+        />
+        <Route
           component={Settings}
           path='settings'
         />
         <Route
-          component={Skills}
           path='skills'
-        />
+        >
+          <IndexRoute
+            component={Skills}
+          />
+          <Route
+            component={SkillsCreate}
+            path='create'
+          />
+        </Route>
       </Route>
       <Route
         component={App}
