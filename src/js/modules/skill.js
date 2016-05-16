@@ -11,8 +11,7 @@ export const skillReset = () => ({
 })
 
 const initialState = {
-  title: '',
-  description: ''
+  data: {}
 }
 
 export default (state = initialState, {payload = {}, type, ...action}) => {

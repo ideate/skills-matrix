@@ -31,6 +31,7 @@ class Skills extends Component {
               <TableRowColumn>
                 <FlatButton
                   label={skill.title}
+                  secondary={true}
                   onTouchTap={() => {
                     browserHistory.push(`/skills/${skill._id}`)
                   }}

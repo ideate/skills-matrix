@@ -47,12 +47,12 @@ router.post('/', function (req, res, next) {
 
 /* GET /skills/:skill */
 router.get('/:skill', function (req, res, next) {
-  req.skills.populate({
+  Skills.findOne({'_id': req.params.skill}).populate({
     path: 'skills'
-  }, function (err, skills) {
+  }).exec(function (err, skill) {
     if (err) { return next(err) }
-    
-    res.json(skills)
+
+    res.json(skill)
   })
 })
 

@@ -5,7 +5,7 @@ import FlatButton from 'material-ui/FlatButton'
 import IconButton from 'material-ui/IconButton'
 import NavigationClose from 'material-ui/svg-icons/navigation/close'
 import RaisedButton from 'material-ui/RaisedButton'
-// import {skillsDelete} from '../modules/async/skills-delete'
+import {skillRead} from '../modules/async/skill-read'
 import TextField from 'material-ui/TextField'
 import {header, main} from '../styles/common'
 import React, {Component, PropTypes} from 'react'
@@ -18,7 +18,14 @@ const style = {
 class Skill extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
+    params: PropTypes.object.isRequired,
     skill: PropTypes.object.isRequired
+  }
+
+  componentWillMount () {
+    const {dispatch, params} = this.props
+
+    dispatch(skillRead(params.id))
   }
 
   render () {
@@ -65,7 +72,7 @@ class Skill extends Component {
               disabled={true}
               floatingLabelText='Title'
               fullWidth={true}
-              value={title}
+              value={skill.data.title}
             />
           </div>
           <div>
@@ -73,7 +80,7 @@ class Skill extends Component {
               disabled={true}
               floatingLabelText='Description'
               fullWidth={true}
-              value={description}
+              value={skill.data.description}
             />
           </div>
         </main>
