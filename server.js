@@ -7,6 +7,7 @@ const readline = require('readline')
 const fs = require('fs')
 const https = require('https')
 const express = require('express')
+const compression = require('compression')
 const morgan = require('morgan')
 const cookieParser = require('cookie-parser')
 const errorHandler = require('errorhandler')
@@ -18,21 +19,16 @@ const mongoose = require('mongoose')
 
 require('./models/Capabilities')
 require('./models/Organizations')
-// require('./models/Settings')
 require('./models/Skills')
-// require('./models/Users')
 
 mongoose.connect(config.mongourl)
 
 const authentication = require('./routes/authentication')
 const capabilities = require('./routes/capabilities')
-// const explore = require('./routes/explore')
-// const help = require('./routes/help')
 const organizations = require('./routes/organizations')
-// const settings = require('./routes/settings')
 const skills = require('./routes/skills')
-// const users = require('./routes/users')
 
+app.use(compression())
 app.use(morgan('dev'))
 app.use(errorHandler())
 app.use(cookieParser())
@@ -51,12 +47,8 @@ app.use(function (req, res, next) {
 
 app.use('/api/authenticate', authentication)
 app.use('/api/capabilities', capabilities)
-// app.use('/api/explore', explore)
-// app.use('/api/help', help)
 app.use('/api/organizations', organizations)
-// app.use('/api/settings', settings)
 app.use('/api/skills', skills)
-// app.use('/api/users', users)
 
 if (app.get('env') === 'development') {
   const webpack = require('webpack')
@@ -139,7 +131,8 @@ if (config.mongoUri) {
       cert: fs.readFileSync(config.serverCertificate),
       ca: fs.readFileSync(config.serverCertificateAuthority),
       requestCert: true,
-      rejectUnauthorized: true
+      rejectUnauthorized: true,
+      secureProtocol: 'TLSv1_2_method'
     }
 
     https.createServer(serverOptions, app).listen(config.port, () => {

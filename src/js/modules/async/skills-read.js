@@ -1,6 +1,7 @@
 import {apiUri} from '../../../../config'
 import {checkFetchStatus} from './utilities'
 import fetch from 'isomorphic-fetch'
+import {skillsChange} from '../skills'
 
 export const FAILURE = 'skills-matrix/async/skills-read/FAILURE'
 export const REQUEST = 'skills-matrix/async/skills-read/REQUEST'
@@ -10,14 +11,17 @@ export const skillsReadFailure = (error) => ({
   payload: {error},
   type: FAILURE
 })
+
 export const skillsReadRequest = () => ({
   type: REQUEST
 })
+
 export const skillsReadSuccess = (data) => ({
   payload: {data},
   recievedAt: Date.now(),
   type: SUCCESS
 })
+
 export const skillsRead = (payload) =>
   (dispatch) => {
     dispatch(skillsReadRequest())
@@ -34,15 +38,8 @@ export const skillsRead = (payload) =>
     .then((response) => response.json())
     .then((json) => {
       dispatch(skillsReadSuccess(json))
-      // FUTURE: OPTIMISTIC UPDATE INSTEAD
-      // dispatch(fetchDashboards())
-      //   .then(() => {
-      //     const {_id: id, subtitle, title} = json
-
-      //     dispatch(setDashboard(id, subtitle, title))
-      //   })
+      dispatch(skillsChange({data: json}))
     })
-    // .catch((error) => dispatch(createDashboardFailure(error)))
   }
 
 const initialState = {

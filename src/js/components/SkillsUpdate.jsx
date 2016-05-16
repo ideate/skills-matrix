@@ -19,7 +19,7 @@ const style = {
   margin: 12,
 }
 
-class SkillsCreate extends Component {
+class SkillsUpdate extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     skillsCreateForm: PropTypes.object.isRequired
@@ -124,5 +124,5 @@ class SkillsCreate extends Component {
 }
 
 export default connect((state) => ({
-  skillsCreateForm: state.skillsCreateForm
-}))(SkillsCreate)
+  skillsUpdateForm: state.skillsUpdateForm
+}))(SkillsUpdate)

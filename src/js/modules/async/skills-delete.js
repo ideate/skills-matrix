@@ -2,31 +2,31 @@ import {apiUri} from '../../../../config'
 import {checkFetchStatus} from './utilities'
 import fetch from 'isomorphic-fetch'
 
-export const FAILURE = 'skills-matrix/async/skills-create/FAILURE'
-export const REQUEST = 'skills-matrix/async/skills-create/REQUEST'
-export const SUCCESS = 'skills-matrix/async/skills-create/SUCCESS'
+export const FAILURE = 'skills-matrix/async/skills-delete/FAILURE'
+export const REQUEST = 'skills-matrix/async/skills-delete/REQUEST'
+export const SUCCESS = 'skills-matrix/async/skills-delete/SUCCESS'
 
-export const skillsCreateFailure = (error) => ({
+export const skillsDeleteFailure = (error) => ({
   payload: {error},
   type: FAILURE
 })
 
-export const skillsCreateRequest = () => ({
+export const skillsDeleteRequest = () => ({
   type: REQUEST
 })
 
-export const skillsCreateSuccess = (data) => ({
+export const skillsDeleteSuccess = (data) => ({
   payload: {data},
   recievedAt: Date.now(),
   type: SUCCESS
 })
 
-export const skillsCreate = (payload) =>
+export const skillsDelete = (payload) =>
   (dispatch) => {
-    dispatch(skillsCreateRequest())
+    dispatch(skillsDeleteRequest())
 
-    return fetch(`${apiUri}/skills`, {
-      method: 'POST',
+    return fetch(`${apiUri}/skills/${payload._id}`, {
+      method: 'DELETE',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'

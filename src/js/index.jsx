@@ -10,6 +10,7 @@ import {Provider} from 'react-redux'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Settings from './components/Settings'
+import Skill from './components/Skill'
 import Skills from './components/Skills'
 import SkillsCreate from './components/SkillsCreate'
 import {store} from './store'
@@ -60,6 +61,10 @@ ReactDOM.render((
           <Route
             component={SkillsCreate}
             path='create'
+          />
+          <Route
+            component={Skill}
+            path=':id'
           />
         </Route>
       </Route>

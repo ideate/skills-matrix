@@ -1,9 +1,11 @@
 import {browserHistory} from 'react-router'
 import {connect} from 'react-redux'
+import FlatButton from 'material-ui/FlatButton'
 import {main} from '../styles/common'
 import RaisedButton from 'material-ui/RaisedButton'
 import {skillsRead} from '../modules/async/skills-read'
 import React, {Component, PropTypes} from 'react'
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
 
 class Skills extends Component {
@@ -16,6 +18,30 @@ class Skills extends Component {
     const {dispatch} = this.props
 
     dispatch(skillsRead())
+  }
+
+  renderSkills () {
+    const {skills} = this.props
+
+    if(skills && skills.data && skills.data.length){
+      return(
+        skills.data.map(function(skill) {
+          return (
+            <TableRow key={skill._id}>
+              <TableRowColumn>
+                <FlatButton
+                  label={skill.title}
+                  onTouchTap={() => {
+                    browserHistory.push(`/skills/${skill._id}`)
+                  }}
+                />
+              </TableRowColumn>
+              <TableRowColumn>{skill.description}</TableRowColumn>
+            </TableRow>
+          )
+        })
+      )
+    }
   }
 
   render () {
@@ -34,6 +60,26 @@ class Skills extends Component {
           </ToolbarGroup>
         </Toolbar>
         <main style={main}>
+          <Table
+            multiSelectable={false}
+            selectable={false}
+          >
+            <TableHeader
+              adjustForCheckbox={false}
+              displaySelectAll={false}
+              enableSelectAll={false}
+            >
+              <TableRow>
+                <TableHeaderColumn>Skill</TableHeaderColumn>
+                <TableHeaderColumn>Description</TableHeaderColumn>
+              </TableRow>
+            </TableHeader>
+            <TableBody
+              displayRowCheckbox={false}
+            >
+              {this.renderSkills()}
+            </TableBody>
+          </Table>
         </main>
       </div>
     )
