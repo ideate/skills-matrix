@@ -11,6 +11,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import Settings from './components/Settings'
 import Skill from './components/Skill'
+import SkillEdit from './components/SkillEdit'
 import Skills from './components/Skills'
 import SkillsCreate from './components/SkillsCreate'
 import {store} from './store'
@@ -65,6 +66,10 @@ ReactDOM.render((
           <Route
             component={Skill}
             path=':id'
+          />
+          <Route
+            component={SkillEdit}
+            path=':id/edit'
           />
         </Route>
       </Route>

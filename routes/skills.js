@@ -73,7 +73,7 @@ router.put('/:skill', function (req, res, next) {
 
 /* DELETE /skills/:skill */
 router.delete('/:skill', function (req, res, next) {
-  Skills.find({'_id': req.skills._id}).remove(function (err) {
+  Skills.find({'_id': req.params.skill}).remove(function (err) {
     if (err) { return next(err) }
   
     res.json({})

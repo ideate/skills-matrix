@@ -5,7 +5,6 @@ import FlatButton from 'material-ui/FlatButton'
 import IconButton from 'material-ui/IconButton'
 import NavigationClose from 'material-ui/svg-icons/navigation/close'
 import RaisedButton from 'material-ui/RaisedButton'
-import {skillDelete} from '../modules/async/skill-delete'
 import {skillRead} from '../modules/async/skill-read'
 import {skillUpdate} from '../modules/async/skill-update'
 import TextField from 'material-ui/TextField'
@@ -17,11 +16,11 @@ const style = {
   margin: 12,
 }
 
-class Skill extends Component {
+class SkillEdit extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     params: PropTypes.object.isRequired,
-    skill: PropTypes.object.isRequired
+    skillEdit: PropTypes.object.isRequired
   }
 
   componentWillMount () {
@@ -30,46 +29,42 @@ class Skill extends Component {
     dispatch(skillRead(params.id))
   }
 
-  delete = () => {
-    const {dispatch, params} = this.props
+  reset = () => {
+    const {dispatch} = this.props
 
-    dispatch(skillDelete(params.id))
+    dispatch(skillsEditReset())
+  }
+
+  update = () => {
+    const {dispatch, skillEdit} = this.props
+    const {
+      description,
+      title
+    } = skillEdit
+
+    dispatch(skillUpdate({description, title}))
   }
 
   render () {
     const {
-      skill
+      skillEdit
     } = this.props
 
     const {
       description,
       title
-    } = skill
+    } = skillEdit
     
     return (
       <div>
         <Toolbar>
           <ToolbarGroup float='left'>
-            <ToolbarTitle text='Skill' />
+            <ToolbarTitle text='Edit a Skill' />
           </ToolbarGroup>
           <ToolbarGroup float='right'>
-            <RaisedButton
-              label='Edit'
-              primary={true}
-              onTouchTap={() => (browserHistory.push(`/skills/${this.props.params.id}/edit`))}
-            />
-            <RaisedButton
-              label='Delete'
-              primary={false}
-              onTouchTap={() => {
-                browserHistory.push('/skills')
-                this.delete()
-              }}
-            />
-          
             <IconButton
               onTouchTap={() => {
-                browserHistory.push('/skills')
+                browserHistory.push(`/skills/${this.props.params.id}`)
                 this.reset()
               }}
             >
@@ -80,18 +75,36 @@ class Skill extends Component {
         <main style={main}>
           <div>
             <TextField
-              disabled={true}
               floatingLabelText='Title'
               fullWidth={true}
-              value={skill.data.title}
+              value={skillEdit.data.title}
             />
           </div>
           <div>
             <TextField
-              disabled={true}
               floatingLabelText='Description'
               fullWidth={true}
-              value={skill.data.description}
+              value={skillEdit.data.description}
+            />
+          </div>
+          <div>
+            <RaisedButton
+              label="Cancel"
+              style={style}
+              onTouchTap={() => {
+                browserHistory.push(`/skills/${this.props.params.id}`)
+                this.reset()
+              }}
+            />
+            <RaisedButton
+              label="Update"
+              primary={true}
+              style={style}
+              onTouchTap={() => {
+                browserHistory.push(`/skills/${this.props.params.id}`)
+                this.update()
+                this.reset()
+              }}
             />
           </div>
         </main>
@@ -101,5 +114,5 @@ class Skill extends Component {
 }
 
 export default connect((state) => ({
-  skill: state.skill
-}))(Skill)
+  skillEdit: state.skillEdit
+}))(SkillEdit)
