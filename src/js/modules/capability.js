@@ -1,18 +1,18 @@
-export const RESET = 'skills-matrix/skills-create-form/RESET'
-export const CHANGE = 'skills-matrix/skills-create-form/CHANGE'
+export const CHANGE = 'skills-matrix/capability/CHANGE'
+export const RESET = 'skills-matrix/capability/RESET'
 
-export const skillsCreateFormChange = (value) => ({
+export const capabilityChange = (value) => ({
   payload: {value},
   type: CHANGE
 })
 
-export const skillsCreateFormReset = () => ({
+export const capabilityReset = () => ({
   type: RESET
 })
 
 const initialState = {
-  title: '',
-  description: ''
+  description: '',
+  title: ''
 }
 
 export default (state = initialState, {payload = {}, type, ...action}) => {

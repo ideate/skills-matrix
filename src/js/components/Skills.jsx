@@ -11,7 +11,7 @@ import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
 class Skills extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
-    skills: PropTypes.object.isRequired
+    skillsState: PropTypes.object.isRequired
   }
 
   componentWillMount () {
@@ -21,11 +21,11 @@ class Skills extends Component {
   }
 
   renderSkills () {
-    const {skills} = this.props
+    const {skillsState} = this.props
 
-    if(skills && skills.data && skills.data.length){
+    if(skillsState && skillsState.data && skillsState.data.length){
       return(
-        skills.data.map(function(skill) {
+        skillsState.data.map(function(skill) {
           return (
             <TableRow key={skill._id}>
               <TableRowColumn>
@@ -88,5 +88,5 @@ class Skills extends Component {
 }
 
 export default connect((state) => ({
-  skills: state.skills
+  skillsState: state.skills
 }))(Skills)

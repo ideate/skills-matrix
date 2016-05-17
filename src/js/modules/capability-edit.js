@@ -1,18 +1,18 @@
-export const RESET = 'skills-matrix/create-capabilities-dialog/RESET'
-export const CHANGE = 'skills-matrix/create-capabilities-dialog/CHANGE'
+export const CHANGE = 'skills-matrix/capability-edit/CHANGE'
+export const RESET = 'skills-matrix/capability-edit/RESET'
 
-export const changeCapabilitiesDialog = (value) => ({
+export const capabilityEditChange = (value) => ({
   payload: {value},
   type: CHANGE
 })
 
-export const resetCapabilitiesDialog = () => ({
+export const capabilityEditReset = () => ({
   type: RESET
 })
 
 const initialState = {
-  title: '',
-  visibility: false
+  description: '',
+  title: ''
 }
 
 export default (state = initialState, {payload = {}, type, ...action}) => {

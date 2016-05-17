@@ -26,18 +26,19 @@ export const skillUpdate = (payload) =>
   (dispatch) => {
     dispatch(skillUpdateRequest())
 
-    return fetch(`${apiUri}/skills/${payload}/update`, {
-      method: 'GET',
+    return fetch(`${apiUri}/skills/${payload._id}`, {
+      method: 'PUT',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
-      }
+      },
+      body: JSON.stringify(payload)
     })
     .then(checkFetchStatus)
     .then((response) => response.json())
     .then((json) => {
       dispatch(skillUpdateSuccess(json))
-      dispatch(skillChange({data: json}))
+      dispatch(skillChange(json))
     })
   }
 

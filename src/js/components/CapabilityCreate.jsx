@@ -1,78 +1,76 @@
 import {browserHistory} from 'react-router'
+import {capabilityCreate} from '../modules/async/capability-create'
 import {connect} from 'react-redux'
-import Dialog from 'material-ui/Dialog'
-import FlatButton from 'material-ui/FlatButton'
 import IconButton from 'material-ui/IconButton'
+import {main} from '../styles/common'
 import NavigationClose from 'material-ui/svg-icons/navigation/close'
 import RaisedButton from 'material-ui/RaisedButton'
-import {skillsCreate} from '../modules/async/skills-create'
 import TextField from 'material-ui/TextField'
-import {header, main} from '../styles/common'
-import React, {Component, PropTypes} from 'react'
 import {
-  skillsCreateFormChange,
-  skillsCreateFormReset
-} from '../modules/skills-create-form'
+  capabilityCreateChange,
+  capabilityCreateReset
+} from '../modules/capability-create'
+import React, {Component, PropTypes} from 'react'
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
 
 const style = {
   margin: 12,
 }
 
-class SkillsCreate extends Component {
+class CapabilityCreate extends Component {
   static propTypes = {
-    dispatch: PropTypes.func.isRequired,
-    skillsCreateForm: PropTypes.object.isRequired
+    capabilityCreateState: PropTypes.object.isRequired,
+    dispatch: PropTypes.func.isRequired
   }
 
   changeDescription = (event) => {
     const {dispatch} = this.props
 
-    dispatch(skillsCreateFormChange({description: event.target.value}))
+    dispatch(capabilityCreateChange({description: event.target.value}))
   }
 
   changeTitle = (event) => {
     const {dispatch} = this.props
 
-    dispatch(skillsCreateFormChange({title: event.target.value}))
+    dispatch(capabilityCreateChange({title: event.target.value}))
   }
 
   create = () => {
-    const {dispatch, skillsCreateForm} = this.props
+    const {dispatch, capabilityCreateState} = this.props
     const {
       description,
       title
-    } = skillsCreateForm
+    } = capabilityCreateState
 
-    dispatch(skillsCreate({description, title}))
+    dispatch(capabilityCreate({description, title}))
   }
 
   reset = () => {
     const {dispatch} = this.props
 
-    dispatch(skillsCreateFormReset())
+    dispatch(capabilityCreateReset())
   }
 
   render () {
     const {
-      skillsCreateForm
+      capabilityCreateState
     } = this.props
 
     const {
       description,
       title
-    } = skillsCreateForm
+    } = capabilityCreateState
     
     return (
       <div>
         <Toolbar>
           <ToolbarGroup float='left'>
-            <ToolbarTitle text='Create a Skill' />
+            <ToolbarTitle text='Create a Capability' />
           </ToolbarGroup>
           <ToolbarGroup float='right'>
             <IconButton
               onTouchTap={() => {
-                browserHistory.push('/skills')
+                browserHistory.push('/capabilities')
                 this.reset()
               }}
             >
@@ -102,7 +100,7 @@ class SkillsCreate extends Component {
               label="Cancel"
               style={style}
               onTouchTap={() => {
-                browserHistory.push('/skills')
+                browserHistory.push('/capabilities')
                 this.reset()
               }}
             />
@@ -111,7 +109,7 @@ class SkillsCreate extends Component {
               primary={true}
               style={style}
               onTouchTap={() => {
-                browserHistory.push('/skills')
+                browserHistory.push('/capabilities')
                 this.create()
                 this.reset()
               }}
@@ -124,5 +122,5 @@ class SkillsCreate extends Component {
 }
 
 export default connect((state) => ({
-  skillsCreateForm: state.skillsCreateForm
-}))(SkillsCreate)
+  capabilityCreateState: state.capabilityCreate
+}))(CapabilityCreate)

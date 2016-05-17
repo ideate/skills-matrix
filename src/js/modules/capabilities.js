@@ -1,12 +1,12 @@
-export const CHANGE = 'skills-matrix/skills/CHANGE'
-export const RESET = 'skills-matrix/skills/RESET'
+export const CHANGE = 'skills-matrix/capabilities/CHANGE'
+export const RESET = 'skills-matrix/capabilities/RESET'
 
-export const skillsChange = (value) => ({
+export const capabilitiesChange = (value) => ({
   payload: {value},
   type: CHANGE
 })
 
-export const skillsReset = () => ({
+export const capabilitiesReset = () => ({
   type: RESET
 })
 

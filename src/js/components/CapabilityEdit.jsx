@@ -1,78 +1,75 @@
 import {browserHistory} from 'react-router'
+import {capabilityRead} from '../modules/async/capability-read'
+import {capabilityUpdate} from '../modules/async/capability-update'
 import {connect} from 'react-redux'
-import Dialog from 'material-ui/Dialog'
-import FlatButton from 'material-ui/FlatButton'
 import IconButton from 'material-ui/IconButton'
+import {main} from '../styles/common'
 import NavigationClose from 'material-ui/svg-icons/navigation/close'
 import RaisedButton from 'material-ui/RaisedButton'
-import {skillsCreate} from '../modules/async/skills-create'
 import TextField from 'material-ui/TextField'
-import {header, main} from '../styles/common'
-import React, {Component, PropTypes} from 'react'
 import {
-  skillsCreateFormChange,
-  skillsCreateFormReset
-} from '../modules/skills-create-form'
+  capabilityEditChange,
+  capabilityEditReset
+} from '../modules/capability-edit'
+import React, {Component, PropTypes} from 'react'
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
 
 const style = {
   margin: 12,
 }
 
-class SkillsUpdate extends Component {
+class CapabilityEdit extends Component {
   static propTypes = {
+    capabilityEditState: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
-    skillsCreateForm: PropTypes.object.isRequired
+    params: PropTypes.object.isRequired
+  }
+
+  componentWillMount () {
+    const {dispatch, params} = this.props
+
+    dispatch(capabilityRead(params.id))
   }
 
   changeDescription = (event) => {
     const {dispatch} = this.props
 
-    dispatch(skillsCreateFormChange({description: event.target.value}))
+    dispatch(capabilityEditChange({description: event.target.value}))
   }
 
   changeTitle = (event) => {
     const {dispatch} = this.props
 
-    dispatch(skillsCreateFormChange({title: event.target.value}))
-  }
-
-  create = () => {
-    const {dispatch, skillsCreateForm} = this.props
-    const {
-      description,
-      title
-    } = skillsCreateForm
-
-    dispatch(skillsCreate({description, title}))
+    dispatch(capabilityEditChange({title: event.target.value}))
   }
 
   reset = () => {
     const {dispatch} = this.props
 
-    dispatch(skillsCreateFormReset())
+    dispatch(capabilityEditReset())
+  }
+
+  update = () => {
+    const {dispatch, capabilityEditState} = this.props
+
+    dispatch(capabilityUpdate(capabilityEditState))
   }
 
   render () {
     const {
-      skillsCreateForm
+      capabilityEditState
     } = this.props
 
-    const {
-      description,
-      title
-    } = skillsCreateForm
-    
     return (
       <div>
         <Toolbar>
           <ToolbarGroup float='left'>
-            <ToolbarTitle text='Create a Skill' />
+            <ToolbarTitle text='Edit a Capability' />
           </ToolbarGroup>
           <ToolbarGroup float='right'>
             <IconButton
               onTouchTap={() => {
-                browserHistory.push('/skills')
+                browserHistory.push(`/capabilities/${this.props.params.id}`)
                 this.reset()
               }}
             >
@@ -85,7 +82,7 @@ class SkillsUpdate extends Component {
             <TextField
               floatingLabelText='Title'
               fullWidth={true}
-              value={title}
+              value={capabilityEditState.title}
               onChange={this.changeTitle}
             />
           </div>
@@ -93,7 +90,7 @@ class SkillsUpdate extends Component {
             <TextField
               floatingLabelText='Description'
               fullWidth={true}
-              value={description}
+              value={capabilityEditState.description}
               onChange={this.changeDescription}
             />
           </div>
@@ -102,17 +99,17 @@ class SkillsUpdate extends Component {
               label="Cancel"
               style={style}
               onTouchTap={() => {
-                browserHistory.push('/skills')
+                browserHistory.push(`/capabilities/${this.props.params.id}`)
                 this.reset()
               }}
             />
             <RaisedButton
-              label="Create"
+              label="Update"
               primary={true}
               style={style}
               onTouchTap={() => {
-                browserHistory.push('/skills')
-                this.create()
+                browserHistory.push(`/capabilities/${this.props.params.id}`)
+                this.update()
                 this.reset()
               }}
             />
@@ -124,5 +121,5 @@ class SkillsUpdate extends Component {
 }
 
 export default connect((state) => ({
-  skillsUpdateForm: state.skillsUpdateForm
-}))(SkillsUpdate)
+  capabilityEditState: state.capabilityEdit
+}))(CapabilityEdit)

@@ -4,72 +4,73 @@ import IconButton from 'material-ui/IconButton'
 import {main} from '../styles/common'
 import NavigationClose from 'material-ui/svg-icons/navigation/close'
 import RaisedButton from 'material-ui/RaisedButton'
-import {skillRead} from '../modules/async/skill-read'
-import {skillUpdate} from '../modules/async/skill-update'
+import {skillCreate} from '../modules/async/skill-create'
 import TextField from 'material-ui/TextField'
 import React, {Component, PropTypes} from 'react'
 import {
-  skillEditChange,
-  skillEditReset
-} from '../modules/skill-edit'
+  skillCreateChange,
+  skillCreateReset
+} from '../modules/skill-create'
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
 
 const style = {
   margin: 12,
 }
 
-class SkillEdit extends Component {
+class SkillCreate extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
-    params: PropTypes.object.isRequired,
-    skillEditState: PropTypes.object.isRequired
-  }
-
-  componentWillMount () {
-    const {dispatch, params} = this.props
-
-    dispatch(skillRead(params.id))
+    skillCreateState: PropTypes.object.isRequired
   }
 
   changeDescription = (event) => {
     const {dispatch} = this.props
 
-    dispatch(skillEditChange({description: event.target.value}))
+    dispatch(skillCreateChange({description: event.target.value}))
   }
 
   changeTitle = (event) => {
     const {dispatch} = this.props
 
-    dispatch(skillEditChange({title: event.target.value}))
+    dispatch(skillCreateChange({title: event.target.value}))
+  }
+
+  create = () => {
+    const {dispatch, skillCreateState} = this.props
+    const {
+      description,
+      title
+    } = skillCreateState
+
+    dispatch(skillCreate({description, title}))
   }
 
   reset = () => {
     const {dispatch} = this.props
 
-    dispatch(skillEditReset())
-  }
-
-  update = () => {
-    const {dispatch, skillEditState} = this.props
-
-    dispatch(skillUpdate(skillEditState))
+    dispatch(skillCreateReset())
   }
 
   render () {
     const {
-      skillEditState
+      skillCreateState
     } = this.props
 
+    const {
+      description,
+      title
+    } = skillCreateState
+    
     return (
       <div>
         <Toolbar>
           <ToolbarGroup float='left'>
-            <ToolbarTitle text='Edit a Skill' />
+            <ToolbarTitle text='Create a Skill' />
           </ToolbarGroup>
           <ToolbarGroup float='right'>
             <IconButton
               onTouchTap={() => {
-                browserHistory.push(`/skills/${this.props.params.id}`)
+                browserHistory.push('/skills')
                 this.reset()
               }}
             >
@@ -82,7 +83,7 @@ class SkillEdit extends Component {
             <TextField
               floatingLabelText='Title'
               fullWidth={true}
-              value={skillEditState.title}
+              value={title}
               onChange={this.changeTitle}
             />
           </div>
@@ -90,24 +91,26 @@ class SkillEdit extends Component {
             <TextField
               floatingLabelText='Description'
               fullWidth={true}
-              value={skillEditState.description}
+              value={description}
               onChange={this.changeDescription}
             />
           </div>
           <div>
             <RaisedButton
               label="Cancel"
+              style={style}
               onTouchTap={() => {
-                browserHistory.push(`/skills/${this.props.params.id}`)
+                browserHistory.push('/skills')
                 this.reset()
               }}
             />
             <RaisedButton
-              label="Update"
+              label="Create"
               primary={true}
+              style={style}
               onTouchTap={() => {
-                browserHistory.push(`/skills/${this.props.params.id}`)
-                this.update()
+                browserHistory.push('/skills')
+                this.create()
                 this.reset()
               }}
             />
@@ -119,5 +122,5 @@ class SkillEdit extends Component {
 }
 
 export default connect((state) => ({
-  skillEditState: state.skillEdit
-}))(SkillEdit)
+  skillCreateState: state.skillCreate
+}))(SkillCreate)

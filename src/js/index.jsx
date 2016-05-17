@@ -1,5 +1,8 @@
 import App from './components/App'
 import Capabilities from './components/Capabilities'
+import Capability from './components/Capability'
+import CapabilityCreate from './components/CapabilityCreate'
+import CapabilityEdit from './components/CapabilityEdit'
 import Dashboards from './components/Dashboards'
 import Help from './components/Help'
 import {IndexRoute} from 'react-router'
@@ -11,9 +14,9 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import Settings from './components/Settings'
 import Skill from './components/Skill'
+import SkillCreate from './components/SkillCreate'
 import SkillEdit from './components/SkillEdit'
 import Skills from './components/Skills'
-import SkillsCreate from './components/SkillsCreate'
 import {store} from './store'
 import {syncHistoryWithStore} from 'react-router-redux'
 import {browserHistory, Route, Router} from 'react-router'
@@ -30,9 +33,24 @@ ReactDOM.render((
         path='/'
       >
         <Route
-          component={Capabilities}
           path='capabilities'
-        />
+        >
+          <IndexRoute
+            component={Capabilities}
+          />
+          <Route
+            component={CapabilityCreate}
+            path='create'
+          />
+          <Route
+            component={Capability}
+            path=':id'
+          />
+          <Route
+            component={CapabilityEdit}
+            path=':id/edit'
+          />
+        </Route>
         <Route
           component={Dashboards}
           path='dashboards'
@@ -60,7 +78,7 @@ ReactDOM.render((
             component={Skills}
           />
           <Route
-            component={SkillsCreate}
+            component={SkillCreate}
             path='create'
           />
           <Route

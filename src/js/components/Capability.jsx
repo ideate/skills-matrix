@@ -1,63 +1,63 @@
 import {browserHistory} from 'react-router'
+import {capabilityDelete} from '../modules/async/capability-delete'
+import {capabilityRead} from '../modules/async/capability-read'
 import {connect} from 'react-redux'
 import IconButton from 'material-ui/IconButton'
 import {main} from '../styles/common'
 import NavigationClose from 'material-ui/svg-icons/navigation/close'
 import RaisedButton from 'material-ui/RaisedButton'
-import {skillDelete} from '../modules/async/skill-delete'
-import {skillRead} from '../modules/async/skill-read'
 import TextField from 'material-ui/TextField'
 import React, {Component, PropTypes} from 'react'
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
 
-class Skill extends Component {
+class Capability extends Component {
   static propTypes = {
+    capabilityState: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
-    params: PropTypes.object.isRequired,
-    skillState: PropTypes.object.isRequired
+    params: PropTypes.object.isRequired
   }
 
   componentWillMount () {
     const {dispatch, params} = this.props
 
-    dispatch(skillRead(params.id))
+    dispatch(capabilityRead(params.id))
   }
 
   delete = () => {
     const {dispatch, params} = this.props
 
-    dispatch(skillDelete(params.id))
+    dispatch(capabilityDelete(params.id))
   }
 
   render () {
     const {
-      skillState
+      capabilityState
     } = this.props
 
     return (
       <div>
         <Toolbar>
           <ToolbarGroup float='left'>
-            <ToolbarTitle text='Skill' />
+            <ToolbarTitle text='Capability' />
           </ToolbarGroup>
           <ToolbarGroup float='right'>
             <RaisedButton
               label='Edit'
               primary={true}
-              onTouchTap={() => (browserHistory.push(`/skills/${this.props.params.id}/edit`))}
+              onTouchTap={() => (browserHistory.push(`/capabilities/${this.props.params.id}/edit`))}
             />
             <RaisedButton
               label='Delete'
               primary={false}
               onTouchTap={() => {
-                browserHistory.push('/skills')
+                browserHistory.push('/capabilities')
                 this.delete()
               }}
             />
           
             <IconButton
               onTouchTap={() => {
-                browserHistory.push('/skills')
+                browserHistory.push('/capabilities')
                 this.reset()
               }}
             >
@@ -71,7 +71,7 @@ class Skill extends Component {
               disabled={true}
               floatingLabelText='Title'
               fullWidth={true}
-              value={skillState.title}
+              value={capabilityState.title}
             />
           </div>
           <div>
@@ -79,7 +79,7 @@ class Skill extends Component {
               disabled={true}
               floatingLabelText='Description'
               fullWidth={true}
-              value={skillState.description}
+              value={capabilityState.description}
             />
           </div>
         </main>
@@ -89,5 +89,5 @@ class Skill extends Component {
 }
 
 export default connect((state) => ({
-  skillState: state.skill
-}))(Skill)
+  capabilityState: state.capability
+}))(Capability)

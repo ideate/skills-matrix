@@ -6,24 +6,6 @@ module.exports = router
 const mongoose = require('mongoose')
 const Skills = mongoose.model('Skills')
 
-/* PRELOAD OBJECTS */
-
-/* :skill param */
-router.param('skills', function (req, res, next, id) {
-  const query = Skills.findById(id)
-
-  query.exec(function (err, skills) {
-    if (err) { return next(err) }
-    if (!skills) { return next(new Error('can\'t find skills')) }
-
-    req.skill = skills
-    
-    return next()
-  })
-})
-
-/* END PRELOADING OBJECTS */
-
 /* GET /skills */
 router.get('/', function (req, res, next) {
   Skills.find().populate({
@@ -58,7 +40,7 @@ router.get('/:skill', function (req, res, next) {
 
 /* PUT /skills/:skill */
 router.put('/:skill', function (req, res, next) {
-  Skills.findOneAndUpdate({'_id': req.skills._id}, req.body, {new: true}, function (err, skills) {
+  Skills.findOneAndUpdate({'_id': req.body._id}, req.body, {new: true}, function (err, skills) {
     if (err) { return next(err) }
 
     skills.populate({

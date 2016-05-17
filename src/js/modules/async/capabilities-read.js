@@ -1,45 +1,44 @@
 import {apiUri} from '../../../../config'
+import {capabilitiesChange} from '../capabilities'
 import {checkFetchStatus} from './utilities'
 import fetch from 'isomorphic-fetch'
-import {skillChange} from '../skill'
-import {skillEditChange} from '../skill-edit'
 
-export const FAILURE = 'skills-matrix/async/skill-read/FAILURE'
-export const REQUEST = 'skills-matrix/async/skill-read/REQUEST'
-export const SUCCESS = 'skills-matrix/async/skill-read/SUCCESS'
+export const FAILURE = 'skills-matrix/async/capabilities-read/FAILURE'
+export const REQUEST = 'skills-matrix/async/capabilities-read/REQUEST'
+export const SUCCESS = 'skills-matrix/async/capabilities-read/SUCCESS'
 
-export const skillReadFailure = (error) => ({
+export const capabilitiesReadFailure = (error) => ({
   payload: {error},
   type: FAILURE
 })
 
-export const skillReadRequest = () => ({
+export const capabilitiesReadRequest = () => ({
   type: REQUEST
 })
 
-export const skillReadSuccess = (data) => ({
+export const capabilitiesReadSuccess = (data) => ({
   payload: {data},
   recievedAt: Date.now(),
   type: SUCCESS
 })
 
-export const skillRead = (payload) =>
+export const capabilitiesRead = (payload) =>
   (dispatch) => {
-    dispatch(skillReadRequest())
+    dispatch(capabilitiesReadRequest())
 
-    return fetch(`${apiUri}/skills/${payload}`, {
+    return fetch(`${apiUri}/capabilities`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
-      }
+      },
+      body: JSON.stringify(payload)
     })
     .then(checkFetchStatus)
     .then((response) => response.json())
     .then((json) => {
-      dispatch(skillReadSuccess(json))
-      dispatch(skillChange(json))
-      dispatch(skillEditChange(json))
+      dispatch(capabilitiesReadSuccess(json))
+      dispatch(capabilitiesChange({data: json}))
     })
   }
 

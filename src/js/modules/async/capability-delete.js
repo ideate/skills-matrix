@@ -1,34 +1,32 @@
 import {apiUri} from '../../../../config'
 import {checkFetchStatus} from './utilities'
 import fetch from 'isomorphic-fetch'
-import {skillChange} from '../skill'
-import {skillEditChange} from '../skill-edit'
 
-export const FAILURE = 'skills-matrix/async/skill-read/FAILURE'
-export const REQUEST = 'skills-matrix/async/skill-read/REQUEST'
-export const SUCCESS = 'skills-matrix/async/skill-read/SUCCESS'
+export const FAILURE = 'skills-matrix/async/capability-delete/FAILURE'
+export const REQUEST = 'skills-matrix/async/capability-delete/REQUEST'
+export const SUCCESS = 'skills-matrix/async/capability-delete/SUCCESS'
 
-export const skillReadFailure = (error) => ({
+export const capabilityDeleteFailure = (error) => ({
   payload: {error},
   type: FAILURE
 })
 
-export const skillReadRequest = () => ({
+export const capabilityDeleteRequest = () => ({
   type: REQUEST
 })
 
-export const skillReadSuccess = (data) => ({
+export const capabilityDeleteSuccess = (data) => ({
   payload: {data},
   recievedAt: Date.now(),
   type: SUCCESS
 })
 
-export const skillRead = (payload) =>
+export const capabilityDelete = (payload) =>
   (dispatch) => {
-    dispatch(skillReadRequest())
+    dispatch(capabilityDeleteRequest())
 
-    return fetch(`${apiUri}/skills/${payload}`, {
-      method: 'GET',
+    return fetch(`${apiUri}/capabilities/${payload}`, {
+      method: 'DELETE',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -37,9 +35,7 @@ export const skillRead = (payload) =>
     .then(checkFetchStatus)
     .then((response) => response.json())
     .then((json) => {
-      dispatch(skillReadSuccess(json))
-      dispatch(skillChange(json))
-      dispatch(skillEditChange(json))
+      dispatch(capabilityDeleteSuccess(json))
     })
   }
 

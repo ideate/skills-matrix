@@ -1,5 +1,5 @@
-export const RESET = 'skills-matrix/skill/RESET'
 export const CHANGE = 'skills-matrix/skill/CHANGE'
+export const RESET = 'skills-matrix/skill/RESET'
 
 export const skillChange = (value) => ({
   payload: {value},
@@ -11,7 +11,8 @@ export const skillReset = () => ({
 })
 
 const initialState = {
-  data: {}
+  description: '',
+  title: ''
 }
 
 export default (state = initialState, {payload = {}, type, ...action}) => {
