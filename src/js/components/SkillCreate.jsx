@@ -70,8 +70,8 @@ class SkillCreate extends Component {
           <ToolbarGroup float='right'>
             <IconButton
               onTouchTap={() => {
-                browserHistory.push('/skills')
                 this.reset()
+                browserHistory.push('/skills')
               }}
             >
               <NavigationClose/>
@@ -100,8 +100,8 @@ class SkillCreate extends Component {
               label="Cancel"
               style={style}
               onTouchTap={() => {
-                browserHistory.push('/skills')
                 this.reset()
+                browserHistory.push('/skills')
               }}
             />
             <RaisedButton
@@ -109,9 +109,9 @@ class SkillCreate extends Component {
               primary={true}
               style={style}
               onTouchTap={() => {
-                browserHistory.push('/skills')
                 this.create()
                 this.reset()
+                browserHistory.push('/skills')
               }}
             />
           </div>

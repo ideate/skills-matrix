@@ -69,8 +69,8 @@ class SkillEdit extends Component {
           <ToolbarGroup float='right'>
             <IconButton
               onTouchTap={() => {
-                browserHistory.push(`/skills/${this.props.params.id}`)
                 this.reset()
+                browserHistory.push(`/skills/${this.props.params.id}`)
               }}
             >
               <NavigationClose/>
@@ -97,18 +97,20 @@ class SkillEdit extends Component {
           <div>
             <RaisedButton
               label="Cancel"
+              style={style}
               onTouchTap={() => {
-                browserHistory.push(`/skills/${this.props.params.id}`)
                 this.reset()
+                browserHistory.push(`/skills/${this.props.params.id}`)
               }}
             />
             <RaisedButton
               label="Update"
               primary={true}
+              style={style}
               onTouchTap={() => {
-                browserHistory.push(`/skills/${this.props.params.id}`)
                 this.update()
                 this.reset()
+                browserHistory.push(`/skills/${this.props.params.id}`)
               }}
             />
           </div>

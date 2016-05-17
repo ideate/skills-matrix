@@ -69,8 +69,8 @@ class CapabilityEdit extends Component {
           <ToolbarGroup float='right'>
             <IconButton
               onTouchTap={() => {
-                browserHistory.push(`/capabilities/${this.props.params.id}`)
                 this.reset()
+                browserHistory.push(`/capabilities/${this.props.params.id}`)
               }}
             >
               <NavigationClose/>
@@ -99,8 +99,8 @@ class CapabilityEdit extends Component {
               label="Cancel"
               style={style}
               onTouchTap={() => {
-                browserHistory.push(`/capabilities/${this.props.params.id}`)
                 this.reset()
+                browserHistory.push(`/capabilities/${this.props.params.id}`)
               }}
             />
             <RaisedButton
@@ -108,9 +108,9 @@ class CapabilityEdit extends Component {
               primary={true}
               style={style}
               onTouchTap={() => {
-                browserHistory.push(`/capabilities/${this.props.params.id}`)
                 this.update()
                 this.reset()
+                browserHistory.push(`/capabilities/${this.props.params.id}`)
               }}
             />
           </div>

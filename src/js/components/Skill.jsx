@@ -68,7 +68,7 @@ class Skill extends Component {
         <main style={main}>
           <div>
             <TextField
-              disabled={true}
+              disabled={false}
               floatingLabelText='Title'
               fullWidth={true}
               value={skillState.title}
@@ -76,7 +76,7 @@ class Skill extends Component {
           </div>
           <div>
             <TextField
-              disabled={true}
+              disabled={false}
               floatingLabelText='Description'
               fullWidth={true}
               value={skillState.description}
