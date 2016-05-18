@@ -6,6 +6,9 @@ import CapabilityEdit from './components/CapabilityEdit'
 import Dashboards from './components/Dashboards'
 import Help from './components/Help'
 import injectTapEventPlugin from 'react-tap-event-plugin'
+import Organization from './components/Organization'
+import OrganizationCreate from './components/OrganizationCreate'
+import OrganizationEdit from './components/OrganizationEdit'
 import Organizations from './components/Organizations'
 import People from './components/People'
 import {Provider} from 'react-redux'
@@ -59,9 +62,24 @@ ReactDOM.render((
           path='help'
         />
         <Route
-          component={Organizations}
           path='organizations'
-        />
+        >
+          <IndexRoute
+            component={Organizations}
+          />
+          <Route
+            component={OrganizationCreate}
+            path='create'
+          />
+          <Route
+            component={Organization}
+            path=':id'
+          />
+          <Route
+            component={OrganizationEdit}
+            path=':id/edit'
+          />
+        </Route>
         <Route
           component={People}
           path='people'
