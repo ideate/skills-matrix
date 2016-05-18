@@ -18,6 +18,7 @@ const log = (msg) => (process.stdout.write(`${msg}\n`))
 const mongoose = require('mongoose')
 
 require('./models/Capabilities')
+require('./models/Employees')
 require('./models/Organizations')
 require('./models/Skills')
 
@@ -25,6 +26,7 @@ mongoose.connect(config.mongourl)
 
 const authentication = require('./routes/authentication')
 const capabilities = require('./routes/capabilities')
+const employees = require('./routes/employees')
 const organizations = require('./routes/organizations')
 const skills = require('./routes/skills')
 
@@ -47,6 +49,7 @@ app.use(function (req, res, next) {
 
 app.use('/api/authenticate', authentication)
 app.use('/api/capabilities', capabilities)
+app.use('/api/employees', employees)
 app.use('/api/organizations', organizations)
 app.use('/api/skills', skills)
 
