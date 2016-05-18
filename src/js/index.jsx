@@ -5,7 +5,6 @@ import CapabilityCreate from './components/CapabilityCreate'
 import CapabilityEdit from './components/CapabilityEdit'
 import Dashboards from './components/Dashboards'
 import Help from './components/Help'
-import {IndexRoute} from 'react-router'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import Organizations from './components/Organizations'
 import People from './components/People'
@@ -19,7 +18,7 @@ import SkillEdit from './components/SkillEdit'
 import Skills from './components/Skills'
 import {store} from './store'
 import {syncHistoryWithStore} from 'react-router-redux'
-import {browserHistory, Route, Router} from 'react-router'
+import {browserHistory, IndexRoute, Route, Router} from 'react-router'
 
 injectTapEventPlugin()
 

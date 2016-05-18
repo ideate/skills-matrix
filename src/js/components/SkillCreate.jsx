@@ -14,7 +14,7 @@ import {
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
 
 const style = {
-  margin: 12,
+  margin: 12
 }
 
 class SkillCreate extends Component {
@@ -97,7 +97,7 @@ class SkillCreate extends Component {
           </div>
           <div>
             <RaisedButton
-              label="Cancel"
+              label='Cancel'
               style={style}
               onTouchTap={() => {
                 this.reset()
@@ -105,7 +105,7 @@ class SkillCreate extends Component {
               }}
             />
             <RaisedButton
-              label="Create"
+              label='Create'
               primary={true}
               style={style}
               onTouchTap={() => {

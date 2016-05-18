@@ -23,9 +23,9 @@ class Skills extends Component {
   renderSkills () {
     const {skillsState} = this.props
 
-    if(skillsState && skillsState.data && skillsState.data.length){
-      return(
-        skillsState.data.map(function(skill) {
+    if (skillsState && skillsState.data && skillsState.data.length) {
+      return (
+        skillsState.data.map(function (skill) {
           return (
             <TableRow key={skill._id}>
               <TableRowColumn>

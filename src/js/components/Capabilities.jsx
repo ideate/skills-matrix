@@ -23,9 +23,9 @@ class Capabilities extends Component {
   renderCapabilities () {
     const {capabilitiesState} = this.props
 
-    if(capabilitiesState && capabilitiesState.data && capabilitiesState.data.length){
-      return(
-        capabilitiesState.data.map(function(capability) {
+    if (capabilitiesState && capabilitiesState.data && capabilitiesState.data.length) {
+      return (
+        capabilitiesState.data.map(function (capability) {
           return (
             <TableRow key={capability._id}>
               <TableRowColumn>
