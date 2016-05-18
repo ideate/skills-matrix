@@ -5,7 +5,6 @@ import IconButton from 'material-ui/IconButton'
 import {main} from '../styles/common'
 import NavigationClose from 'material-ui/svg-icons/navigation/close'
 import RaisedButton from 'material-ui/RaisedButton'
-import Skills from './Skills'
 import TextField from 'material-ui/TextField'
 import {
   capabilityCreateChange,
@@ -15,7 +14,7 @@ import React, {Component, PropTypes} from 'react'
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
 
 const style = {
-  margin: 12,
+  margin: 12
 }
 
 class CapabilityCreate extends Component {
@@ -96,13 +95,9 @@ class CapabilityCreate extends Component {
               onChange={this.changeDescription}
             />
           </div>
-
-<Skills/>
-
-
           <div>
             <RaisedButton
-              label="Cancel"
+              label='Cancel'
               style={style}
               onTouchTap={() => {
                 this.reset()
@@ -110,7 +105,7 @@ class CapabilityCreate extends Component {
               }}
             />
             <RaisedButton
-              label="Create"
+              label='Create'
               primary={true}
               style={style}
               onTouchTap={() => {
