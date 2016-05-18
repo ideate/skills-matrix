@@ -101,8 +101,8 @@ class App extends Component {
                     />
                     <MenuItem
                       leftIcon={<SocialPerson />}
-                      primaryText='People'
-                      onTouchTap={() => (browserHistory.push('/people'))}
+                      primaryText='Employees'
+                      onTouchTap={() => (browserHistory.push('/employees'))}
                     />
                     <MenuItem
                       leftIcon={<ActionLightbulbOutline />}
