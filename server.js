@@ -21,6 +21,7 @@ require('./models/Capabilities')
 require('./models/Employees')
 require('./models/Organizations')
 require('./models/Skills')
+require('./models/Strategies')
 
 mongoose.connect(config.mongourl)
 
@@ -29,6 +30,7 @@ const capabilities = require('./routes/capabilities')
 const employees = require('./routes/employees')
 const organizations = require('./routes/organizations')
 const skills = require('./routes/skills')
+const strategies = require('./routes/strategies')
 
 app.use(compression())
 app.use(morgan('dev'))
@@ -52,6 +54,7 @@ app.use('/api/capabilities', capabilities)
 app.use('/api/employees', employees)
 app.use('/api/organizations', organizations)
 app.use('/api/skills', skills)
+app.use('/api/strategies', strategies)
 
 if (app.get('env') === 'development') {
   const webpack = require('webpack')

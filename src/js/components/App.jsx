@@ -10,6 +10,7 @@ import {browserHistory} from 'react-router'
 import CircularProgress from 'material-ui/CircularProgress'
 import {connect} from 'react-redux'
 import Divider from 'material-ui/Divider'
+import EditorInsertChart from 'material-ui/svg-icons/editor/insert-chart'
 import {fetchUser} from '../modules/async/user'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import {GlobalStyles} from './GlobalStyles'
@@ -105,14 +106,19 @@ class App extends Component {
                       onTouchTap={() => (browserHistory.push('/employees'))}
                     />
                     <MenuItem
+                      leftIcon={<ActionBuild />}
+                      primaryText='Skills'
+                      onTouchTap={() => (browserHistory.push('/skills'))}
+                    />
+                    <MenuItem
                       leftIcon={<ActionLightbulbOutline />}
                       primaryText='Capabilities'
                       onTouchTap={() => (browserHistory.push('/capabilities'))}
                     />
                     <MenuItem
-                      leftIcon={<ActionBuild />}
-                      primaryText='Skills'
-                      onTouchTap={() => (browserHistory.push('/skills'))}
+                      leftIcon={<EditorInsertChart />}
+                      primaryText='Strategies'
+                      onTouchTap={() => (browserHistory.push('/strategies'))}
                     />
                     <Divider />
                     <MenuItem

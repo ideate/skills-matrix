@@ -16,6 +16,10 @@ import skill from './skill'
 import skillCreate from './skill-create'
 import skillEdit from './skill-edit'
 import skills from './skills'
+import strategies from './strategies'
+import strategy from './strategy'
+import strategyCreate from './strategy-create'
+import strategyEdit from './strategy-edit'
 import user from './async/user'
 
 export const rootReducer = combineReducers({
@@ -35,6 +39,10 @@ export const rootReducer = combineReducers({
   skillCreate,
   skillEdit,
   skills,
+  strategies,
+  strategy,
+  strategyCreate,
+  strategyEdit,
   user,
   
   // for react-router-redux

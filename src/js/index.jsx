@@ -23,6 +23,10 @@ import SkillCreate from './components/SkillCreate'
 import SkillEdit from './components/SkillEdit'
 import Skills from './components/Skills'
 import {store} from './store'
+import Strategies from './components/Strategies'
+import Strategy from './components/Strategy'
+import StrategyCreate from './components/StrategyCreate'
+import StrategyEdit from './components/StrategyEdit'
 import {syncHistoryWithStore} from 'react-router-redux'
 import {browserHistory, IndexRoute, Route, Router} from 'react-router'
 
@@ -126,6 +130,27 @@ ReactDOM.render((
             path=':id/edit'
           />
         </Route>
+        <Route
+          path='strategies'
+        >
+          <IndexRoute
+            component={Strategies}
+          />
+          <Route
+            component={StrategyCreate}
+            path='create'
+          />
+          <Route
+            component={Strategy}
+            path=':id'
+          />
+          <Route
+            component={StrategyEdit}
+            path=':id/edit'
+          />
+        </Route>
+
+
       </Route>
       <Route
         component={App}
