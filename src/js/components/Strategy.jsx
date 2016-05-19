@@ -6,6 +6,7 @@ import NavigationClose from 'material-ui/svg-icons/navigation/close'
 import RaisedButton from 'material-ui/RaisedButton'
 import {strategyDelete} from '../modules/async/strategy-delete'
 import {strategyRead} from '../modules/async/strategy-read'
+import {strategyReset} from '../modules/strategy'
 import TextField from 'material-ui/TextField'
 import React, {Component, PropTypes} from 'react'
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
@@ -27,6 +28,12 @@ class Strategy extends Component {
     const {dispatch, params} = this.props
 
     dispatch(strategyDelete(params.id))
+  }
+  
+  reset = () => {
+    const {dispatch} = this.props
+
+    dispatch(strategyReset())
   }
 
   render () {

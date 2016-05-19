@@ -2,6 +2,7 @@ import {browserHistory} from 'react-router'
 import {connect} from 'react-redux'
 import {employeeDelete} from '../modules/async/employee-delete'
 import {employeeRead} from '../modules/async/employee-read'
+import {employeeReset} from '../modules/employee'
 import IconButton from 'material-ui/IconButton'
 import {main} from '../styles/common'
 import NavigationClose from 'material-ui/svg-icons/navigation/close'
@@ -29,6 +30,12 @@ class Employee extends Component {
     dispatch(employeeDelete(params.id))
   }
 
+  reset = () => {
+    const {dispatch} = this.props
+
+    dispatch(employeeReset())
+  }
+
   render () {
     const {
       employeeState
@@ -50,15 +57,15 @@ class Employee extends Component {
               label='Delete'
               primary={false}
               onTouchTap={() => {
-                browserHistory.push('/employees')
                 this.delete()
+                browserHistory.push('/employees')
               }}
             />
           
             <IconButton
               onTouchTap={() => {
-                browserHistory.push('/employees')
                 this.reset()
+                browserHistory.push('/employees')
               }}
             >
               <NavigationClose/>

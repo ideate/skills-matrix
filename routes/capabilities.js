@@ -23,18 +23,17 @@ router.post('/', function (req, res, next) {
 
   capabilities.save(function (err, capabilities) {
     if (err) { return next(err) }
-    res.json(capabilities)
+      res.json(capabilities)
   })
 })
 
 /* GET /capabilities/:capability */
 router.get('/:capability', function (req, res, next) {
-  Capabilities.findOne({'_id': req.params.capability}).populate({
-    path: 'capabilities'
-  }).exec(function (err, capability) {
+  Capabilities.findOne({'_id': req.params.capability})
+  .populate('skills')
+  .exec(function (err, data) {
     if (err) { return next(err) }
-
-    res.json(capability)
+    res.json(data)
   })
 })
 
