@@ -6,6 +6,7 @@ import NavigationClose from 'material-ui/svg-icons/navigation/close'
 import RaisedButton from 'material-ui/RaisedButton'
 import {skillDelete} from '../modules/async/skill-delete'
 import {skillRead} from '../modules/async/skill-read'
+import {skillReset} from '../modules/skill'
 import TextField from 'material-ui/TextField'
 import React, {Component, PropTypes} from 'react'
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
@@ -27,6 +28,12 @@ class Skill extends Component {
     const {dispatch, params} = this.props
 
     dispatch(skillDelete(params.id))
+  }
+
+  reset = () => {
+    const {dispatch} = this.props
+
+    dispatch(skillReset())
   }
 
   render () {

@@ -1,6 +1,7 @@
 import {browserHistory} from 'react-router'
 import {capabilityDelete} from '../modules/async/capability-delete'
 import {capabilityRead} from '../modules/async/capability-read'
+import {capabilityReset} from '../modules/capability'
 import {connect} from 'react-redux'
 import IconButton from 'material-ui/IconButton'
 import {main} from '../styles/common'
@@ -29,6 +30,12 @@ class Capability extends Component {
     dispatch(capabilityDelete(params.id))
   }
 
+  reset = () => {
+    const {dispatch} = this.props
+
+    dispatch(capabilityReset())
+  }
+
   render () {
     const {
       capabilityState
@@ -50,15 +57,15 @@ class Capability extends Component {
               label='Delete'
               primary={false}
               onTouchTap={() => {
-                browserHistory.push('/capabilities')
                 this.delete()
+                browserHistory.push('/capabilities')
               }}
             />
           
             <IconButton
               onTouchTap={() => {
-                browserHistory.push('/capabilities')
                 this.reset()
+                browserHistory.push('/capabilities')
               }}
             >
               <NavigationClose/>

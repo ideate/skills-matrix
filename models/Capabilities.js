@@ -1,8 +1,9 @@
 const mongoose = require('mongoose')
 
-const CapabilitiessSchema = new mongoose.Schema({
+const CapabilitiesSchema = new mongoose.Schema({
   description: String,
+  skills: [{type: mongoose.Schema.Types.ObjectId, ref: 'Skills'}],
   title: String
 })
 
-mongoose.model('Capabilities', CapabilitiessSchema)
+mongoose.model('Capabilities', CapabilitiesSchema)

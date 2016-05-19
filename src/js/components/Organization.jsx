@@ -5,6 +5,7 @@ import {main} from '../styles/common'
 import NavigationClose from 'material-ui/svg-icons/navigation/close'
 import {organizationDelete} from '../modules/async/organization-delete'
 import {organizationRead} from '../modules/async/organization-read'
+import {organizationReset} from '../modules/organization'
 import RaisedButton from 'material-ui/RaisedButton'
 import TextField from 'material-ui/TextField'
 import React, {Component, PropTypes} from 'react'
@@ -29,6 +30,12 @@ class Organization extends Component {
     dispatch(organizationDelete(params.id))
   }
 
+  reset = () => {
+    const {dispatch} = this.props
+
+    dispatch(organizationReset())
+  }
+
   render () {
     const {
       organizationState
@@ -50,15 +57,15 @@ class Organization extends Component {
               label='Delete'
               primary={false}
               onTouchTap={() => {
-                browserHistory.push('/organizations')
                 this.delete()
+                browserHistory.push('/organizations')
               }}
             />
           
             <IconButton
               onTouchTap={() => {
-                browserHistory.push('/organizations')
                 this.reset()
+                browserHistory.push('/organizations')
               }}
             >
               <NavigationClose/>

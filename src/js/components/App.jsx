@@ -95,6 +95,7 @@ class App extends Component {
                       primaryText='Dashboards'
                       onTouchTap={() => (browserHistory.push('/dashboards'))}
                     />
+                    <Divider />
                     <MenuItem
                       leftIcon={<ActionGroupWork />}
                       primaryText='Organizations'
@@ -105,6 +106,7 @@ class App extends Component {
                       primaryText='Employees'
                       onTouchTap={() => (browserHistory.push('/employees'))}
                     />
+                    <Divider />
                     <MenuItem
                       leftIcon={<ActionBuild />}
                       primaryText='Skills'
@@ -126,7 +128,6 @@ class App extends Component {
                       primaryText='Help'
                       onTouchTap={() => (browserHistory.push('/help'))}
                     />
-                    <Divider />
                     <MenuItem
                       leftIcon={<ActionSettings />}
                       primaryText='Settings'
