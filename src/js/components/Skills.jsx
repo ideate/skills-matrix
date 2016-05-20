@@ -13,6 +13,7 @@ class Skills extends Component {
     super()
 
     this.state = {
+<<<<<<< 0d949244f8fb87aa265259fccf2211bcd466a475
 <<<<<<< 727295fa8df86cb572d8ccab2e85acbad3b4f123
       headerHeight: 48,
       rowHeight: 48,
@@ -24,6 +25,11 @@ class Skills extends Component {
         filter: '<i class="fa fa-filter"/>',
         menu: '<i class="fa fa-bars"/>',
 >>>>>>> Grid branch (#11)
+=======
+      headerHeight: 48,
+      rowHeight: 48,
+      icons: {
+>>>>>>> Added very rudimentary ag-grid set up on skills
         sortAscending: '<i class="fa fa-sort-alpha-asc"/>',
         sortDescending: '<i class="fa fa-sort-alpha-desc"/>'
       }
@@ -45,7 +51,10 @@ class Skills extends Component {
     dispatch(skillsRead())
   }
   
+<<<<<<< 0d949244f8fb87aa265259fccf2211bcd466a475
 <<<<<<< 727295fa8df86cb572d8ccab2e85acbad3b4f123
+=======
+>>>>>>> Added very rudimentary ag-grid set up on skills
   componentWillUnmount () {
     this.refs.grid.api.destroy()
   }
@@ -64,13 +73,17 @@ class Skills extends Component {
     return tableHeightStyle
   }
   
+<<<<<<< 0d949244f8fb87aa265259fccf2211bcd466a475
 =======
 >>>>>>> Grid branch (#11)
+=======
+>>>>>>> Added very rudimentary ag-grid set up on skills
   handleResize (grid) {
     grid.api.sizeColumnsToFit()
   }
   
   onCellClicked (event) {
+<<<<<<< 0d949244f8fb87aa265259fccf2211bcd466a475
 <<<<<<< 727295fa8df86cb572d8ccab2e85acbad3b4f123
     browserHistory.push('/skills/' + event.data.id)
 =======
@@ -78,6 +91,9 @@ class Skills extends Component {
       browserHistory.push('/skills/' + event.data.id)
     }
 >>>>>>> Grid branch (#11)
+=======
+    browserHistory.push('/skills/' + event.data.id)
+>>>>>>> Added very rudimentary ag-grid set up on skills
   }
   
   onGridReady (grid) {
@@ -86,10 +102,10 @@ class Skills extends Component {
   
   renderSkills () {
     const {skillsState} = this.props
-    const editIcon = this.state.editIcon
 
     if (skillsState && skillsState.data && skillsState.data.length) {
       const columnDefs = [
+<<<<<<< 0d949244f8fb87aa265259fccf2211bcd466a475
 <<<<<<< 727295fa8df86cb572d8ccab2e85acbad3b4f123
         {headerName: 'Skill', field: 'title', cellStyle: {color: '#FF4081'}},
         {headerName: 'Description', field: 'description'}
@@ -108,27 +124,25 @@ class Skills extends Component {
           suppressSorting: true,
           width: 15
         },
+=======
+>>>>>>> Added very rudimentary ag-grid set up on skills
         {headerName: 'Skill', field: 'title', cellStyle: {color: '#FF4081'}},
-        {headerName: 'Description', field: 'description'},
-        {
-          headerName: 'Edit',
-          field: 'edit',
-          suppressMenu: true,
-          suppressMovable: true,
-          suppressResize: true,
-          suppressSorting: true,
-          width: 20
-        }
+        {headerName: 'Description', field: 'description'}
       ]
       const rowData = []
-
+      
       skillsState.data.map(function (skill) {
+<<<<<<< 0d949244f8fb87aa265259fccf2211bcd466a475
         rowData.push({id: skill._id, title: skill.title, description: skill.description, edit: editIcon})
 >>>>>>> Grid branch (#11)
+=======
+        rowData.push({id: skill._id, title: skill.title, description: skill.description})
+>>>>>>> Added very rudimentary ag-grid set up on skills
       })
       
       return (
         <AgGridReact
+<<<<<<< 0d949244f8fb87aa265259fccf2211bcd466a475
 <<<<<<< 727295fa8df86cb572d8ccab2e85acbad3b4f123
           columnDefs={columnDefs}
           enableSorting='true'
@@ -140,17 +154,22 @@ class Skills extends Component {
           suppressMovableColumns='true'
 =======
           autoResize='true'
+=======
+>>>>>>> Added very rudimentary ag-grid set up on skills
           columnDefs={columnDefs}
-          enableColResize='true'
-          enableFilter='true'
           enableSorting='true'
-          headerHeight='48'
+          headerHeight={this.state.headerHeight}
           icons={this.state.icons}
           ref='grid'
           rowData={rowData}
+<<<<<<< 0d949244f8fb87aa265259fccf2211bcd466a475
           rowHeight='48'
           rowSelection='multiple'
 >>>>>>> Grid branch (#11)
+=======
+          rowHeight={this.state.rowHeight}
+          suppressMovableColumns='true'
+>>>>>>> Added very rudimentary ag-grid set up on skills
           onCellClicked={this.onCellClicked.bind(this)}
           onGridReady={this.onGridReady.bind(this)}
         />
@@ -174,12 +193,17 @@ class Skills extends Component {
           </ToolbarGroup>
         </Toolbar>
         <main style={main}>
+<<<<<<< 0d949244f8fb87aa265259fccf2211bcd466a475
 <<<<<<< 727295fa8df86cb572d8ccab2e85acbad3b4f123
           <div className='ag-material'
             style={this.getTableHeight()}>
 =======
           <div className='ag-material'>
 >>>>>>> Grid branch (#11)
+=======
+          <div className='ag-material'
+            style={this.getTableHeight()}>
+>>>>>>> Added very rudimentary ag-grid set up on skills
            {this.renderSkills()}
            </div>
         </main>
