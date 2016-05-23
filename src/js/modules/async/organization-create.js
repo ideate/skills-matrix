@@ -1,6 +1,7 @@
 import {apiUri} from '../../../../config'
 import {checkFetchStatus} from './utilities'
 import fetch from 'isomorphic-fetch'
+import {snackbarChange} from '../snackbar'
 
 export const FAILURE = 'skills-matrix/async/organization-create/FAILURE'
 export const REQUEST = 'skills-matrix/async/organization-create/REQUEST'
@@ -37,6 +38,10 @@ export const organizationCreate = (payload) =>
     .then((response) => response.json())
     .then((json) => {
       dispatch(organizationCreateSuccess(json))
+      dispatch(snackbarChange({
+        message: 'Organization created!',
+        open: true
+      }))
     })
   }
 

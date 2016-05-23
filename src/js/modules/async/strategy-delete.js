@@ -1,6 +1,7 @@
 import {apiUri} from '../../../../config'
 import {checkFetchStatus} from './utilities'
 import fetch from 'isomorphic-fetch'
+import {snackbarChange} from '../snackbar'
 
 export const FAILURE = 'skills-matrix/async/strategy-delete/FAILURE'
 export const REQUEST = 'skills-matrix/async/strategy-delete/REQUEST'
@@ -36,6 +37,10 @@ export const strategyDelete = (payload) =>
     .then((response) => response.json())
     .then((json) => {
       dispatch(strategyDeleteSuccess(json))
+      dispatch(snackbarChange({
+        message: 'Strategy deleted!',
+        open: true
+      }))
     })
   }
 

@@ -1,6 +1,7 @@
 import {apiUri} from '../../../../config'
 import {checkFetchStatus} from './utilities'
 import fetch from 'isomorphic-fetch'
+import {snackbarChange} from '../snackbar'
 
 export const FAILURE = 'skills-matrix/async/capability-create/FAILURE'
 export const REQUEST = 'skills-matrix/async/capability-create/REQUEST'
@@ -37,6 +38,10 @@ export const capabilityCreate = (payload) =>
     .then((response) => response.json())
     .then((json) => {
       dispatch(capabilityCreateSuccess(json))
+      dispatch(snackbarChange({
+        message: 'Capability created!',
+        open: true
+      }))
     })
   }
 

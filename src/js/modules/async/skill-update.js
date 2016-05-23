@@ -2,6 +2,7 @@ import {apiUri} from '../../../../config'
 import {checkFetchStatus} from './utilities'
 import fetch from 'isomorphic-fetch'
 import {skillChange} from '../skill'
+import {snackbarChange} from '../snackbar'
 
 export const FAILURE = 'skills-matrix/async/skill-update/FAILURE'
 export const REQUEST = 'skills-matrix/async/skill-update/REQUEST'
@@ -39,6 +40,10 @@ export const skillUpdate = (payload) =>
     .then((json) => {
       dispatch(skillUpdateSuccess(json))
       dispatch(skillChange(json))
+      dispatch(snackbarChange({
+        message: 'Skill updated!',
+        open: true
+      }))
     })
   }
 

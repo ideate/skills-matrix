@@ -19,6 +19,8 @@ import IconMenu from 'material-ui/IconMenu'
 import MenuItem from 'material-ui/MenuItem'
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import Snackbar from 'material-ui/Snackbar'
+import {snackbarReset} from '../modules/snackbar'
 import SocialPerson from 'material-ui/svg-icons/social/person'
 import {Wrapper} from './Wrapper'
 import Radium, {StyleRoot} from 'radium'
@@ -42,6 +44,7 @@ class App extends Component {
   static propTypes = {
     children: PropTypes.node,
     dispatch: PropTypes.func.isRequired,
+    snackbarState: PropTypes.object.isRequired,
     user: PropTypes.object.isRequired
   }
 
@@ -49,6 +52,14 @@ class App extends Component {
     const {dispatch} = this.props
 
     dispatch(fetchUser())
+  }
+
+  snackbarReset = (reason) => {
+    const {dispatch} = this.props
+
+    if (reason) {
+      dispatch(snackbarReset())
+    }
   }
 
   render () {
@@ -138,6 +149,12 @@ class App extends Component {
                 showMenuIconButton={false}
                 title='Skills Matrix'
               />
+              <Snackbar
+                autoHideDuration={2000}
+                message={this.props.snackbarState.message}
+                open={this.props.snackbarState.open}
+                onRequestClose = {this.snackbarReset}
+              />
             {children}
           </Wrapper>
         </div>
@@ -158,5 +175,6 @@ class App extends Component {
 }
 
 export default connect((state) => ({
+  snackbarState: state.snackbar,
   user: state.user
 }))(App)

@@ -1,6 +1,7 @@
 import {apiUri} from '../../../../config'
 import {checkFetchStatus} from './utilities'
 import fetch from 'isomorphic-fetch'
+import {snackbarChange} from '../snackbar'
 
 export const FAILURE = 'skills-matrix/async/organization-delete/FAILURE'
 export const REQUEST = 'skills-matrix/async/organization-delete/REQUEST'
@@ -36,6 +37,10 @@ export const organizationDelete = (payload) =>
     .then((response) => response.json())
     .then((json) => {
       dispatch(organizationDeleteSuccess(json))
+      dispatch(snackbarChange({
+        message: 'Organization deleted!',
+        open: true
+      }))
     })
   }
 

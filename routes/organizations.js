@@ -29,11 +29,10 @@ router.post('/', function (req, res, next) {
 
 /* GET /organizations/:organization */
 router.get('/:organization', function (req, res, next) {
-  Organizations.findOne({'_id': req.params.organization}).populate({
-    path: 'organizations'
-  }).exec(function (err, data) {
+  Organizations.findOne({'_id': req.params.organization})
+  .populate('employees')
+  .exec(function (err, data) {
     if (err) { return next(err) }
-
     res.json(data)
   })
 })

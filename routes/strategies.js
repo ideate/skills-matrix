@@ -6,7 +6,7 @@ module.exports = router
 const mongoose = require('mongoose')
 const Strategies = mongoose.model('Strategies')
 
-/* GET /strategies */
+/* GET /strategise */
 router.get('/', function (req, res, next) {
   Strategies.find().sort({title: 1}).populate({
     path: 'strategies'
@@ -29,11 +29,10 @@ router.post('/', function (req, res, next) {
 
 /* GET /strategies/:strategy */
 router.get('/:strategy', function (req, res, next) {
-  Strategies.findOne({'_id': req.params.strategy}).populate({
-    path: 'strategies'
-  }).exec(function (err, data) {
+  Strategies.findOne({'_id': req.params.strategy})
+  .populate('skills')
+  .exec(function (err, data) {
     if (err) { return next(err) }
-
     res.json(data)
   })
 })

@@ -1,6 +1,7 @@
 import {apiUri} from '../../../../config'
 import {checkFetchStatus} from './utilities'
 import fetch from 'isomorphic-fetch'
+import {snackbarChange} from '../snackbar'
 
 export const FAILURE = 'skills-matrix/async/capability-delete/FAILURE'
 export const REQUEST = 'skills-matrix/async/capability-delete/REQUEST'
@@ -36,6 +37,10 @@ export const capabilityDelete = (payload) =>
     .then((response) => response.json())
     .then((json) => {
       dispatch(capabilityDeleteSuccess(json))
+      dispatch(snackbarChange({
+        message: 'Capability deleted!',
+        open: true
+      }))
     })
   }
 

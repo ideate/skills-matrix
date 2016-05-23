@@ -1,6 +1,7 @@
 import {apiUri} from '../../../../config'
 import {checkFetchStatus} from './utilities'
 import fetch from 'isomorphic-fetch'
+import {snackbarChange} from '../snackbar'
 import {strategyChange} from '../strategy'
 
 export const FAILURE = 'skills-matrix/async/strategy-update/FAILURE'
@@ -39,6 +40,10 @@ export const strategyUpdate = (payload) =>
     .then((json) => {
       dispatch(strategyUpdateSuccess(json))
       dispatch(strategyChange(json))
+      dispatch(snackbarChange({
+        message: 'Strategy updated!',
+        open: true
+      }))
     })
   }
 
