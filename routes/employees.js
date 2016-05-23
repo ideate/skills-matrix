@@ -29,12 +29,11 @@ router.post('/', function (req, res, next) {
 
 /* GET /employees/:employee */
 router.get('/:employee', function (req, res, next) {
-  Employees.findOne({'_id': req.params.employee}).populate({
-    path: 'employees'
-  }).exec(function (err, employee) {
+  Employees.findOne({'_id': req.params.employee})
+  .populate('skills')
+  .exec(function (err, data) {
     if (err) { return next(err) }
-
-    res.json(employee)
+    res.json(data)
   })
 })
 

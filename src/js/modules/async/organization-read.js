@@ -3,6 +3,7 @@ import {checkFetchStatus} from './utilities'
 import fetch from 'isomorphic-fetch'
 import {organizationChange} from '../organization'
 import {organizationEditChange} from '../organization-edit'
+import {snackbarChange} from '../snackbar'
 
 export const FAILURE = 'skills-matrix/async/organization-read/FAILURE'
 export const REQUEST = 'skills-matrix/async/organization-read/REQUEST'

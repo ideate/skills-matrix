@@ -1,6 +1,7 @@
 import {apiUri} from '../../../../config'
 import {checkFetchStatus} from './utilities'
 import fetch from 'isomorphic-fetch'
+import {snackbarChange} from '../snackbar'
 
 export const FAILURE = 'skills-matrix/async/employee-delete/FAILURE'
 export const REQUEST = 'skills-matrix/async/employee-delete/REQUEST'
@@ -36,6 +37,10 @@ export const employeeDelete = (payload) =>
     .then((response) => response.json())
     .then((json) => {
       dispatch(employeeDeleteSuccess(json))
+      dispatch(snackbarChange({
+        message: 'Employee deleted!',
+        open: true
+      }))
     })
   }
 
