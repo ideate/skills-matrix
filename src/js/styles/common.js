@@ -1,3 +1,7 @@
+export const ag = {
+  padding: '1.25em',
+}
+
 export const header = {
   backgroundColor: '#FFFFFF',
   color: '#000000',

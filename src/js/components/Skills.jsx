@@ -2,7 +2,7 @@ import {AgGridReact} from 'ag-grid-react'
 import {browserHistory} from 'react-router'
 import {connect} from 'react-redux'
 import FlatButton from 'material-ui/FlatButton'
-import {main} from '../styles/common'
+import {ag, main} from '../styles/common'
 import RaisedButton from 'material-ui/RaisedButton'
 import {skillsRead} from '../modules/async/skills-read'
 import React, {Component, PropTypes} from 'react'
@@ -15,72 +15,55 @@ class Skills extends Component {
     dispatch: PropTypes.func.isRequired,
     skillsState: PropTypes.object.isRequired
   }
-
+  
+  componentDidUpdate () {
+    this.handleResize(this.refs.grid)
+  }
+  
   componentWillMount () {
     const {dispatch} = this.props
 
     dispatch(skillsRead())
   }
   
- onGridReady(params) {
-    this.api = params.api;
-    this.columnApi = params.columnApi;
-  }
-  
-  onRowSelected(event) {
-    console.log('onRowSelected: ' + event.node.data.name);
+  handleResize (grid) {
+    grid.api.sizeColumnsToFit()
   }
   
   onCellClicked(event) {
-    console.log('onCellClicked: ' + event.data.name + ', col ' + event.colIndex);
+      browserHistory.push(`/skills/` + event.data.id)
+  }
+  
+  onGridReady(grid) {
+    grid.api.sizeColumnsToFit()
   }
 
   renderSkills () {
     const {skillsState} = this.props
-    
-    console.log(skillsState.data);
-    console.log(skillsState.data[0]);
-    
+
     if (skillsState && skillsState.data && skillsState.data.length) {
-      var columnDefs = [
+      const columnDefs = [
           {headerName: "Skill", field: "title"},
           {headerName: "Description", field: "description"}
       ]
-      var rowData = []/*
-          {title: "Toyota", description: "Celica"},
-          {title: "Ford", description: "Mondeo"}
-      ];
-      /**/
+      const rowData = []
+
       skillsState.data.map(function (skill) {
-        rowData.push({title: skill.title, description: skill.description});
+        rowData.push({id: skill._id, title: skill.title, description: skill.description});
       })
-     
-      console.log(columnDefs);
-      console.log(rowData);
       
       return (
         <AgGridReact
-          //TODO add back in all these events
-          // listen for events with React callbacks
-          //onRowSelected={this.onRowSelected.bind(this)}
-          //onCellClicked={this.onCellClicked.bind(this)}
-  
-          // binding to properties within React State or Props
-          //showToolPanel={this.state.showToolPanel}
-          //quickFilterText={this.state.quickFilterText}
-          //icons={this.state.icons}
-          
-          //Object { _id: "573cb55b6f6a0a370a7b9905", description: "asdf", title: "Leatherworking", __v: 0 }
-  
-          // column definitions and row data are immutable, the grid
-          // will update when these lists change
+          autoResize="true"
           columnDefs={columnDefs}
-          rowData={rowData}
-  
-          // or provide props the old way with no binding
-          rowSelection="multiple"
-          enableSorting="true"
+          enableColResize="true"
           enableFilter="true"
+          enableSorting="true"
+          ref='grid'
+          rowData={rowData}
+          
+          onCellClicked={this.onCellClicked.bind(this)}
+          onGridReady={this.onGridReady.bind(this)}
         />
       )
     }
@@ -102,7 +85,8 @@ class Skills extends Component {
           </ToolbarGroup>
         </Toolbar>
         <main style={main}>
-          <div className="ag-fresh">
+          <div className="ag-fresh"
+            style={ag}>
            {this.renderSkills()}
            </div>
         </main>
