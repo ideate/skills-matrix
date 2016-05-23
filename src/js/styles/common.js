@@ -1,7 +1,3 @@
-export const ag = {
-  padding: '1.25em',
-}
-
 export const header = {
   backgroundColor: '#FFFFFF',
   color: '#000000',
@@ -9,7 +5,7 @@ export const header = {
 }
 
 export const main = {
-  padding: '0 1.25em'
+  padding: '1.25em'
 }
 
 export const verticalTop = {

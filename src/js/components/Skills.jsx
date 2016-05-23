@@ -2,11 +2,10 @@ import {AgGridReact} from 'ag-grid-react'
 import {browserHistory} from 'react-router'
 import {connect} from 'react-redux'
 import FlatButton from 'material-ui/FlatButton'
-import {ag, main} from '../styles/common'
+import {main} from '../styles/common'
 import RaisedButton from 'material-ui/RaisedButton'
 import {skillsRead} from '../modules/async/skills-read'
 import React, {Component, PropTypes} from 'react'
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
 
 class Skills extends Component {
@@ -59,9 +58,10 @@ class Skills extends Component {
           enableColResize="true"
           enableFilter="true"
           enableSorting="true"
+          headerHeight='48'
           ref='grid'
           rowData={rowData}
-          
+          rowHeight='48'
           onCellClicked={this.onCellClicked.bind(this)}
           onGridReady={this.onGridReady.bind(this)}
         />
@@ -85,8 +85,7 @@ class Skills extends Component {
           </ToolbarGroup>
         </Toolbar>
         <main style={main}>
-          <div className="ag-fresh"
-            style={ag}>
+          <div className="ag-material">
            {this.renderSkills()}
            </div>
         </main>
