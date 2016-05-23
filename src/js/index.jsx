@@ -149,8 +149,6 @@ ReactDOM.render((
             path=':id/edit'
           />
         </Route>
-
-
       </Route>
       <Route
         component={App}

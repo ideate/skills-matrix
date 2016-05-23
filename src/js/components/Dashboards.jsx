@@ -1,8 +1,6 @@
-import {browserHistory} from 'react-router'
 import {capabilitiesRead} from '../modules/async/capabilities-read'
 import {connect} from 'react-redux'
 import {employeesRead} from '../modules/async/employees-read'
-import FlatButton from 'material-ui/FlatButton'
 import {main} from '../styles/common'
 import MenuItem from 'material-ui/MenuItem'
 import {organizationsRead} from '../modules/async/organizations-read'
@@ -167,7 +165,7 @@ class Dashboards extends Component {
         <main style={main}>
           <div>
             <SelectField
-              floatingLabelText="Organizations"
+              floatingLabelText='Organizations'
               value={this.props.dashboardsState.organizationsSelect}
               onChange={this.changeDashboardsOrganizations}
             >
@@ -175,7 +173,7 @@ class Dashboards extends Component {
             </SelectField>
             <br />
             <SelectField
-              floatingLabelText="Employees"
+              floatingLabelText='Employees'
               value={this.props.dashboardsState.employeesSelect}
               onChange={this.changeDashboardsEmployees}
             >
@@ -183,7 +181,7 @@ class Dashboards extends Component {
             </SelectField>
             <br />
             <SelectField
-              floatingLabelText="Skills"
+              floatingLabelText='Skills'
               value={this.props.dashboardsState.skillsSelect}
               onChange={this.changeDashboardsSkills}
             >
@@ -191,7 +189,7 @@ class Dashboards extends Component {
             </SelectField>
             <br />
             <SelectField
-              floatingLabelText="Capabilities"
+              floatingLabelText='Capabilities'
               value={this.props.dashboardsState.capabilitiesSelect}
               onChange={this.changeDashboardsCapabilities}
             >
@@ -199,7 +197,7 @@ class Dashboards extends Component {
             </SelectField>
             <br />
             <SelectField
-              floatingLabelText="Strategies"
+              floatingLabelText='Strategies'
               value={this.props.dashboardsState.strategiesSelect}
               onChange={this.changeDashboardsStrategies}
             >

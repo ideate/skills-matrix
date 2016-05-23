@@ -16,16 +16,16 @@ export const dashboardsSelectReset = () => ({
 })
 
 const initialState = {
-  capabilities:[],
-  capabilitiesSelect:'',
-  employees:[],
-  employeesSelect:'',
-  organizations:[],
-  organizationsSelect:'',
-  skills:[],
-  skillsSelect:'',
-  strategies:[],
-  strategiesSelect:''
+  capabilities: [],
+  capabilitiesSelect: '',
+  employees: [],
+  employeesSelect: '',
+  organizations: [],
+  organizationsSelect: '',
+  skills: [],
+  skillsSelect: '',
+  strategies: [],
+  strategiesSelect: ''
 }
 
 export default (state = initialState, {payload = {}, type, ...action}) => {
@@ -42,11 +42,11 @@ export default (state = initialState, {payload = {}, type, ...action}) => {
     case SELECT_RESET:
       return {
         ...state,
-        capabilitiesSelect:'',
-        employeesSelect:'',
-        organizationsSelect:'',
-        skillsSelect:'',
-        strategiesSelect:''
+        capabilitiesSelect: '',
+        employeesSelect: '',
+        organizationsSelect: '',
+        skillsSelect: '',
+        strategiesSelect: ''
       }
     default:
       return state
