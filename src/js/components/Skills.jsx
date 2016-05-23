@@ -2,6 +2,10 @@
 import {AgGridReact} from 'ag-grid-react'
 import {browserHistory} from 'react-router'
 import {connect} from 'react-redux'
+<<<<<<< 636285151a9b5d7640f1f2fddf197df54c26546d
+=======
+import FlatButton from 'material-ui/FlatButton'
+>>>>>>> Updated ag-grid to use ag-material theme
 import {main} from '../styles/common'
 import RaisedButton from 'material-ui/RaisedButton'
 import {skillsRead} from '../modules/async/skills-read'
@@ -146,6 +150,7 @@ class Skills extends Component {
 <<<<<<< 0d949244f8fb87aa265259fccf2211bcd466a475
 <<<<<<< 727295fa8df86cb572d8ccab2e85acbad3b4f123
           columnDefs={columnDefs}
+<<<<<<< 636285151a9b5d7640f1f2fddf197df54c26546d
           enableSorting='true'
           headerHeight={this.state.headerHeight}
           icons={this.state.icons}
@@ -154,6 +159,7 @@ class Skills extends Component {
           rowHeight={this.state.rowHeight}
           suppressMovableColumns='true'
 =======
+<<<<<<< c3f8fbdfa436574bf875076b06cb027967fd015f
           autoResize='true'
 =======
 >>>>>>> Added very rudimentary ag-grid set up on skills
@@ -171,6 +177,16 @@ class Skills extends Component {
           rowHeight={this.state.rowHeight}
           suppressMovableColumns='true'
 >>>>>>> Added very rudimentary ag-grid set up on skills
+=======
+          enableColResize="true"
+          enableFilter="true"
+          enableSorting="true"
+          headerHeight='48'
+          ref='grid'
+          rowData={rowData}
+          rowHeight='48'
+>>>>>>> Updated ag-grid to use ag-material theme
+>>>>>>> Updated ag-grid to use ag-material theme
           onCellClicked={this.onCellClicked.bind(this)}
           onGridReady={this.onGridReady.bind(this)}
         />
@@ -194,6 +210,7 @@ class Skills extends Component {
           </ToolbarGroup>
         </Toolbar>
         <main style={main}>
+<<<<<<< c3f8fbdfa436574bf875076b06cb027967fd015f
 <<<<<<< 0d949244f8fb87aa265259fccf2211bcd466a475
 <<<<<<< 727295fa8df86cb572d8ccab2e85acbad3b4f123
           <div className='ag-material'
@@ -205,6 +222,14 @@ class Skills extends Component {
           <div className='ag-material'
             style={this.getTableHeight()}>
 >>>>>>> Added very rudimentary ag-grid set up on skills
+=======
+<<<<<<< 636285151a9b5d7640f1f2fddf197df54c26546d
+          <div className='ag-material'
+            style={this.getTableHeight()}>
+=======
+          <div className="ag-material">
+>>>>>>> Updated ag-grid to use ag-material theme
+>>>>>>> Updated ag-grid to use ag-material theme
            {this.renderSkills()}
            </div>
         </main>

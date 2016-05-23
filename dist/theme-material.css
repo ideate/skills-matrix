@@ -11,9 +11,14 @@
 }
 
 .ag-material .ag-root .ag-header {
+<<<<<<< 636285151a9b5d7640f1f2fddf197df54c26546d
   background-color: #00BCD4;
   color: #FFFFFF;
   font-size: 20px;
+=======
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 12px;
+>>>>>>> Updated ag-grid to use ag-material theme
   height: 56px !important;
 }
 
@@ -36,6 +41,14 @@
   padding-right: 0px;
 }
 
+<<<<<<< 636285151a9b5d7640f1f2fddf197df54c26546d
+=======
+.ag-material .ag-root .ag-header .ag-sort-ascending-icon,
+.ag-material .ag-root .ag-header .ag-sort-descending-icon {
+  display: none !important;
+}
+
+>>>>>>> Updated ag-grid to use ag-material theme
 .ag-material .ag-root .ag-header .ag-header-cell-text:after {
   position: absolute;
   content: '';
@@ -46,6 +59,19 @@
   display: none;
 }
 
+<<<<<<< 636285151a9b5d7640f1f2fddf197df54c26546d
+=======
+.ag-material .ag-root .ag-header .ag-header-cell-sorted-asc,
+.ag-material .ag-root .ag-header .ag-header-cell-sorted-desc {
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.ag-material .ag-root .ag-header .ag-header-cell-sorted-asc .ag-header-cell-text:after,
+.ag-material .ag-root .ag-header .ag-header-cell-sorted-desc .ag-header-cell-text:after {
+  display: initial;
+}
+
+>>>>>>> Updated ag-grid to use ag-material theme
 .ag-material .ag-root .ag-header .ag-header-cell-sorted-desc .ag-header-cell-text:after {
   -webkit-transform: rotate(180deg);
   -moz-transform: rotate(180deg);
@@ -92,10 +118,15 @@
 }
 
 .ag-material .ag-root .ag-body .ag-cell {
+<<<<<<< 636285151a9b5d7640f1f2fddf197df54c26546d
   font-family: Roboto,sans-serif;
   font-size: 14px;
   outline: none;
   padding: 16px 24px 16px 24px;
+=======
+  outline: none;
+  padding: 16px 24px;
+>>>>>>> Updated ag-grid to use ag-material theme
 }
 
 .ag-material .ag-root .ag-selection-checkbox {
@@ -153,6 +184,7 @@
   transform: rotate(-45deg);
 }
 
+<<<<<<< 636285151a9b5d7640f1f2fddf197df54c26546d
 .ag-filter-filter {
   font-size: 16px;
   line-height: 24px;
@@ -181,6 +213,8 @@
   transition: height 200ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
 }
 
+=======
+>>>>>>> Updated ag-grid to use ag-material theme
 .ag-header-cell-resize {
   background: #EDEDED;
   margin-top: -12px;
@@ -194,6 +228,7 @@
   margin-left: -5px;
   content: '';
   position: absolute;
+<<<<<<< 636285151a9b5d7640f1f2fddf197df54c26546d
 }
 
 .ag-menu {
@@ -208,4 +243,6 @@
 
 .fa-pencil-square-o:hover {
   transform: scale(1.2);
+=======
+>>>>>>> Updated ag-grid to use ag-material theme
 }
