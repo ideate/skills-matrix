@@ -1,6 +1,7 @@
 import {apiUri} from '../../../../config'
 import {capabilitiesChange} from '../capabilities'
 import {checkFetchStatus} from './utilities'
+import {dashboardsChange} from '../dashboards'
 import fetch from 'isomorphic-fetch'
 
 export const FAILURE = 'skills-matrix/async/capabilities-read/FAILURE'
@@ -39,6 +40,7 @@ export const capabilitiesRead = (payload) =>
     .then((json) => {
       dispatch(capabilitiesReadSuccess(json))
       dispatch(capabilitiesChange({data: json}))
+      dispatch(dashboardsChange({capabilities: json}))
     })
   }
 

@@ -1,5 +1,6 @@
 import {apiUri} from '../../../../config'
 import {checkFetchStatus} from './utilities'
+import {dashboardsChange} from '../dashboards'
 import fetch from 'isomorphic-fetch'
 import {strategiesChange} from '../strategies'
 
@@ -39,6 +40,7 @@ export const strategiesRead = (payload) =>
     .then((json) => {
       dispatch(strategiesReadSuccess(json))
       dispatch(strategiesChange({data: json}))
+      dispatch(dashboardsChange({strategies: json}))
     })
   }
 

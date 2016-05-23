@@ -3,6 +3,7 @@ import capability from './capability'
 import capabilityCreate from './capability-create'
 import capabilityEdit from './capability-edit'
 import {combineReducers} from 'redux'
+import dashboards from './dashboards'
 import employee from './employee'
 import employeeCreate from './employee-create'
 import employeeEdit from './employee-edit'
@@ -28,6 +29,7 @@ export const rootReducer = combineReducers({
   capability,
   capabilityCreate,
   capabilityEdit,
+  dashboards,
   employee,
   employeeCreate,
   employeeEdit,

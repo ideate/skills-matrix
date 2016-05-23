@@ -1,5 +1,6 @@
 import {apiUri} from '../../../../config'
 import {checkFetchStatus} from './utilities'
+import {dashboardsChange} from '../dashboards'
 import fetch from 'isomorphic-fetch'
 import {skillsChange} from '../skills'
 
@@ -39,6 +40,7 @@ export const skillsRead = (payload) =>
     .then((json) => {
       dispatch(skillsReadSuccess(json))
       dispatch(skillsChange({data: json}))
+      dispatch(dashboardsChange({skills: json}))
     })
   }
 
