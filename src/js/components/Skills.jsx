@@ -9,6 +9,20 @@ import React, {Component, PropTypes} from 'react'
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
 
 class Skills extends Component {
+  
+  constructor() {
+      super();
+
+      this.state = {
+          icons: {
+              columnRemoveFromGroup: '<i class="fa fa-remove"/>',
+              filter: '<i class="fa fa-filter"/>',
+              menu: '<i class="fa fa-bars"/>',
+              sortAscending: '<i class="fa fa-sort-alpha-asc"/>',
+              sortDescending: '<i class="fa fa-sort-alpha-desc"/>',
+          }
+      };
+  }
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
@@ -36,7 +50,7 @@ class Skills extends Component {
   onGridReady(grid) {
     grid.api.sizeColumnsToFit()
   }
-
+  
   renderSkills () {
     const {skillsState} = this.props
 
@@ -59,6 +73,7 @@ class Skills extends Component {
           enableFilter="true"
           enableSorting="true"
           headerHeight='48'
+          icons={this.state.icons}
           ref='grid'
           rowData={rowData}
           rowHeight='48'
