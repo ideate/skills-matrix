@@ -8,9 +8,9 @@ const Capabilities = mongoose.model('Capabilities')
 
 /* GET /capabilities */
 router.get('/', function (req, res, next) {
-  Capabilities.find().sort({title: 1}).populate({
-    path: 'capabilities'
-  }).exec(function (err, capabilities) {
+  Capabilities.find().sort({title: 1})
+  .populate({path: 'skills'})
+  .exec(function (err, capabilities) {
     if (err) { return next(err) }
 
     res.json(capabilities)

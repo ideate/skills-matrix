@@ -22,8 +22,7 @@ const initialState = {
   employeesSelect: '',
   organizations: [],
   organizationsSelect: '',
-  skills: [],
-  skillsSelect: '',
+  skills:[],
   strategies: [],
   strategiesSelect: ''
 }
@@ -45,7 +44,7 @@ export default (state = initialState, {payload = {}, type, ...action}) => {
         capabilitiesSelect: '',
         employeesSelect: '',
         organizationsSelect: '',
-        skillsSelect: '',
+        skills: [],
         strategiesSelect: ''
       }
     default:

@@ -42,7 +42,10 @@ class CapabilityCreate extends Component {
       title
     } = capabilityCreateState
 
-    dispatch(capabilityCreate({description, title}))
+    dispatch(capabilityCreate({
+      description,
+      title
+    }))
   }
 
   reset = () => {
