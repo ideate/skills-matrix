@@ -14,6 +14,7 @@ import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
 
 class Skills extends Component {
   
+<<<<<<< 8da5f9b225926be164daf43ebaca9c93b2b8bcac
   constructor () {
     super()
 
@@ -39,6 +40,20 @@ class Skills extends Component {
         sortDescending: '<i class="fa fa-sort-alpha-desc"/>'
       }
     }
+=======
+  constructor() {
+      super();
+
+      this.state = {
+          icons: {
+              columnRemoveFromGroup: '<i class="fa fa-remove"/>',
+              filter: '<i class="fa fa-filter"/>',
+              menu: '<i class="fa fa-bars"/>',
+              sortAscending: '<i class="fa fa-sort-alpha-asc"/>',
+              sortDescending: '<i class="fa fa-sort-alpha-desc"/>',
+          }
+      };
+>>>>>>> Added material-ui theme with some fontawesome icons to ag-grid
   }
 
   static propTypes = {
@@ -182,6 +197,7 @@ class Skills extends Component {
           enableFilter="true"
           enableSorting="true"
           headerHeight='48'
+          icons={this.state.icons}
           ref='grid'
           rowData={rowData}
           rowHeight='48'

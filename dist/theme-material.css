@@ -11,6 +11,7 @@
 }
 
 .ag-material .ag-root .ag-header {
+<<<<<<< 8da5f9b225926be164daf43ebaca9c93b2b8bcac
 <<<<<<< 636285151a9b5d7640f1f2fddf197df54c26546d
   background-color: #00BCD4;
   color: #FFFFFF;
@@ -19,6 +20,11 @@
   color: rgba(0, 0, 0, 0.54);
   font-size: 12px;
 >>>>>>> Updated ag-grid to use ag-material theme
+=======
+  background-color: #00BCD4;
+  color: #FFFFFF;
+  font-size: 20px;
+>>>>>>> Added material-ui theme with some fontawesome icons to ag-grid
   height: 56px !important;
 }
 
@@ -41,6 +47,7 @@
   padding-right: 0px;
 }
 
+<<<<<<< 8da5f9b225926be164daf43ebaca9c93b2b8bcac
 <<<<<<< 636285151a9b5d7640f1f2fddf197df54c26546d
 =======
 .ag-material .ag-root .ag-header .ag-sort-ascending-icon,
@@ -49,6 +56,8 @@
 }
 
 >>>>>>> Updated ag-grid to use ag-material theme
+=======
+>>>>>>> Added material-ui theme with some fontawesome icons to ag-grid
 .ag-material .ag-root .ag-header .ag-header-cell-text:after {
   position: absolute;
   content: '';
@@ -59,6 +68,7 @@
   display: none;
 }
 
+<<<<<<< 8da5f9b225926be164daf43ebaca9c93b2b8bcac
 <<<<<<< 636285151a9b5d7640f1f2fddf197df54c26546d
 =======
 .ag-material .ag-root .ag-header .ag-header-cell-sorted-asc,
@@ -72,6 +82,8 @@
 }
 
 >>>>>>> Updated ag-grid to use ag-material theme
+=======
+>>>>>>> Added material-ui theme with some fontawesome icons to ag-grid
 .ag-material .ag-root .ag-header .ag-header-cell-sorted-desc .ag-header-cell-text:after {
   -webkit-transform: rotate(180deg);
   -moz-transform: rotate(180deg);
@@ -118,6 +130,7 @@
 }
 
 .ag-material .ag-root .ag-body .ag-cell {
+<<<<<<< 8da5f9b225926be164daf43ebaca9c93b2b8bcac
 <<<<<<< 636285151a9b5d7640f1f2fddf197df54c26546d
   font-family: Roboto,sans-serif;
   font-size: 14px;
@@ -127,6 +140,15 @@
   outline: none;
   padding: 16px 24px;
 >>>>>>> Updated ag-grid to use ag-material theme
+=======
+  color: #FF4081;
+  font-family: Roboto,sans-serif;
+  font-size: 14px;
+  outline: none;
+  padding: 16px 24px 16px 24px;
+
+  text-transform: uppercase;
+>>>>>>> Added material-ui theme with some fontawesome icons to ag-grid
 }
 
 .ag-material .ag-root .ag-selection-checkbox {
@@ -184,7 +206,10 @@
   transform: rotate(-45deg);
 }
 
+<<<<<<< 8da5f9b225926be164daf43ebaca9c93b2b8bcac
 <<<<<<< 636285151a9b5d7640f1f2fddf197df54c26546d
+=======
+>>>>>>> Added material-ui theme with some fontawesome icons to ag-grid
 .ag-filter-filter {
   font-size: 16px;
   line-height: 24px;
@@ -213,8 +238,11 @@
   transition: height 200ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
 }
 
+<<<<<<< 8da5f9b225926be164daf43ebaca9c93b2b8bcac
 =======
 >>>>>>> Updated ag-grid to use ag-material theme
+=======
+>>>>>>> Added material-ui theme with some fontawesome icons to ag-grid
 .ag-header-cell-resize {
   background: #EDEDED;
   margin-top: -12px;
@@ -228,7 +256,10 @@
   margin-left: -5px;
   content: '';
   position: absolute;
+<<<<<<< 8da5f9b225926be164daf43ebaca9c93b2b8bcac
 <<<<<<< 636285151a9b5d7640f1f2fddf197df54c26546d
+=======
+>>>>>>> Added material-ui theme with some fontawesome icons to ag-grid
 }
 
 .ag-menu {
@@ -239,10 +270,13 @@
   font-family: Roboto,sans-serif;
   box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.12), 0px 1px 4px rgba(0, 0, 0, 0.12);
   border-radius: 2px;
+<<<<<<< 8da5f9b225926be164daf43ebaca9c93b2b8bcac
 }
 
 .fa-pencil-square-o:hover {
   transform: scale(1.2);
 =======
 >>>>>>> Updated ag-grid to use ag-material theme
+=======
+>>>>>>> Added material-ui theme with some fontawesome icons to ag-grid
 }
