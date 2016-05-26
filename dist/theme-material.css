@@ -146,9 +146,12 @@
   font-size: 14px;
   outline: none;
   padding: 16px 24px 16px 24px;
+<<<<<<< e15875efc94959e658a32e1d5f5d38209ab8b8ce
 
   text-transform: uppercase;
 >>>>>>> Added material-ui theme with some fontawesome icons to ag-grid
+=======
+>>>>>>> Added checkboxes to grids
 }
 
 .ag-material .ag-root .ag-selection-checkbox {

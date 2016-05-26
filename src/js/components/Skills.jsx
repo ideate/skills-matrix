@@ -2,10 +2,13 @@
 import {AgGridReact} from 'ag-grid-react'
 import {browserHistory} from 'react-router'
 import {connect} from 'react-redux'
+<<<<<<< e15875efc94959e658a32e1d5f5d38209ab8b8ce
 <<<<<<< 636285151a9b5d7640f1f2fddf197df54c26546d
 =======
 import FlatButton from 'material-ui/FlatButton'
 >>>>>>> Updated ag-grid to use ag-material theme
+=======
+>>>>>>> Added checkboxes to grids
 import {main} from '../styles/common'
 import RaisedButton from 'material-ui/RaisedButton'
 import {skillsRead} from '../modules/async/skills-read'
@@ -14,6 +17,7 @@ import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
 
 class Skills extends Component {
   
+<<<<<<< e15875efc94959e658a32e1d5f5d38209ab8b8ce
 <<<<<<< 8da5f9b225926be164daf43ebaca9c93b2b8bcac
   constructor () {
     super()
@@ -54,6 +58,21 @@ class Skills extends Component {
           }
       };
 >>>>>>> Added material-ui theme with some fontawesome icons to ag-grid
+=======
+  constructor () {
+    super()
+
+    this.state = {
+      editIcon: '<i class="fa fa-pencil-square-o"/>',
+      icons: {
+        columnRemoveFromGroup: '<i class="fa fa-remove"/>',
+        filter: '<i class="fa fa-filter"/>',
+        menu: '<i class="fa fa-bars"/>',
+        sortAscending: '<i class="fa fa-sort-alpha-asc"/>',
+        sortDescending: '<i class="fa fa-sort-alpha-desc"/>'
+      }
+    }
+>>>>>>> Added checkboxes to grids
   }
 
   static propTypes = {
@@ -103,6 +122,7 @@ class Skills extends Component {
   }
   
   onCellClicked (event) {
+<<<<<<< 68f91f56004309835cca580a0da86307993e8177
 <<<<<<< 0d949244f8fb87aa265259fccf2211bcd466a475
 <<<<<<< 727295fa8df86cb572d8ccab2e85acbad3b4f123
     browserHistory.push('/skills/' + event.data.id)
@@ -114,6 +134,15 @@ class Skills extends Component {
 =======
     browserHistory.push('/skills/' + event.data.id)
 >>>>>>> Added very rudimentary ag-grid set up on skills
+=======
+<<<<<<< e15875efc94959e658a32e1d5f5d38209ab8b8ce
+    browserHistory.push('/skills/' + event.data.id)
+=======
+    if (event.value == this.state.editIcon) {
+      browserHistory.push('/skills/' + event.data.id)
+    }
+>>>>>>> Added checkboxes to grids
+>>>>>>> Added checkboxes to grids
   }
   
   onGridReady (grid) {
@@ -122,9 +151,11 @@ class Skills extends Component {
   
   renderSkills () {
     const {skillsState} = this.props
+    const editIcon = this.state.editIcon
 
     if (skillsState && skillsState.data && skillsState.data.length) {
       const columnDefs = [
+<<<<<<< 68f91f56004309835cca580a0da86307993e8177
 <<<<<<< 0d949244f8fb87aa265259fccf2211bcd466a475
 <<<<<<< 727295fa8df86cb572d8ccab2e85acbad3b4f123
         {headerName: 'Skill', field: 'title', cellStyle: {color: '#FF4081'}},
@@ -146,24 +177,61 @@ class Skills extends Component {
         },
 =======
 >>>>>>> Added very rudimentary ag-grid set up on skills
+=======
+<<<<<<< e15875efc94959e658a32e1d5f5d38209ab8b8ce
+>>>>>>> Added checkboxes to grids
         {headerName: 'Skill', field: 'title', cellStyle: {color: '#FF4081'}},
         {headerName: 'Description', field: 'description'}
+=======
+          {
+            headerName: '',
+            checkboxSelection: true,
+            suppressMenu: true,
+            suppressMovable: true,
+            suppressResize: true,
+            suppressSorting: true,
+            width: 15
+          },
+          {headerName: 'Skill', field: 'title'},
+          {headerName: 'Description', field: 'description'},
+          {
+            headerName: 'Edit',
+            field: 'edit',
+            suppressMenu: true,
+            suppressMovable: true,
+            suppressResize: true,
+            suppressSorting: true,
+            width: 20
+          },
+>>>>>>> Added checkboxes to grids
       ]
       const rowData = []
       
       skillsState.data.map(function (skill) {
+<<<<<<< 68f91f56004309835cca580a0da86307993e8177
 <<<<<<< 0d949244f8fb87aa265259fccf2211bcd466a475
         rowData.push({id: skill._id, title: skill.title, description: skill.description, edit: editIcon})
 >>>>>>> Grid branch (#11)
 =======
         rowData.push({id: skill._id, title: skill.title, description: skill.description})
 >>>>>>> Added very rudimentary ag-grid set up on skills
+=======
+<<<<<<< e15875efc94959e658a32e1d5f5d38209ab8b8ce
+        rowData.push({id: skill._id, title: skill.title, description: skill.description})
+=======
+        rowData.push({id: skill._id, title: skill.title, description: skill.description, edit: editIcon})
+>>>>>>> Added checkboxes to grids
+>>>>>>> Added checkboxes to grids
       })
       
       return (
         <AgGridReact
+<<<<<<< 68f91f56004309835cca580a0da86307993e8177
 <<<<<<< 0d949244f8fb87aa265259fccf2211bcd466a475
 <<<<<<< 727295fa8df86cb572d8ccab2e85acbad3b4f123
+=======
+<<<<<<< e15875efc94959e658a32e1d5f5d38209ab8b8ce
+>>>>>>> Added checkboxes to grids
           columnDefs={columnDefs}
 <<<<<<< 636285151a9b5d7640f1f2fddf197df54c26546d
           enableSorting='true'
@@ -196,13 +264,27 @@ class Skills extends Component {
           enableColResize="true"
           enableFilter="true"
           enableSorting="true"
+=======
+          autoResize='true'
+          columnDefs={columnDefs}
+          enableColResize='true'
+          enableFilter='true'
+          enableSorting='true'
+>>>>>>> Added checkboxes to grids
           headerHeight='48'
           icons={this.state.icons}
           ref='grid'
           rowData={rowData}
           rowHeight='48'
+<<<<<<< e15875efc94959e658a32e1d5f5d38209ab8b8ce
 >>>>>>> Updated ag-grid to use ag-material theme
+<<<<<<< 68f91f56004309835cca580a0da86307993e8177
 >>>>>>> Updated ag-grid to use ag-material theme
+=======
+=======
+          rowSelection="multiple"
+>>>>>>> Added checkboxes to grids
+>>>>>>> Added checkboxes to grids
           onCellClicked={this.onCellClicked.bind(this)}
           onGridReady={this.onGridReady.bind(this)}
         />
@@ -226,6 +308,7 @@ class Skills extends Component {
           </ToolbarGroup>
         </Toolbar>
         <main style={main}>
+<<<<<<< 68f91f56004309835cca580a0da86307993e8177
 <<<<<<< c3f8fbdfa436574bf875076b06cb027967fd015f
 <<<<<<< 0d949244f8fb87aa265259fccf2211bcd466a475
 <<<<<<< 727295fa8df86cb572d8ccab2e85acbad3b4f123
@@ -239,13 +322,22 @@ class Skills extends Component {
             style={this.getTableHeight()}>
 >>>>>>> Added very rudimentary ag-grid set up on skills
 =======
+=======
+<<<<<<< e15875efc94959e658a32e1d5f5d38209ab8b8ce
+>>>>>>> Added checkboxes to grids
 <<<<<<< 636285151a9b5d7640f1f2fddf197df54c26546d
           <div className='ag-material'
             style={this.getTableHeight()}>
 =======
           <div className="ag-material">
 >>>>>>> Updated ag-grid to use ag-material theme
+<<<<<<< 68f91f56004309835cca580a0da86307993e8177
 >>>>>>> Updated ag-grid to use ag-material theme
+=======
+=======
+          <div className='ag-material'>
+>>>>>>> Added checkboxes to grids
+>>>>>>> Added checkboxes to grids
            {this.renderSkills()}
            </div>
         </main>
