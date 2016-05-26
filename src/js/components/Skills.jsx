@@ -1,7 +1,6 @@
 import {AgGridReact} from 'ag-grid-react'
 import {browserHistory} from 'react-router'
 import {connect} from 'react-redux'
-import FlatButton from 'material-ui/FlatButton'
 import {main} from '../styles/common'
 import RaisedButton from 'material-ui/RaisedButton'
 import {skillsRead} from '../modules/async/skills-read'
@@ -10,18 +9,19 @@ import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
 
 class Skills extends Component {
   
-  constructor() {
-      super();
+  constructor () {
+    super()
 
-      this.state = {
-          icons: {
-              columnRemoveFromGroup: '<i class="fa fa-remove"/>',
-              filter: '<i class="fa fa-filter"/>',
-              menu: '<i class="fa fa-bars"/>',
-              sortAscending: '<i class="fa fa-sort-alpha-asc"/>',
-              sortDescending: '<i class="fa fa-sort-alpha-desc"/>',
-          }
-      };
+    this.state = {
+      editIcon: '<i class="fa fa-pencil-square-o"/>',
+      icons: {
+        columnRemoveFromGroup: '<i class="fa fa-remove"/>',
+        filter: '<i class="fa fa-filter"/>',
+        menu: '<i class="fa fa-bars"/>',
+        sortAscending: '<i class="fa fa-sort-alpha-asc"/>',
+        sortDescending: '<i class="fa fa-sort-alpha-desc"/>'
+      }
+    }
   }
 
   static propTypes = {
@@ -43,40 +43,62 @@ class Skills extends Component {
     grid.api.sizeColumnsToFit()
   }
   
-  onCellClicked(event) {
-      browserHistory.push(`/skills/` + event.data.id)
+  onCellClicked (event) {
+    if (event.value == this.state.editIcon) {
+      browserHistory.push('/skills/' + event.data.id)
+    }
   }
   
-  onGridReady(grid) {
+  onGridReady (grid) {
     grid.api.sizeColumnsToFit()
   }
   
   renderSkills () {
     const {skillsState} = this.props
+    const editIcon = this.state.editIcon
 
     if (skillsState && skillsState.data && skillsState.data.length) {
       const columnDefs = [
-          {headerName: "Skill", field: "title"},
-          {headerName: "Description", field: "description"}
+          {
+            headerName: '',
+            checkboxSelection: true,
+            suppressMenu: true,
+            suppressMovable: true,
+            suppressResize: true,
+            suppressSorting: true,
+            width: 15
+          },
+          {headerName: 'Skill', field: 'title'},
+          {headerName: 'Description', field: 'description'},
+          {
+            headerName: 'Edit',
+            field: 'edit',
+            suppressMenu: true,
+            suppressMovable: true,
+            suppressResize: true,
+            suppressSorting: true,
+            width: 20
+          },
       ]
       const rowData = []
 
       skillsState.data.map(function (skill) {
-        rowData.push({id: skill._id, title: skill.title, description: skill.description});
+        rowData.push({id: skill._id, title: skill.title, description: skill.description, edit: editIcon})
       })
       
       return (
         <AgGridReact
-          autoResize="true"
+          autoResize='true'
           columnDefs={columnDefs}
-          enableColResize="true"
-          enableFilter="true"
-          enableSorting="true"
+          enableColResize='true'
+          enableFilter='true'
+          enableSorting='true'
           headerHeight='48'
           icons={this.state.icons}
           ref='grid'
           rowData={rowData}
           rowHeight='48'
+          rowSelection="multiple"
           onCellClicked={this.onCellClicked.bind(this)}
           onGridReady={this.onGridReady.bind(this)}
         />
@@ -100,7 +122,7 @@ class Skills extends Component {
           </ToolbarGroup>
         </Toolbar>
         <main style={main}>
-          <div className="ag-material">
+          <div className='ag-material'>
            {this.renderSkills()}
            </div>
         </main>
