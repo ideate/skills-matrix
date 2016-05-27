@@ -130,6 +130,7 @@
 }
 
 .ag-material .ag-root .ag-body .ag-cell {
+<<<<<<< e3711d0587647c2e2e94cf601c36f50021684938
 <<<<<<< 8da5f9b225926be164daf43ebaca9c93b2b8bcac
 <<<<<<< 636285151a9b5d7640f1f2fddf197df54c26546d
   font-family: Roboto,sans-serif;
@@ -142,6 +143,8 @@
 >>>>>>> Updated ag-grid to use ag-material theme
 =======
   color: #FF4081;
+=======
+>>>>>>> Added ag-grid to every page
   font-family: Roboto,sans-serif;
   font-size: 14px;
   outline: none;
@@ -273,13 +276,19 @@
   font-family: Roboto,sans-serif;
   box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.12), 0px 1px 4px rgba(0, 0, 0, 0.12);
   border-radius: 2px;
+<<<<<<< e3711d0587647c2e2e94cf601c36f50021684938
 <<<<<<< 8da5f9b225926be164daf43ebaca9c93b2b8bcac
+=======
+>>>>>>> Added ag-grid to every page
 }
 
 .fa-pencil-square-o:hover {
   transform: scale(1.2);
+<<<<<<< e3711d0587647c2e2e94cf601c36f50021684938
 =======
 >>>>>>> Updated ag-grid to use ag-material theme
 =======
 >>>>>>> Added material-ui theme with some fontawesome icons to ag-grid
+=======
+>>>>>>> Added ag-grid to every page
 }

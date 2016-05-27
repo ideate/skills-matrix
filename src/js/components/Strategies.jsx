@@ -72,7 +72,11 @@ class Strategies extends Component {
   }
   
   onCellClicked (event) {
+<<<<<<< e3711d0587647c2e2e94cf601c36f50021684938
     if (event.value === this.state.editIcon) {
+=======
+    if (event.value == this.state.editIcon) {
+>>>>>>> Added ag-grid to every page
       browserHistory.push('/strategies/' + event.data.id)
     }
   }
@@ -87,6 +91,7 @@ class Strategies extends Component {
 
     if (strategiesState && strategiesState.data && strategiesState.data.length) {
       const columnDefs = [
+<<<<<<< e3711d0587647c2e2e94cf601c36f50021684938
         {
           headerName: '',
           checkboxSelection: true,
@@ -117,6 +122,28 @@ class Strategies extends Component {
           suppressSorting: true,
           width: 20
         }
+=======
+          {
+            headerName: '',
+            checkboxSelection: true,
+            suppressMenu: true,
+            suppressMovable: true,
+            suppressResize: true,
+            suppressSorting: true,
+            width: 15
+          },
+          {headerName: 'Strategy', field: 'title', cellStyle: {color: '#FF4081'}},
+          {headerName: 'Description', field: 'description'},
+          {
+            headerName: 'Edit',
+            field: 'edit',
+            suppressMenu: true,
+            suppressMovable: true,
+            suppressResize: true,
+            suppressSorting: true,
+            width: 20
+          },
+>>>>>>> Added ag-grid to every page
       ]
       const rowData = []
 
@@ -147,8 +174,15 @@ class Strategies extends Component {
           ref='grid'
           rowData={rowData}
           rowHeight='48'
+<<<<<<< e3711d0587647c2e2e94cf601c36f50021684938
           rowSelection='multiple'
+<<<<<<< 2c88e0590c73f3cf91714f17612466c2a2af5bba
 >>>>>>> Grid branch (#11)
+=======
+=======
+          rowSelection="multiple"
+>>>>>>> Added ag-grid to every page
+>>>>>>> Added ag-grid to every page
           onCellClicked={this.onCellClicked.bind(this)}
           onGridReady={this.onGridReady.bind(this)}
         />

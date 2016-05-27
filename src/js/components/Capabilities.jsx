@@ -13,6 +13,7 @@ class Capabilities extends Component {
     super()
 
     this.state = {
+<<<<<<< 2c88e0590c73f3cf91714f17612466c2a2af5bba
 <<<<<<< 68f91f56004309835cca580a0da86307993e8177
 <<<<<<< 727295fa8df86cb572d8ccab2e85acbad3b4f123
       headerHeight: 48,
@@ -21,12 +22,18 @@ class Capabilities extends Component {
       icons: {
 =======
 =======
+=======
+<<<<<<< e3711d0587647c2e2e94cf601c36f50021684938
+>>>>>>> Added ag-grid to every page
 <<<<<<< e15875efc94959e658a32e1d5f5d38209ab8b8ce
 >>>>>>> Added checkboxes to grids
       editIcon: '<i class="fa fa-pencil-square-o fa-lg"/>',
 =======
       editIcon: '<i class="fa fa-pencil-square-o"/>',
 >>>>>>> Added checkboxes to grids
+=======
+      editIcon: '<i class="fa fa-pencil-square-o fa-lg"/>',
+>>>>>>> Added ag-grid to every page
       icons: {
         columnRemoveFromGroup: '<i class="fa fa-remove"/>',
         filter: '<i class="fa fa-filter"/>',
@@ -76,6 +83,10 @@ class Capabilities extends Component {
 >>>>>>> Grid branch (#11)
   handleResize (grid) {
     grid.api.sizeColumnsToFit()
+  }
+  
+  onCellFocused (event) {
+    console.log(event)
   }
   
   onCellClicked (event) {
@@ -141,7 +152,7 @@ class Capabilities extends Component {
             suppressSorting: true,
             width: 15
           },
-          {headerName: 'Capability', field: 'title'},
+          {headerName: 'Capability', field: 'title', cellStyle: {color: '#FF4081'}},
           {headerName: 'Description', field: 'description'},
           {
             headerName: 'Edit',
@@ -198,6 +209,7 @@ class Capabilities extends Component {
 >>>>>>> Added checkboxes to grids
 >>>>>>> Added checkboxes to grids
           onCellClicked={this.onCellClicked.bind(this)}
+          onCellFocused={this.onCellFocused.bind(this)}
           onGridReady={this.onGridReady.bind(this)}
         />
       )

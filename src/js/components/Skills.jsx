@@ -63,7 +63,7 @@ class Skills extends Component {
     super()
 
     this.state = {
-      editIcon: '<i class="fa fa-pencil-square-o"/>',
+      editIcon: '<i class="fa fa-pencil-square-o fa-lg"/>',
       icons: {
         columnRemoveFromGroup: '<i class="fa fa-remove"/>',
         filter: '<i class="fa fa-filter"/>',
@@ -192,7 +192,7 @@ class Skills extends Component {
             suppressSorting: true,
             width: 15
           },
-          {headerName: 'Skill', field: 'title'},
+          {headerName: 'Skill', field: 'title', cellStyle: {color: '#FF4081'}},
           {headerName: 'Description', field: 'description'},
           {
             headerName: 'Edit',
