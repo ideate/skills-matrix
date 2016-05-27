@@ -88,7 +88,6 @@
 }
 
 .ag-material .ag-root .ag-body .ag-cell {
-  color: #FF4081;
   font-family: Roboto,sans-serif;
   font-size: 14px;
   outline: none;
@@ -195,4 +194,8 @@
   font-family: Roboto,sans-serif;
   box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.12), 0px 1px 4px rgba(0, 0, 0, 0.12);
   border-radius: 2px;
+}
+
+.fa-pencil-square-o:hover {
+  transform: scale(1.2);
 }

@@ -13,7 +13,7 @@ class Capabilities extends Component {
     super()
 
     this.state = {
-      editIcon: '<i class="fa fa-pencil-square-o"/>',
+      editIcon: '<i class="fa fa-pencil-square-o fa-lg"/>',
       icons: {
         columnRemoveFromGroup: '<i class="fa fa-remove"/>',
         filter: '<i class="fa fa-filter"/>',
@@ -43,6 +43,10 @@ class Capabilities extends Component {
     grid.api.sizeColumnsToFit()
   }
   
+  onCellFocused (event) {
+    console.log(event)
+  }
+  
   onCellClicked (event) {
     if (event.value == this.state.editIcon) {
       browserHistory.push('/capabilities/' + event.data.id)
@@ -68,7 +72,7 @@ class Capabilities extends Component {
             suppressSorting: true,
             width: 15
           },
-          {headerName: 'Capability', field: 'title'},
+          {headerName: 'Capability', field: 'title', cellStyle: {color: '#FF4081'}},
           {headerName: 'Description', field: 'description'},
           {
             headerName: 'Edit',
@@ -100,6 +104,7 @@ class Capabilities extends Component {
           rowHeight='48'
           rowSelection="multiple"
           onCellClicked={this.onCellClicked.bind(this)}
+          onCellFocused={this.onCellFocused.bind(this)}
           onGridReady={this.onGridReady.bind(this)}
         />
       )
