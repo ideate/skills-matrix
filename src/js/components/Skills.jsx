@@ -122,6 +122,7 @@ class Skills extends Component {
   }
   
   onCellClicked (event) {
+<<<<<<< bbbe4d06221b46a4a8b214ee9b714e83153dcbb7
 <<<<<<< 68f91f56004309835cca580a0da86307993e8177
 <<<<<<< 0d949244f8fb87aa265259fccf2211bcd466a475
 <<<<<<< 727295fa8df86cb572d8ccab2e85acbad3b4f123
@@ -135,10 +136,16 @@ class Skills extends Component {
     browserHistory.push('/skills/' + event.data.id)
 >>>>>>> Added very rudimentary ag-grid set up on skills
 =======
+=======
+<<<<<<< 4c7179a336d161201eb471074129ff397c1028a5
+>>>>>>> Fixes to coding style
 <<<<<<< e15875efc94959e658a32e1d5f5d38209ab8b8ce
     browserHistory.push('/skills/' + event.data.id)
 =======
     if (event.value == this.state.editIcon) {
+=======
+    if (event.value === this.state.editIcon) {
+>>>>>>> Fixes to coding style
       browserHistory.push('/skills/' + event.data.id)
     }
 >>>>>>> Added checkboxes to grids
@@ -155,6 +162,7 @@ class Skills extends Component {
 
     if (skillsState && skillsState.data && skillsState.data.length) {
       const columnDefs = [
+<<<<<<< bbbe4d06221b46a4a8b214ee9b714e83153dcbb7
 <<<<<<< 68f91f56004309835cca580a0da86307993e8177
 <<<<<<< 0d949244f8fb87aa265259fccf2211bcd466a475
 <<<<<<< 727295fa8df86cb572d8ccab2e85acbad3b4f123
@@ -178,6 +186,9 @@ class Skills extends Component {
 =======
 >>>>>>> Added very rudimentary ag-grid set up on skills
 =======
+=======
+<<<<<<< 4c7179a336d161201eb471074129ff397c1028a5
+>>>>>>> Fixes to coding style
 <<<<<<< e15875efc94959e658a32e1d5f5d38209ab8b8ce
 >>>>>>> Added checkboxes to grids
         {headerName: 'Skill', field: 'title', cellStyle: {color: '#FF4081'}},
@@ -204,6 +215,28 @@ class Skills extends Component {
             width: 20
           },
 >>>>>>> Added checkboxes to grids
+=======
+        {
+          headerName: '',
+          checkboxSelection: true,
+          suppressMenu: true,
+          suppressMovable: true,
+          suppressResize: true,
+          suppressSorting: true,
+          width: 15
+        },
+        {headerName: 'Skill', field: 'title', cellStyle: {color: '#FF4081'}},
+        {headerName: 'Description', field: 'description'},
+        {
+          headerName: 'Edit',
+          field: 'edit',
+          suppressMenu: true,
+          suppressMovable: true,
+          suppressResize: true,
+          suppressSorting: true,
+          width: 20
+        }
+>>>>>>> Fixes to coding style
       ]
       const rowData = []
       
@@ -276,6 +309,7 @@ class Skills extends Component {
           ref='grid'
           rowData={rowData}
           rowHeight='48'
+<<<<<<< 4c7179a336d161201eb471074129ff397c1028a5
 <<<<<<< e15875efc94959e658a32e1d5f5d38209ab8b8ce
 >>>>>>> Updated ag-grid to use ag-material theme
 <<<<<<< 68f91f56004309835cca580a0da86307993e8177
@@ -284,7 +318,13 @@ class Skills extends Component {
 =======
           rowSelection="multiple"
 >>>>>>> Added checkboxes to grids
+<<<<<<< bbbe4d06221b46a4a8b214ee9b714e83153dcbb7
 >>>>>>> Added checkboxes to grids
+=======
+=======
+          rowSelection='multiple'
+>>>>>>> Fixes to coding style
+>>>>>>> Fixes to coding style
           onCellClicked={this.onCellClicked.bind(this)}
           onGridReady={this.onGridReady.bind(this)}
         />

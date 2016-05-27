@@ -72,11 +72,15 @@ class Organizations extends Component {
   }
   
   onCellClicked (event) {
+<<<<<<< 4c7179a336d161201eb471074129ff397c1028a5
 <<<<<<< e3711d0587647c2e2e94cf601c36f50021684938
     if (event.value === this.state.editIcon) {
 =======
     if (event.value == this.state.editIcon) {
 >>>>>>> Added ag-grid to every page
+=======
+    if (event.value === this.state.editIcon) {
+>>>>>>> Fixes to coding style
       browserHistory.push('/organizations/' + event.data.id)
     }
   }
@@ -91,7 +95,10 @@ class Organizations extends Component {
 
     if (organizationsState && organizationsState.data && organizationsState.data.length) {
       const columnDefs = [
+<<<<<<< 4c7179a336d161201eb471074129ff397c1028a5
 <<<<<<< e3711d0587647c2e2e94cf601c36f50021684938
+=======
+>>>>>>> Fixes to coding style
         {
           headerName: '',
           checkboxSelection: true,
@@ -122,6 +129,7 @@ class Organizations extends Component {
           suppressSorting: true,
           width: 20
         }
+<<<<<<< 4c7179a336d161201eb471074129ff397c1028a5
 =======
           {
             headerName: '',
@@ -144,6 +152,8 @@ class Organizations extends Component {
             width: 20
           },
 >>>>>>> Added ag-grid to every page
+=======
+>>>>>>> Fixes to coding style
       ]
       const rowData = []
 
@@ -174,6 +184,7 @@ class Organizations extends Component {
           ref='grid'
           rowData={rowData}
           rowHeight='48'
+<<<<<<< 4c7179a336d161201eb471074129ff397c1028a5
 <<<<<<< e3711d0587647c2e2e94cf601c36f50021684938
           rowSelection='multiple'
 <<<<<<< 2c88e0590c73f3cf91714f17612466c2a2af5bba
@@ -182,7 +193,13 @@ class Organizations extends Component {
 =======
           rowSelection="multiple"
 >>>>>>> Added ag-grid to every page
+<<<<<<< bbbe4d06221b46a4a8b214ee9b714e83153dcbb7
 >>>>>>> Added ag-grid to every page
+=======
+=======
+          rowSelection='multiple'
+>>>>>>> Fixes to coding style
+>>>>>>> Fixes to coding style
           onCellClicked={this.onCellClicked.bind(this)}
           onGridReady={this.onGridReady.bind(this)}
         />

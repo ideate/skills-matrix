@@ -85,16 +85,16 @@ class Capabilities extends Component {
     grid.api.sizeColumnsToFit()
   }
   
-  onCellFocused (event) {
-    console.log(event)
-  }
-  
   onCellClicked (event) {
+<<<<<<< 4c7179a336d161201eb471074129ff397c1028a5
 <<<<<<< e15875efc94959e658a32e1d5f5d38209ab8b8ce
     if (event.value === this.state.editIcon) {
 =======
     if (event.value == this.state.editIcon) {
 >>>>>>> Added checkboxes to grids
+=======
+    if (event.value === this.state.editIcon) {
+>>>>>>> Fixes to coding style
       browserHistory.push('/capabilities/' + event.data.id)
     }
   }
@@ -109,7 +109,10 @@ class Capabilities extends Component {
     
     if (capabilitiesState && capabilitiesState.data && capabilitiesState.data.length) {
       const columnDefs = [
+<<<<<<< 4c7179a336d161201eb471074129ff397c1028a5
 <<<<<<< e15875efc94959e658a32e1d5f5d38209ab8b8ce
+=======
+>>>>>>> Fixes to coding style
         {
           headerName: '',
           checkboxSelection: true,
@@ -142,6 +145,7 @@ class Capabilities extends Component {
           width: 20
 >>>>>>> Grid branch (#11)
         }
+<<<<<<< 4c7179a336d161201eb471074129ff397c1028a5
 =======
           {
             headerName: '',
@@ -164,6 +168,8 @@ class Capabilities extends Component {
             width: 20
           },
 >>>>>>> Added checkboxes to grids
+=======
+>>>>>>> Fixes to coding style
       ]
       const rowData = []
 
@@ -199,6 +205,7 @@ class Capabilities extends Component {
           ref='grid'
           rowData={rowData}
           rowHeight='48'
+<<<<<<< 4c7179a336d161201eb471074129ff397c1028a5
 <<<<<<< e15875efc94959e658a32e1d5f5d38209ab8b8ce
           rowSelection='multiple'
 <<<<<<< 68f91f56004309835cca580a0da86307993e8177
@@ -207,9 +214,14 @@ class Capabilities extends Component {
 =======
           rowSelection="multiple"
 >>>>>>> Added checkboxes to grids
+<<<<<<< bbbe4d06221b46a4a8b214ee9b714e83153dcbb7
 >>>>>>> Added checkboxes to grids
+=======
+=======
+          rowSelection='multiple'
+>>>>>>> Fixes to coding style
+>>>>>>> Fixes to coding style
           onCellClicked={this.onCellClicked.bind(this)}
-          onCellFocused={this.onCellFocused.bind(this)}
           onGridReady={this.onGridReady.bind(this)}
         />
       )
