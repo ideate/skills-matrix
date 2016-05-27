@@ -13,10 +13,18 @@ class Capabilities extends Component {
     super()
 
     this.state = {
+<<<<<<< 727295fa8df86cb572d8ccab2e85acbad3b4f123
       headerHeight: 48,
       rowHeight: 48,
       editIcon: '<i class="fa fa-pencil-square-o fa-lg"/>',
       icons: {
+=======
+      editIcon: '<i class="fa fa-pencil-square-o fa-lg"/>',
+      icons: {
+        columnRemoveFromGroup: '<i class="fa fa-remove"/>',
+        filter: '<i class="fa fa-filter"/>',
+        menu: '<i class="fa fa-bars"/>',
+>>>>>>> Grid branch (#11)
         sortAscending: '<i class="fa fa-sort-alpha-asc"/>',
         sortDescending: '<i class="fa fa-sort-alpha-desc"/>'
       }
@@ -38,6 +46,7 @@ class Capabilities extends Component {
     dispatch(capabilitiesRead())
   }
   
+<<<<<<< 727295fa8df86cb572d8ccab2e85acbad3b4f123
   componentWillUnmount () {
     this.refs.grid.api.destroy()
   }
@@ -56,6 +65,8 @@ class Capabilities extends Component {
     return tableHeightStyle
   }
   
+=======
+>>>>>>> Grid branch (#11)
   handleResize (grid) {
     grid.api.sizeColumnsToFit()
   }
@@ -79,21 +90,40 @@ class Capabilities extends Component {
         {
           headerName: '',
           checkboxSelection: true,
+<<<<<<< 727295fa8df86cb572d8ccab2e85acbad3b4f123
           suppressSorting: true,
           width: 15
         },
         {headerName: 'Capability', field: 'title'},
+=======
+          suppressMenu: true,
+          suppressMovable: true,
+          suppressResize: true,
+          suppressSorting: true,
+          width: 15
+        },
+        {headerName: 'Capability', field: 'title', cellStyle: {color: '#FF4081'}},
+>>>>>>> Grid branch (#11)
         {headerName: 'Description', field: 'description'},
         {
           headerName: 'Edit',
           field: 'edit',
+<<<<<<< 727295fa8df86cb572d8ccab2e85acbad3b4f123
           suppressSorting: true,
           width: 30
+=======
+          suppressMenu: true,
+          suppressMovable: true,
+          suppressResize: true,
+          suppressSorting: true,
+          width: 20
+>>>>>>> Grid branch (#11)
         }
       ]
       const rowData = []
 
       capabilitiesState.data.map(function (capability) {
+<<<<<<< 727295fa8df86cb572d8ccab2e85acbad3b4f123
         rowData.push({id: capability._id, title: capability.title, description: capability.description, skills: capability.skills, edit: editIcon})
       })
      
@@ -108,6 +138,24 @@ class Capabilities extends Component {
           rowHeight={this.state.rowHeight}
           rowSelection='multiple'
           suppressMovableColumns='true'
+=======
+        rowData.push({id: capability._id, title: capability.title, description: capability.description, edit: editIcon})
+      })
+
+      return (
+        <AgGridReact
+          autoResize='true'
+          columnDefs={columnDefs}
+          enableColResize='true'
+          enableFilter='true'
+          enableSorting='true'
+          headerHeight='48'
+          icons={this.state.icons}
+          ref='grid'
+          rowData={rowData}
+          rowHeight='48'
+          rowSelection='multiple'
+>>>>>>> Grid branch (#11)
           onCellClicked={this.onCellClicked.bind(this)}
           onGridReady={this.onGridReady.bind(this)}
         />
@@ -131,8 +179,12 @@ class Capabilities extends Component {
           </ToolbarGroup>
         </Toolbar>
         <main style={main}>
+<<<<<<< 727295fa8df86cb572d8ccab2e85acbad3b4f123
           <div className='ag-material'
             style={this.getTableHeight()}>
+=======
+          <div className='ag-material'>
+>>>>>>> Grid branch (#11)
            {this.renderCapabilities()}
            </div>
         </main>

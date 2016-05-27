@@ -13,10 +13,18 @@ class Organizations extends Component {
     super()
 
     this.state = {
+<<<<<<< 727295fa8df86cb572d8ccab2e85acbad3b4f123
       headerHeight: 48,
       rowHeight: 48,
       editIcon: '<i class="fa fa-pencil-square-o fa-lg"/>',
       icons: {
+=======
+      editIcon: '<i class="fa fa-pencil-square-o fa-lg"/>',
+      icons: {
+        columnRemoveFromGroup: '<i class="fa fa-remove"/>',
+        filter: '<i class="fa fa-filter"/>',
+        menu: '<i class="fa fa-bars"/>',
+>>>>>>> Grid branch (#11)
         sortAscending: '<i class="fa fa-sort-alpha-asc"/>',
         sortDescending: '<i class="fa fa-sort-alpha-desc"/>'
       }
@@ -38,6 +46,7 @@ class Organizations extends Component {
     dispatch(organizationsRead())
   }
   
+<<<<<<< 727295fa8df86cb572d8ccab2e85acbad3b4f123
   componentWillUnmount () {
     this.refs.grid.api.destroy()
   }
@@ -56,6 +65,8 @@ class Organizations extends Component {
     return tableHeightStyle
   }
   
+=======
+>>>>>>> Grid branch (#11)
   handleResize (grid) {
     grid.api.sizeColumnsToFit()
   }
@@ -79,14 +90,30 @@ class Organizations extends Component {
         {
           headerName: '',
           checkboxSelection: true,
+<<<<<<< 727295fa8df86cb572d8ccab2e85acbad3b4f123
           suppressSorting: true,
           width: 15
         },
         {headerName: 'Organization', field: 'title'},
+=======
+          suppressMenu: true,
+          suppressMovable: true,
+          suppressResize: true,
+          suppressSorting: true,
+          width: 15
+        },
+        {headerName: 'Organization', field: 'title', cellStyle: {color: '#FF4081'}},
+>>>>>>> Grid branch (#11)
         {headerName: 'Description', field: 'description'},
         {
           headerName: 'Edit',
           field: 'edit',
+<<<<<<< 727295fa8df86cb572d8ccab2e85acbad3b4f123
+=======
+          suppressMenu: true,
+          suppressMovable: true,
+          suppressResize: true,
+>>>>>>> Grid branch (#11)
           suppressSorting: true,
           width: 20
         }
@@ -99,6 +126,7 @@ class Organizations extends Component {
       
       return (
         <AgGridReact
+<<<<<<< 727295fa8df86cb572d8ccab2e85acbad3b4f123
           columnDefs={columnDefs}
           enableSorting='true'
           headerHeight={this.state.headerHeight}
@@ -108,6 +136,19 @@ class Organizations extends Component {
           rowHeight={this.state.rowHeight}
           rowSelection='multiple'
           suppressMovableColumns='true'
+=======
+          autoResize='true'
+          columnDefs={columnDefs}
+          enableColResize='true'
+          enableFilter='true'
+          enableSorting='true'
+          headerHeight='48'
+          icons={this.state.icons}
+          ref='grid'
+          rowData={rowData}
+          rowHeight='48'
+          rowSelection='multiple'
+>>>>>>> Grid branch (#11)
           onCellClicked={this.onCellClicked.bind(this)}
           onGridReady={this.onGridReady.bind(this)}
         />
@@ -131,8 +172,12 @@ class Organizations extends Component {
           </ToolbarGroup>
         </Toolbar>
         <main style={main}>
+<<<<<<< 727295fa8df86cb572d8ccab2e85acbad3b4f123
           <div className='ag-material'
             style={this.getTableHeight()}>
+=======
+          <div className='ag-material'>
+>>>>>>> Grid branch (#11)
            {this.renderOrganizations()}
            </div>
         </main>
