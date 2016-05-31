@@ -195,10 +195,7 @@ class Capabilities extends Component {
 
       return (
         <AgGridReact
-          autoResize='true'
           columnDefs={columnDefs}
-          enableColResize='true'
-          enableFilter='true'
           enableSorting='true'
           headerHeight='48'
           icons={this.state.icons}
@@ -219,8 +216,15 @@ class Capabilities extends Component {
 =======
 =======
           rowSelection='multiple'
+<<<<<<< 1ff0d78f1e591543fd4ac55225ceca607e71b3e2
 >>>>>>> Fixes to coding style
+<<<<<<< f83e801b16e44e61232f83dc8df6451bc3e0f2d5
 >>>>>>> Fixes to coding style
+=======
+=======
+          suppressMovableColumns='true'
+>>>>>>> Fixes #20 and #13, removing ag-filters menu and fixing the ag-grid header font to be sans-serif
+>>>>>>> Fixes #20 and #13, removing ag-filters menu and fixing the ag-grid header font to be sans-serif
           onCellClicked={this.onCellClicked.bind(this)}
           onGridReady={this.onGridReady.bind(this)}
         />

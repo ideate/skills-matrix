@@ -259,10 +259,14 @@ class Skills extends Component {
       
       return (
         <AgGridReact
+<<<<<<< f83e801b16e44e61232f83dc8df6451bc3e0f2d5
 <<<<<<< 68f91f56004309835cca580a0da86307993e8177
 <<<<<<< 0d949244f8fb87aa265259fccf2211bcd466a475
 <<<<<<< 727295fa8df86cb572d8ccab2e85acbad3b4f123
 =======
+=======
+<<<<<<< 1ff0d78f1e591543fd4ac55225ceca607e71b3e2
+>>>>>>> Fixes #20 and #13, removing ag-filters menu and fixing the ag-grid header font to be sans-serif
 <<<<<<< e15875efc94959e658a32e1d5f5d38209ab8b8ce
 >>>>>>> Added checkboxes to grids
           columnDefs={columnDefs}
@@ -299,9 +303,9 @@ class Skills extends Component {
           enableSorting="true"
 =======
           autoResize='true'
+=======
+>>>>>>> Fixes #20 and #13, removing ag-filters menu and fixing the ag-grid header font to be sans-serif
           columnDefs={columnDefs}
-          enableColResize='true'
-          enableFilter='true'
           enableSorting='true'
 >>>>>>> Added checkboxes to grids
           headerHeight='48'
@@ -323,8 +327,15 @@ class Skills extends Component {
 =======
 =======
           rowSelection='multiple'
+<<<<<<< 1ff0d78f1e591543fd4ac55225ceca607e71b3e2
 >>>>>>> Fixes to coding style
+<<<<<<< f83e801b16e44e61232f83dc8df6451bc3e0f2d5
 >>>>>>> Fixes to coding style
+=======
+=======
+          suppressMovableColumns='true'
+>>>>>>> Fixes #20 and #13, removing ag-filters menu and fixing the ag-grid header font to be sans-serif
+>>>>>>> Fixes #20 and #13, removing ag-filters menu and fixing the ag-grid header font to be sans-serif
           onCellClicked={this.onCellClicked.bind(this)}
           onGridReady={this.onGridReady.bind(this)}
         />
