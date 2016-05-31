@@ -63,7 +63,6 @@ class Skills extends Component {
     super()
 
     this.state = {
-      editIcon: '<i class="fa fa-pencil-square-o fa-lg"/>',
       icons: {
         columnRemoveFromGroup: '<i class="fa fa-remove"/>',
         filter: '<i class="fa fa-filter"/>',
@@ -122,6 +121,7 @@ class Skills extends Component {
   }
   
   onCellClicked (event) {
+<<<<<<< 010243e20a201c2c47a41e225f0ae519f0e18983
 <<<<<<< bbbe4d06221b46a4a8b214ee9b714e83153dcbb7
 <<<<<<< 68f91f56004309835cca580a0da86307993e8177
 <<<<<<< 0d949244f8fb87aa265259fccf2211bcd466a475
@@ -137,6 +137,9 @@ class Skills extends Component {
 >>>>>>> Added very rudimentary ag-grid set up on skills
 =======
 =======
+=======
+<<<<<<< f5fe3a349604b7f579ad35dd3843cf50431ffc88
+>>>>>>> Fixes #14, #15, and #16, removing the checkbox and edit options from skills, and bringing back row selection drilldowns
 <<<<<<< 4c7179a336d161201eb471074129ff397c1028a5
 >>>>>>> Fixes to coding style
 <<<<<<< e15875efc94959e658a32e1d5f5d38209ab8b8ce
@@ -149,7 +152,13 @@ class Skills extends Component {
       browserHistory.push('/skills/' + event.data.id)
     }
 >>>>>>> Added checkboxes to grids
+<<<<<<< 010243e20a201c2c47a41e225f0ae519f0e18983
 >>>>>>> Added checkboxes to grids
+=======
+=======
+    browserHistory.push('/skills/' + event.data.id)
+>>>>>>> Fixes #14, #15, and #16, removing the checkbox and edit options from skills, and bringing back row selection drilldowns
+>>>>>>> Fixes #14, #15, and #16, removing the checkbox and edit options from skills, and bringing back row selection drilldowns
   }
   
   onGridReady (grid) {
@@ -162,6 +171,7 @@ class Skills extends Component {
 
     if (skillsState && skillsState.data && skillsState.data.length) {
       const columnDefs = [
+<<<<<<< 010243e20a201c2c47a41e225f0ae519f0e18983
 <<<<<<< bbbe4d06221b46a4a8b214ee9b714e83153dcbb7
 <<<<<<< 68f91f56004309835cca580a0da86307993e8177
 <<<<<<< 0d949244f8fb87aa265259fccf2211bcd466a475
@@ -187,6 +197,9 @@ class Skills extends Component {
 >>>>>>> Added very rudimentary ag-grid set up on skills
 =======
 =======
+=======
+<<<<<<< f5fe3a349604b7f579ad35dd3843cf50431ffc88
+>>>>>>> Fixes #14, #15, and #16, removing the checkbox and edit options from skills, and bringing back row selection drilldowns
 <<<<<<< 4c7179a336d161201eb471074129ff397c1028a5
 >>>>>>> Fixes to coding style
 <<<<<<< e15875efc94959e658a32e1d5f5d38209ab8b8ce
@@ -237,6 +250,10 @@ class Skills extends Component {
           width: 20
         }
 >>>>>>> Fixes to coding style
+=======
+        {headerName: 'Skill', field: 'title', cellStyle: {color: '#FF4081'}},
+        {headerName: 'Description', field: 'description'}
+>>>>>>> Fixes #14, #15, and #16, removing the checkbox and edit options from skills, and bringing back row selection drilldowns
       ]
       const rowData = []
       
