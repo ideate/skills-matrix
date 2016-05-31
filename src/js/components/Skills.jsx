@@ -88,10 +88,7 @@ class Skills extends Component {
       
       return (
         <AgGridReact
-          autoResize='true'
           columnDefs={columnDefs}
-          enableColResize='true'
-          enableFilter='true'
           enableSorting='true'
           headerHeight='48'
           icons={this.state.icons}
@@ -99,6 +96,7 @@ class Skills extends Component {
           rowData={rowData}
           rowHeight='48'
           rowSelection='multiple'
+          suppressMovableColumns='true'
           onCellClicked={this.onCellClicked.bind(this)}
           onGridReady={this.onGridReady.bind(this)}
         />
