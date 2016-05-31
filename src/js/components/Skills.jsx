@@ -13,7 +13,6 @@ class Skills extends Component {
     super()
 
     this.state = {
-      editIcon: '<i class="fa fa-pencil-square-o fa-lg"/>',
       icons: {
         columnRemoveFromGroup: '<i class="fa fa-remove"/>',
         filter: '<i class="fa fa-filter"/>',
@@ -44,9 +43,7 @@ class Skills extends Component {
   }
   
   onCellClicked (event) {
-    if (event.value === this.state.editIcon) {
-      browserHistory.push('/skills/' + event.data.id)
-    }
+    browserHistory.push('/skills/' + event.data.id)
   }
   
   onGridReady (grid) {
@@ -59,26 +56,8 @@ class Skills extends Component {
 
     if (skillsState && skillsState.data && skillsState.data.length) {
       const columnDefs = [
-        {
-          headerName: '',
-          checkboxSelection: true,
-          suppressMenu: true,
-          suppressMovable: true,
-          suppressResize: true,
-          suppressSorting: true,
-          width: 15
-        },
         {headerName: 'Skill', field: 'title', cellStyle: {color: '#FF4081'}},
-        {headerName: 'Description', field: 'description'},
-        {
-          headerName: 'Edit',
-          field: 'edit',
-          suppressMenu: true,
-          suppressMovable: true,
-          suppressResize: true,
-          suppressSorting: true,
-          width: 20
-        }
+        {headerName: 'Description', field: 'description'}
       ]
       const rowData = []
 
