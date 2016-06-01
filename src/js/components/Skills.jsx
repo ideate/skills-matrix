@@ -13,6 +13,8 @@ class Skills extends Component {
     super()
 
     this.state = {
+      headerHeight: 48,
+      rowHeight: 48,
       icons: {
         columnRemoveFromGroup: '<i class="fa fa-remove"/>',
         filter: '<i class="fa fa-filter"/>',
@@ -38,6 +40,16 @@ class Skills extends Component {
     dispatch(skillsRead())
   }
   
+  getTableHeight () {
+    const tableHeight = (this.props.skillsState.data.length * this.state.rowHeight) + this.state.headerHeight + 9
+    
+    const tableHeightStyle = {
+      height: tableHeight
+    }
+
+    return tableHeightStyle
+  }
+  
   handleResize (grid) {
     grid.api.sizeColumnsToFit()
   }
@@ -52,7 +64,6 @@ class Skills extends Component {
   
   renderSkills () {
     const {skillsState} = this.props
-    const editIcon = this.state.editIcon
 
     if (skillsState && skillsState.data && skillsState.data.length) {
       const columnDefs = [
@@ -60,20 +71,20 @@ class Skills extends Component {
         {headerName: 'Description', field: 'description'}
       ]
       const rowData = []
-
+      
       skillsState.data.map(function (skill) {
-        rowData.push({id: skill._id, title: skill.title, description: skill.description, edit: editIcon})
+        rowData.push({id: skill._id, title: skill.title, description: skill.description})
       })
       
       return (
         <AgGridReact
           columnDefs={columnDefs}
           enableSorting='true'
-          headerHeight='48'
+          headerHeight={this.state.headerHeight}
           icons={this.state.icons}
           ref='grid'
           rowData={rowData}
-          rowHeight='48'
+          rowHeight={this.state.rowHeight}
           rowSelection='multiple'
           suppressMovableColumns='true'
           onCellClicked={this.onCellClicked.bind(this)}
@@ -99,7 +110,8 @@ class Skills extends Component {
           </ToolbarGroup>
         </Toolbar>
         <main style={main}>
-          <div className='ag-material'>
+          <div className='ag-material'
+            style={this.getTableHeight()}>
            {this.renderSkills()}
            </div>
         </main>

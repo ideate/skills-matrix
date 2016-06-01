@@ -13,6 +13,8 @@ class Capabilities extends Component {
     super()
 
     this.state = {
+      headerHeight: 48,
+      rowHeight: 48,
       editIcon: '<i class="fa fa-pencil-square-o fa-lg"/>',
       icons: {
         columnRemoveFromGroup: '<i class="fa fa-remove"/>',
@@ -37,6 +39,16 @@ class Capabilities extends Component {
     const {dispatch} = this.props
 
     dispatch(capabilitiesRead())
+  }
+  
+  getTableHeight () {
+    const tableHeight = (this.props.capabilitiesState.data.length * this.state.rowHeight) + this.state.headerHeight + 9
+    
+    const tableHeightStyle = {
+      height: tableHeight
+    }
+
+    return tableHeightStyle
   }
   
   handleResize (grid) {
@@ -90,11 +102,11 @@ class Capabilities extends Component {
         <AgGridReact
           columnDefs={columnDefs}
           enableSorting='true'
-          headerHeight='48'
+          headerHeight={this.state.headerHeight}
           icons={this.state.icons}
           ref='grid'
           rowData={rowData}
-          rowHeight='48'
+          rowHeight={this.state.rowHeight}
           rowSelection='multiple'
           suppressMovableColumns='true'
           onCellClicked={this.onCellClicked.bind(this)}
@@ -120,7 +132,8 @@ class Capabilities extends Component {
           </ToolbarGroup>
         </Toolbar>
         <main style={main}>
-          <div className='ag-material'>
+          <div className='ag-material'
+            style={this.getTableHeight()}>
            {this.renderCapabilities()}
            </div>
         </main>
