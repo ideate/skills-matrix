@@ -63,6 +63,8 @@ class Skills extends Component {
     super()
 
     this.state = {
+      headerHeight: 48,
+      rowHeight: 48,
       icons: {
         columnRemoveFromGroup: '<i class="fa fa-remove"/>',
         filter: '<i class="fa fa-filter"/>',
@@ -89,10 +91,14 @@ class Skills extends Component {
     dispatch(skillsRead())
   }
   
+<<<<<<< 533c859894aa613c8db24284e3eca3aa73f91faf
 <<<<<<< 0d949244f8fb87aa265259fccf2211bcd466a475
 <<<<<<< 727295fa8df86cb572d8ccab2e85acbad3b4f123
 =======
 >>>>>>> Added very rudimentary ag-grid set up on skills
+=======
+<<<<<<< 219f2baf49a0cf5ba055321bc07c51554febe6f9
+>>>>>>> Fixes #12. Added dynamic sizing for the ag-grid height, removed some unused css from common.js
   componentWillUnmount () {
     this.refs.grid.api.destroy()
   }
@@ -103,6 +109,10 @@ class Skills extends Component {
     if (typeof this.props.skillsState.data.length !== 'undefined') {
       tableHeight = (this.props.skillsState.data.length * this.state.rowHeight) + this.state.headerHeight + 9
     }
+=======
+  getTableHeight () {
+    const tableHeight = (this.props.skillsState.data.length * this.state.rowHeight) + this.state.headerHeight + 9
+>>>>>>> Fixes #12. Added dynamic sizing for the ag-grid height, removed some unused css from common.js
     
     const tableHeightStyle = {
       height: tableHeight
@@ -167,7 +177,6 @@ class Skills extends Component {
   
   renderSkills () {
     const {skillsState} = this.props
-    const editIcon = this.state.editIcon
 
     if (skillsState && skillsState.data && skillsState.data.length) {
       const columnDefs = [
@@ -258,6 +267,7 @@ class Skills extends Component {
       const rowData = []
       
       skillsState.data.map(function (skill) {
+<<<<<<< 533c859894aa613c8db24284e3eca3aa73f91faf
 <<<<<<< 68f91f56004309835cca580a0da86307993e8177
 <<<<<<< 0d949244f8fb87aa265259fccf2211bcd466a475
         rowData.push({id: skill._id, title: skill.title, description: skill.description, edit: editIcon})
@@ -266,12 +276,21 @@ class Skills extends Component {
         rowData.push({id: skill._id, title: skill.title, description: skill.description})
 >>>>>>> Added very rudimentary ag-grid set up on skills
 =======
+=======
+<<<<<<< 219f2baf49a0cf5ba055321bc07c51554febe6f9
+>>>>>>> Fixes #12. Added dynamic sizing for the ag-grid height, removed some unused css from common.js
 <<<<<<< e15875efc94959e658a32e1d5f5d38209ab8b8ce
         rowData.push({id: skill._id, title: skill.title, description: skill.description})
 =======
         rowData.push({id: skill._id, title: skill.title, description: skill.description, edit: editIcon})
 >>>>>>> Added checkboxes to grids
+<<<<<<< 533c859894aa613c8db24284e3eca3aa73f91faf
 >>>>>>> Added checkboxes to grids
+=======
+=======
+        rowData.push({id: skill._id, title: skill.title, description: skill.description})
+>>>>>>> Fixes #12. Added dynamic sizing for the ag-grid height, removed some unused css from common.js
+>>>>>>> Fixes #12. Added dynamic sizing for the ag-grid height, removed some unused css from common.js
       })
       
       return (
@@ -324,6 +343,7 @@ class Skills extends Component {
 >>>>>>> Fixes #20 and #13, removing ag-filters menu and fixing the ag-grid header font to be sans-serif
           columnDefs={columnDefs}
           enableSorting='true'
+<<<<<<< 219f2baf49a0cf5ba055321bc07c51554febe6f9
 >>>>>>> Added checkboxes to grids
           headerHeight='48'
           icons={this.state.icons}
@@ -343,6 +363,13 @@ class Skills extends Component {
 >>>>>>> Added checkboxes to grids
 =======
 =======
+=======
+          headerHeight={this.state.headerHeight}
+          icons={this.state.icons}
+          ref='grid'
+          rowData={rowData}
+          rowHeight={this.state.rowHeight}
+>>>>>>> Fixes #12. Added dynamic sizing for the ag-grid height, removed some unused css from common.js
           rowSelection='multiple'
 <<<<<<< 1ff0d78f1e591543fd4ac55225ceca607e71b3e2
 >>>>>>> Fixes to coding style
@@ -376,6 +403,7 @@ class Skills extends Component {
           </ToolbarGroup>
         </Toolbar>
         <main style={main}>
+<<<<<<< 533c859894aa613c8db24284e3eca3aa73f91faf
 <<<<<<< 68f91f56004309835cca580a0da86307993e8177
 <<<<<<< c3f8fbdfa436574bf875076b06cb027967fd015f
 <<<<<<< 0d949244f8fb87aa265259fccf2211bcd466a475
@@ -391,6 +419,9 @@ class Skills extends Component {
 >>>>>>> Added very rudimentary ag-grid set up on skills
 =======
 =======
+=======
+<<<<<<< 219f2baf49a0cf5ba055321bc07c51554febe6f9
+>>>>>>> Fixes #12. Added dynamic sizing for the ag-grid height, removed some unused css from common.js
 <<<<<<< e15875efc94959e658a32e1d5f5d38209ab8b8ce
 >>>>>>> Added checkboxes to grids
 <<<<<<< 636285151a9b5d7640f1f2fddf197df54c26546d
@@ -405,7 +436,14 @@ class Skills extends Component {
 =======
           <div className='ag-material'>
 >>>>>>> Added checkboxes to grids
+<<<<<<< 533c859894aa613c8db24284e3eca3aa73f91faf
 >>>>>>> Added checkboxes to grids
+=======
+=======
+          <div className='ag-material'
+            style={this.getTableHeight()}>
+>>>>>>> Fixes #12. Added dynamic sizing for the ag-grid height, removed some unused css from common.js
+>>>>>>> Fixes #12. Added dynamic sizing for the ag-grid height, removed some unused css from common.js
            {this.renderSkills()}
            </div>
         </main>

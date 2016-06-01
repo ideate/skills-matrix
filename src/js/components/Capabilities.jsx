@@ -13,6 +13,7 @@ class Capabilities extends Component {
     super()
 
     this.state = {
+<<<<<<< 533c859894aa613c8db24284e3eca3aa73f91faf
 <<<<<<< 2c88e0590c73f3cf91714f17612466c2a2af5bba
 <<<<<<< 68f91f56004309835cca580a0da86307993e8177
 <<<<<<< 727295fa8df86cb572d8ccab2e85acbad3b4f123
@@ -23,10 +24,20 @@ class Capabilities extends Component {
 =======
 =======
 =======
+=======
+<<<<<<< 219f2baf49a0cf5ba055321bc07c51554febe6f9
+>>>>>>> Fixes #12. Added dynamic sizing for the ag-grid height, removed some unused css from common.js
 <<<<<<< e3711d0587647c2e2e94cf601c36f50021684938
 >>>>>>> Added ag-grid to every page
 <<<<<<< e15875efc94959e658a32e1d5f5d38209ab8b8ce
+<<<<<<< 533c859894aa613c8db24284e3eca3aa73f91faf
 >>>>>>> Added checkboxes to grids
+=======
+=======
+      headerHeight: 48,
+      rowHeight: 48,
+>>>>>>> Fixes #12. Added dynamic sizing for the ag-grid height, removed some unused css from common.js
+>>>>>>> Fixes #12. Added dynamic sizing for the ag-grid height, removed some unused css from common.js
       editIcon: '<i class="fa fa-pencil-square-o fa-lg"/>',
 =======
       editIcon: '<i class="fa fa-pencil-square-o"/>',
@@ -60,6 +71,7 @@ class Capabilities extends Component {
     dispatch(capabilitiesRead())
   }
   
+<<<<<<< 533c859894aa613c8db24284e3eca3aa73f91faf
 <<<<<<< 727295fa8df86cb572d8ccab2e85acbad3b4f123
   componentWillUnmount () {
     this.refs.grid.api.destroy()
@@ -71,6 +83,10 @@ class Capabilities extends Component {
     if (typeof this.props.capabilitiesState.data.length !== 'undefined') {
       tableHeight = (this.props.capabilitiesState.data.length * this.state.rowHeight) + this.state.headerHeight + 9
     }
+=======
+  getTableHeight () {
+    const tableHeight = (this.props.capabilitiesState.data.length * this.state.rowHeight) + this.state.headerHeight + 9
+>>>>>>> Fixes #12. Added dynamic sizing for the ag-grid height, removed some unused css from common.js
     
     const tableHeightStyle = {
       height: tableHeight
@@ -79,8 +95,11 @@ class Capabilities extends Component {
     return tableHeightStyle
   }
   
+<<<<<<< 533c859894aa613c8db24284e3eca3aa73f91faf
 =======
 >>>>>>> Grid branch (#11)
+=======
+>>>>>>> Fixes #12. Added dynamic sizing for the ag-grid height, removed some unused css from common.js
   handleResize (grid) {
     grid.api.sizeColumnsToFit()
   }
@@ -197,10 +216,11 @@ class Capabilities extends Component {
         <AgGridReact
           columnDefs={columnDefs}
           enableSorting='true'
-          headerHeight='48'
+          headerHeight={this.state.headerHeight}
           icons={this.state.icons}
           ref='grid'
           rowData={rowData}
+<<<<<<< 219f2baf49a0cf5ba055321bc07c51554febe6f9
           rowHeight='48'
 <<<<<<< 4c7179a336d161201eb471074129ff397c1028a5
 <<<<<<< e15875efc94959e658a32e1d5f5d38209ab8b8ce
@@ -215,6 +235,9 @@ class Capabilities extends Component {
 >>>>>>> Added checkboxes to grids
 =======
 =======
+=======
+          rowHeight={this.state.rowHeight}
+>>>>>>> Fixes #12. Added dynamic sizing for the ag-grid height, removed some unused css from common.js
           rowSelection='multiple'
 <<<<<<< 1ff0d78f1e591543fd4ac55225ceca607e71b3e2
 >>>>>>> Fixes to coding style
@@ -248,12 +271,17 @@ class Capabilities extends Component {
           </ToolbarGroup>
         </Toolbar>
         <main style={main}>
+<<<<<<< 533c859894aa613c8db24284e3eca3aa73f91faf
 <<<<<<< 727295fa8df86cb572d8ccab2e85acbad3b4f123
           <div className='ag-material'
             style={this.getTableHeight()}>
 =======
           <div className='ag-material'>
 >>>>>>> Grid branch (#11)
+=======
+          <div className='ag-material'
+            style={this.getTableHeight()}>
+>>>>>>> Fixes #12. Added dynamic sizing for the ag-grid height, removed some unused css from common.js
            {this.renderCapabilities()}
            </div>
         </main>

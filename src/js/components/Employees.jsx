@@ -13,12 +13,17 @@ class Employees extends Component {
     super()
 
     this.state = {
+<<<<<<< 533c859894aa613c8db24284e3eca3aa73f91faf
 <<<<<<< 727295fa8df86cb572d8ccab2e85acbad3b4f123
       headerHeight: 48,
       rowHeight: 48,
       editIcon: '<i class="fa fa-pencil-square-o fa-lg"/>',
       icons: {
 =======
+=======
+      headerHeight: 48,
+      rowHeight: 48,
+>>>>>>> Fixes #12. Added dynamic sizing for the ag-grid height, removed some unused css from common.js
       editIcon: '<i class="fa fa-pencil-square-o fa-lg"/>',
       icons: {
         columnRemoveFromGroup: '<i class="fa fa-remove"/>',
@@ -46,6 +51,7 @@ class Employees extends Component {
     dispatch(employeesRead())
   }
   
+<<<<<<< 533c859894aa613c8db24284e3eca3aa73f91faf
 <<<<<<< 727295fa8df86cb572d8ccab2e85acbad3b4f123
   componentWillUnmount () {
     this.refs.grid.api.destroy()
@@ -57,6 +63,10 @@ class Employees extends Component {
     if (typeof this.props.employeesState.data.length !== 'undefined') {
       tableHeight = (this.props.employeesState.data.length * this.state.rowHeight) + this.state.headerHeight + 9
     }
+=======
+  getTableHeight () {
+    const tableHeight = (this.props.employeesState.data.length * this.state.rowHeight) + this.state.headerHeight + 9
+>>>>>>> Fixes #12. Added dynamic sizing for the ag-grid height, removed some unused css from common.js
     
     const tableHeightStyle = {
       height: tableHeight
@@ -65,8 +75,11 @@ class Employees extends Component {
     return tableHeightStyle
   }
   
+<<<<<<< 533c859894aa613c8db24284e3eca3aa73f91faf
 =======
 >>>>>>> Grid branch (#11)
+=======
+>>>>>>> Fixes #12. Added dynamic sizing for the ag-grid height, removed some unused css from common.js
   handleResize (grid) {
     grid.api.sizeColumnsToFit()
   }
@@ -180,10 +193,11 @@ class Employees extends Component {
 >>>>>>> Fixes #20 and #13, removing ag-filters menu and fixing the ag-grid header font to be sans-serif
           columnDefs={columnDefs}
           enableSorting='true'
-          headerHeight='48'
+          headerHeight={this.state.headerHeight}
           icons={this.state.icons}
           ref='grid'
           rowData={rowData}
+<<<<<<< 219f2baf49a0cf5ba055321bc07c51554febe6f9
           rowHeight='48'
 <<<<<<< 4c7179a336d161201eb471074129ff397c1028a5
 <<<<<<< e3711d0587647c2e2e94cf601c36f50021684938
@@ -198,6 +212,9 @@ class Employees extends Component {
 >>>>>>> Added ag-grid to every page
 =======
 =======
+=======
+          rowHeight={this.state.rowHeight}
+>>>>>>> Fixes #12. Added dynamic sizing for the ag-grid height, removed some unused css from common.js
           rowSelection='multiple'
 <<<<<<< 1ff0d78f1e591543fd4ac55225ceca607e71b3e2
 >>>>>>> Fixes to coding style
@@ -231,12 +248,17 @@ class Employees extends Component {
           </ToolbarGroup>
         </Toolbar>
         <main style={main}>
+<<<<<<< 533c859894aa613c8db24284e3eca3aa73f91faf
 <<<<<<< 727295fa8df86cb572d8ccab2e85acbad3b4f123
           <div className='ag-material'
             style={this.getTableHeight()}>
 =======
           <div className='ag-material'>
 >>>>>>> Grid branch (#11)
+=======
+          <div className='ag-material'
+            style={this.getTableHeight()}>
+>>>>>>> Fixes #12. Added dynamic sizing for the ag-grid height, removed some unused css from common.js
            {this.renderEmployees()}
            </div>
         </main>
