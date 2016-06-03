@@ -13,11 +13,10 @@ class Strategies extends Component {
     super()
 
     this.state = {
+      headerHeight: 48,
+      rowHeight: 48,
       editIcon: '<i class="fa fa-pencil-square-o fa-lg"/>',
       icons: {
-        columnRemoveFromGroup: '<i class="fa fa-remove"/>',
-        filter: '<i class="fa fa-filter"/>',
-        menu: '<i class="fa fa-bars"/>',
         sortAscending: '<i class="fa fa-sort-alpha-asc"/>',
         sortDescending: '<i class="fa fa-sort-alpha-desc"/>'
       }
@@ -37,6 +36,24 @@ class Strategies extends Component {
     const {dispatch} = this.props
 
     dispatch(strategiesRead())
+  }
+  
+  componentWillUnmount () {
+    this.refs.grid.api.destroy()
+  }
+  
+  getTableHeight () {
+    let tableHeight = 0
+    
+    if (typeof this.props.strategiesState.data.length !== 'undefined') {
+      tableHeight = (this.props.strategiesState.data.length * this.state.rowHeight) + this.state.headerHeight + 9
+    }
+    
+    const tableHeightStyle = {
+      height: tableHeight
+    }
+
+    return tableHeightStyle
   }
   
   handleResize (grid) {
@@ -62,20 +79,14 @@ class Strategies extends Component {
         {
           headerName: '',
           checkboxSelection: true,
-          suppressMenu: true,
-          suppressMovable: true,
-          suppressResize: true,
           suppressSorting: true,
           width: 15
         },
-        {headerName: 'Strategy', field: 'title', cellStyle: {color: '#FF4081'}},
+        {headerName: 'Strategy', field: 'title'},
         {headerName: 'Description', field: 'description'},
         {
           headerName: 'Edit',
           field: 'edit',
-          suppressMenu: true,
-          suppressMovable: true,
-          suppressResize: true,
           suppressSorting: true,
           width: 20
         }
@@ -88,17 +99,15 @@ class Strategies extends Component {
       
       return (
         <AgGridReact
-          autoResize='true'
           columnDefs={columnDefs}
-          enableColResize='true'
-          enableFilter='true'
           enableSorting='true'
-          headerHeight='48'
+          headerHeight={this.state.headerHeight}
           icons={this.state.icons}
           ref='grid'
           rowData={rowData}
-          rowHeight='48'
+          rowHeight={this.state.rowHeight}
           rowSelection='multiple'
+          suppressMovableColumns='true'
           onCellClicked={this.onCellClicked.bind(this)}
           onGridReady={this.onGridReady.bind(this)}
         />
@@ -122,7 +131,8 @@ class Strategies extends Component {
           </ToolbarGroup>
         </Toolbar>
         <main style={main}>
-          <div className='ag-material'>
+          <div className='ag-material'
+            style={this.getTableHeight()}>
            {this.renderStrategies()}
            </div>
         </main>
