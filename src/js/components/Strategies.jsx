@@ -38,8 +38,16 @@ class Strategies extends Component {
     dispatch(strategiesRead())
   }
   
+  componentWillUnmount () {
+    this.refs.grid.api.destroy()
+  }
+  
   getTableHeight () {
-    const tableHeight = (this.props.strategiesState.data.length * this.state.rowHeight) + this.state.headerHeight + 9
+    let tableHeight = 0
+    
+    if (typeof this.props.strategiesState.data.length !== 'undefined') {
+      tableHeight = (this.props.strategiesState.data.length * this.state.rowHeight) + this.state.headerHeight + 9
+    }
     
     const tableHeightStyle = {
       height: tableHeight

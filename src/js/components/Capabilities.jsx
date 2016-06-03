@@ -38,8 +38,16 @@ class Capabilities extends Component {
     dispatch(capabilitiesRead())
   }
   
+  componentWillUnmount () {
+    this.refs.grid.api.destroy()
+  }
+  
   getTableHeight () {
-    const tableHeight = (this.props.capabilitiesState.data.length * this.state.rowHeight) + this.state.headerHeight + 9
+    let tableHeight = 0
+    
+    if (typeof this.props.capabilitiesState.data.length !== 'undefined') {
+      tableHeight = (this.props.capabilitiesState.data.length * this.state.rowHeight) + this.state.headerHeight + 9
+    }
     
     const tableHeightStyle = {
       height: tableHeight
@@ -76,7 +84,6 @@ class Capabilities extends Component {
         },
         {headerName: 'Capability', field: 'title'},
         {headerName: 'Description', field: 'description'},
-        {headerName: 'Skills', field: 'skills'},
         {
           headerName: 'Edit',
           field: 'edit',

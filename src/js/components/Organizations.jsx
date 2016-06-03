@@ -38,8 +38,16 @@ class Organizations extends Component {
     dispatch(organizationsRead())
   }
   
+  componentWillUnmount () {
+    this.refs.grid.api.destroy()
+  }
+  
   getTableHeight () {
-    const tableHeight = (this.props.organizationsState.data.length * this.state.rowHeight) + this.state.headerHeight + 9
+    let tableHeight = 0
+    
+    if (typeof this.props.organizationsState.data.length !== 'undefined') {
+      tableHeight = (this.props.organizationsState.data.length * this.state.rowHeight) + this.state.headerHeight + 9
+    }
     
     const tableHeightStyle = {
       height: tableHeight

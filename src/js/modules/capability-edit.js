@@ -13,7 +13,6 @@ export const capabilityEditReset = () => ({
 const initialState = {
   description: '',
   title: '',
-  skills: []
 }
 
 export default (state = initialState, {payload = {}, type, ...action}) => {
