@@ -88,6 +88,7 @@ class Skills extends Component {
     dispatch(skillsRead())
   }
   
+<<<<<<< d78a9706a3fb054a9c9db41ba4ca16c9fddf5622
 <<<<<<< 533c859894aa613c8db24284e3eca3aa73f91faf
 <<<<<<< 0d949244f8fb87aa265259fccf2211bcd466a475
 <<<<<<< 727295fa8df86cb572d8ccab2e85acbad3b4f123
@@ -96,10 +97,17 @@ class Skills extends Component {
 =======
 <<<<<<< 219f2baf49a0cf5ba055321bc07c51554febe6f9
 >>>>>>> Fixes #12. Added dynamic sizing for the ag-grid height, removed some unused css from common.js
+=======
+<<<<<<< eefa0f4c063e9470f96194614938ac4224fcdca2
+<<<<<<< 219f2baf49a0cf5ba055321bc07c51554febe6f9
+=======
+>>>>>>> Fixing rebasing issues
+>>>>>>> Fixing rebasing issues
   componentWillUnmount () {
     this.refs.grid.api.destroy()
   }
   
+<<<<<<< eefa0f4c063e9470f96194614938ac4224fcdca2
   getTableHeight () {
     let tableHeight = 0
     
@@ -119,6 +127,15 @@ class Skills extends Component {
 =======
 
 >>>>>>> Latest ag-grid updates to each page to clean up the display some and trim down unnecessary code snippets
+=======
+  getTableHeight () {
+    let tableHeight = 0
+    
+    if (typeof this.props.skillsState.data.length !== 'undefined') {
+      tableHeight = (this.props.skillsState.data.length * this.state.rowHeight) + this.state.headerHeight + 9
+    }
+    
+>>>>>>> Fixing rebasing issues
     const tableHeightStyle = {
       height: tableHeight
     }

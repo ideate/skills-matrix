@@ -54,12 +54,16 @@ class Strategies extends Component {
     dispatch(strategiesRead())
   }
   
+<<<<<<< d78a9706a3fb054a9c9db41ba4ca16c9fddf5622
 <<<<<<< 533c859894aa613c8db24284e3eca3aa73f91faf
 <<<<<<< 727295fa8df86cb572d8ccab2e85acbad3b4f123
+=======
+>>>>>>> Fixing rebasing issues
   componentWillUnmount () {
     this.refs.grid.api.destroy()
   }
   
+<<<<<<< d78a9706a3fb054a9c9db41ba4ca16c9fddf5622
   getTableHeight () {
     let tableHeight = 0
     
@@ -70,6 +74,14 @@ class Strategies extends Component {
   getTableHeight () {
     const tableHeight = (this.props.strategiesState.data.length * this.state.rowHeight) + this.state.headerHeight + 9
 >>>>>>> Fixes #12. Added dynamic sizing for the ag-grid height, removed some unused css from common.js
+=======
+  getTableHeight () {
+    let tableHeight = 0
+    
+    if (typeof this.props.strategiesState.data.length !== 'undefined') {
+      tableHeight = (this.props.strategiesState.data.length * this.state.rowHeight) + this.state.headerHeight + 9
+    }
+>>>>>>> Fixing rebasing issues
     
     const tableHeightStyle = {
       height: tableHeight

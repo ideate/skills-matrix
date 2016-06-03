@@ -54,12 +54,16 @@ class Organizations extends Component {
     dispatch(organizationsRead())
   }
   
+<<<<<<< d78a9706a3fb054a9c9db41ba4ca16c9fddf5622
 <<<<<<< d24e7720a9ed67fe5835529cefef06d0b2cb157a
 <<<<<<< 727295fa8df86cb572d8ccab2e85acbad3b4f123
+=======
+>>>>>>> Fixing rebasing issues
   componentWillUnmount () {
     this.refs.grid.api.destroy()
   }
   
+<<<<<<< d78a9706a3fb054a9c9db41ba4ca16c9fddf5622
   getTableHeight () {
     let tableHeight = 0
     
@@ -82,8 +86,14 @@ class Organizations extends Component {
   
 =======
 >>>>>>> Added ag-grid to capabilities for selection
+=======
+>>>>>>> Fixing rebasing issues
   getTableHeight () {
-    const tableHeight = (this.props.organizationsState.data.length * this.state.rowHeight) + this.state.headerHeight + 9
+    let tableHeight = 0
+    
+    if (typeof this.props.organizationsState.data.length !== 'undefined') {
+      tableHeight = (this.props.organizationsState.data.length * this.state.rowHeight) + this.state.headerHeight + 9
+    }
     
     const tableHeightStyle = {
       height: tableHeight
