@@ -66,9 +66,6 @@ class Skills extends Component {
       headerHeight: 48,
       rowHeight: 48,
       icons: {
-        columnRemoveFromGroup: '<i class="fa fa-remove"/>',
-        filter: '<i class="fa fa-filter"/>',
-        menu: '<i class="fa fa-bars"/>',
         sortAscending: '<i class="fa fa-sort-alpha-asc"/>',
         sortDescending: '<i class="fa fa-sort-alpha-desc"/>'
       }
@@ -112,8 +109,12 @@ class Skills extends Component {
 =======
   getTableHeight () {
     const tableHeight = (this.props.skillsState.data.length * this.state.rowHeight) + this.state.headerHeight + 9
+<<<<<<< ab5d13db5007fe3815c3a90eb3e8322cbf35656b
 >>>>>>> Fixes #12. Added dynamic sizing for the ag-grid height, removed some unused css from common.js
     
+=======
+
+>>>>>>> Added ag-grid to capabilities for selection
     const tableHeightStyle = {
       height: tableHeight
     }

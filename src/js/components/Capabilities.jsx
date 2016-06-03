@@ -46,10 +46,13 @@ class Capabilities extends Component {
       editIcon: '<i class="fa fa-pencil-square-o fa-lg"/>',
 >>>>>>> Added ag-grid to every page
       icons: {
+<<<<<<< d24e7720a9ed67fe5835529cefef06d0b2cb157a
         columnRemoveFromGroup: '<i class="fa fa-remove"/>',
         filter: '<i class="fa fa-filter"/>',
         menu: '<i class="fa fa-bars"/>',
 >>>>>>> Grid branch (#11)
+=======
+>>>>>>> Added ag-grid to capabilities for selection
         sortAscending: '<i class="fa fa-sort-alpha-asc"/>',
         sortDescending: '<i class="fa fa-sort-alpha-desc"/>'
       }
@@ -150,6 +153,7 @@ class Capabilities extends Component {
         {headerName: 'Capability', field: 'title', cellStyle: {color: '#FF4081'}},
 >>>>>>> Grid branch (#11)
         {headerName: 'Description', field: 'description'},
+        {headerName: 'Skills', field: 'skills'},
         {
           headerName: 'Edit',
           field: 'edit',
@@ -161,8 +165,12 @@ class Capabilities extends Component {
           suppressMovable: true,
           suppressResize: true,
           suppressSorting: true,
+<<<<<<< d24e7720a9ed67fe5835529cefef06d0b2cb157a
           width: 20
 >>>>>>> Grid branch (#11)
+=======
+          width: 30
+>>>>>>> Added ag-grid to capabilities for selection
         }
 <<<<<<< 4c7179a336d161201eb471074129ff397c1028a5
 =======
@@ -193,6 +201,7 @@ class Capabilities extends Component {
       const rowData = []
 
       capabilitiesState.data.map(function (capability) {
+<<<<<<< d24e7720a9ed67fe5835529cefef06d0b2cb157a
 <<<<<<< 727295fa8df86cb572d8ccab2e85acbad3b4f123
         rowData.push({id: capability._id, title: capability.title, description: capability.description, skills: capability.skills, edit: editIcon})
       })
@@ -210,8 +219,11 @@ class Capabilities extends Component {
           suppressMovableColumns='true'
 =======
         rowData.push({id: capability._id, title: capability.title, description: capability.description, edit: editIcon})
+=======
+        rowData.push({id: capability._id, title: capability.title, description: capability.description, skills: capability.skills, edit: editIcon})
+>>>>>>> Added ag-grid to capabilities for selection
       })
-
+     
       return (
         <AgGridReact
           columnDefs={columnDefs}

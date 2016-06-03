@@ -19,6 +19,7 @@ class Strategies extends Component {
       rowHeight: 48,
       editIcon: '<i class="fa fa-pencil-square-o fa-lg"/>',
       icons: {
+<<<<<<< d24e7720a9ed67fe5835529cefef06d0b2cb157a
 =======
 =======
       headerHeight: 48,
@@ -30,6 +31,8 @@ class Strategies extends Component {
         filter: '<i class="fa fa-filter"/>',
         menu: '<i class="fa fa-bars"/>',
 >>>>>>> Grid branch (#11)
+=======
+>>>>>>> Added ag-grid to capabilities for selection
         sortAscending: '<i class="fa fa-sort-alpha-asc"/>',
         sortDescending: '<i class="fa fa-sort-alpha-desc"/>'
       }
@@ -115,6 +118,7 @@ class Strategies extends Component {
         {
           headerName: '',
           checkboxSelection: true,
+<<<<<<< d24e7720a9ed67fe5835529cefef06d0b2cb157a
 <<<<<<< 727295fa8df86cb572d8ccab2e85acbad3b4f123
           suppressSorting: true,
           width: 15
@@ -124,6 +128,8 @@ class Strategies extends Component {
           suppressMenu: true,
           suppressMovable: true,
           suppressResize: true,
+=======
+>>>>>>> Added ag-grid to capabilities for selection
           suppressSorting: true,
           width: 15
         },
@@ -133,12 +139,15 @@ class Strategies extends Component {
         {
           headerName: 'Edit',
           field: 'edit',
+<<<<<<< d24e7720a9ed67fe5835529cefef06d0b2cb157a
 <<<<<<< 727295fa8df86cb572d8ccab2e85acbad3b4f123
 =======
           suppressMenu: true,
           suppressMovable: true,
           suppressResize: true,
 >>>>>>> Grid branch (#11)
+=======
+>>>>>>> Added ag-grid to capabilities for selection
           suppressSorting: true,
           width: 20
         }
