@@ -76,6 +76,7 @@ class Capabilities extends Component {
         },
         {headerName: 'Capability', field: 'title'},
         {headerName: 'Description', field: 'description'},
+        {headerName: 'Skills', field: 'skills'},
         {
           headerName: 'Edit',
           field: 'edit',
