@@ -1,4 +1,3 @@
-import {AgGridReact} from 'ag-grid-react'
 import {browserHistory} from 'react-router'
 import {capabilityCreate} from '../modules/async/capability-create'
 import {connect} from 'react-redux'
@@ -54,7 +53,7 @@ class CapabilityCreate extends Component {
     const {dispatch, capabilityCreateState} = this.props
     const {
       description,
-      title,
+      title
     } = capabilityCreateState
 
     dispatch(capabilityCreate({description, title}))
@@ -73,7 +72,7 @@ class CapabilityCreate extends Component {
 
     const {
       description,
-      title,
+      title
     } = capabilityCreateState
     
     return (

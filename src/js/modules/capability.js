@@ -12,7 +12,7 @@ export const capabilityReset = () => ({
 
 const initialState = {
   description: '',
-  title: '',
+  title: ''
 }
 
 export default (state = initialState, {payload = {}, type, ...action}) => {
