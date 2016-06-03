@@ -138,6 +138,7 @@ class Capabilities extends Component {
         {
           headerName: '',
           checkboxSelection: true,
+<<<<<<< b661d64a0aec46adb631910fbbdbf00740d1e2ef
 <<<<<<< 727295fa8df86cb572d8ccab2e85acbad3b4f123
           suppressSorting: true,
           width: 15
@@ -152,11 +153,18 @@ class Capabilities extends Component {
         },
         {headerName: 'Capability', field: 'title', cellStyle: {color: '#FF4081'}},
 >>>>>>> Grid branch (#11)
+=======
+          suppressSorting: true,
+          width: 15
+        },
+        {headerName: 'Capability', field: 'title'},
+>>>>>>> Latest ag-grid updates to each page to clean up the display some and trim down unnecessary code snippets
         {headerName: 'Description', field: 'description'},
         {headerName: 'Skills', field: 'skills'},
         {
           headerName: 'Edit',
           field: 'edit',
+<<<<<<< b661d64a0aec46adb631910fbbdbf00740d1e2ef
 <<<<<<< 727295fa8df86cb572d8ccab2e85acbad3b4f123
           suppressSorting: true,
           width: 30
@@ -164,6 +172,8 @@ class Capabilities extends Component {
           suppressMenu: true,
           suppressMovable: true,
           suppressResize: true,
+=======
+>>>>>>> Latest ag-grid updates to each page to clean up the display some and trim down unnecessary code snippets
           suppressSorting: true,
 <<<<<<< d24e7720a9ed67fe5835529cefef06d0b2cb157a
           width: 20

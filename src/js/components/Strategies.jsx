@@ -133,8 +133,12 @@ class Strategies extends Component {
           suppressSorting: true,
           width: 15
         },
+<<<<<<< b661d64a0aec46adb631910fbbdbf00740d1e2ef
         {headerName: 'Strategy', field: 'title', cellStyle: {color: '#FF4081'}},
 >>>>>>> Grid branch (#11)
+=======
+        {headerName: 'Strategy', field: 'title'},
+>>>>>>> Latest ag-grid updates to each page to clean up the display some and trim down unnecessary code snippets
         {headerName: 'Description', field: 'description'},
         {
           headerName: 'Edit',

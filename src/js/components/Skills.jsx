@@ -109,12 +109,16 @@ class Skills extends Component {
 =======
   getTableHeight () {
     const tableHeight = (this.props.skillsState.data.length * this.state.rowHeight) + this.state.headerHeight + 9
+<<<<<<< 0e3b2265113f6fccc932d54282bc1198e96dc07e
 <<<<<<< ab5d13db5007fe3815c3a90eb3e8322cbf35656b
 >>>>>>> Fixes #12. Added dynamic sizing for the ag-grid height, removed some unused css from common.js
     
 =======
 
 >>>>>>> Added ag-grid to capabilities for selection
+=======
+
+>>>>>>> Latest ag-grid updates to each page to clean up the display some and trim down unnecessary code snippets
     const tableHeightStyle = {
       height: tableHeight
     }
@@ -314,6 +318,7 @@ class Skills extends Component {
           ref='grid'
           rowData={rowData}
           rowHeight={this.state.rowHeight}
+<<<<<<< 0e3b2265113f6fccc932d54282bc1198e96dc07e
           suppressMovableColumns='true'
 =======
 <<<<<<< c3f8fbdfa436574bf875076b06cb027967fd015f
@@ -378,6 +383,8 @@ class Skills extends Component {
 >>>>>>> Fixes to coding style
 =======
 =======
+=======
+>>>>>>> Latest ag-grid updates to each page to clean up the display some and trim down unnecessary code snippets
           suppressMovableColumns='true'
 >>>>>>> Fixes #20 and #13, removing ag-filters menu and fixing the ag-grid header font to be sans-serif
 >>>>>>> Fixes #20 and #13, removing ag-filters menu and fixing the ag-grid header font to be sans-serif
