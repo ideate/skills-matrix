@@ -17,9 +17,6 @@ class Strategies extends Component {
       rowHeight: 48,
       editIcon: '<i class="fa fa-pencil-square-o fa-lg"/>',
       icons: {
-        columnRemoveFromGroup: '<i class="fa fa-remove"/>',
-        filter: '<i class="fa fa-filter"/>',
-        menu: '<i class="fa fa-bars"/>',
         sortAscending: '<i class="fa fa-sort-alpha-asc"/>',
         sortDescending: '<i class="fa fa-sort-alpha-desc"/>'
       }
@@ -74,20 +71,14 @@ class Strategies extends Component {
         {
           headerName: '',
           checkboxSelection: true,
-          suppressMenu: true,
-          suppressMovable: true,
-          suppressResize: true,
           suppressSorting: true,
           width: 15
         },
-        {headerName: 'Strategy', field: 'title', cellStyle: {color: '#FF4081'}},
+        {headerName: 'Strategy', field: 'title'},
         {headerName: 'Description', field: 'description'},
         {
           headerName: 'Edit',
           field: 'edit',
-          suppressMenu: true,
-          suppressMovable: true,
-          suppressResize: true,
           suppressSorting: true,
           width: 20
         }

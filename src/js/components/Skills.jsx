@@ -16,9 +16,6 @@ class Skills extends Component {
       headerHeight: 48,
       rowHeight: 48,
       icons: {
-        columnRemoveFromGroup: '<i class="fa fa-remove"/>',
-        filter: '<i class="fa fa-filter"/>',
-        menu: '<i class="fa fa-bars"/>',
         sortAscending: '<i class="fa fa-sort-alpha-asc"/>',
         sortDescending: '<i class="fa fa-sort-alpha-desc"/>'
       }
@@ -42,7 +39,7 @@ class Skills extends Component {
   
   getTableHeight () {
     const tableHeight = (this.props.skillsState.data.length * this.state.rowHeight) + this.state.headerHeight + 9
-    
+
     const tableHeightStyle = {
       height: tableHeight
     }
@@ -85,7 +82,6 @@ class Skills extends Component {
           ref='grid'
           rowData={rowData}
           rowHeight={this.state.rowHeight}
-          rowSelection='multiple'
           suppressMovableColumns='true'
           onCellClicked={this.onCellClicked.bind(this)}
           onGridReady={this.onGridReady.bind(this)}

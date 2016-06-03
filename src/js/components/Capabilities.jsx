@@ -17,9 +17,6 @@ class Capabilities extends Component {
       rowHeight: 48,
       editIcon: '<i class="fa fa-pencil-square-o fa-lg"/>',
       icons: {
-        columnRemoveFromGroup: '<i class="fa fa-remove"/>',
-        filter: '<i class="fa fa-filter"/>',
-        menu: '<i class="fa fa-bars"/>',
         sortAscending: '<i class="fa fa-sort-alpha-asc"/>',
         sortDescending: '<i class="fa fa-sort-alpha-desc"/>'
       }
@@ -74,30 +71,24 @@ class Capabilities extends Component {
         {
           headerName: '',
           checkboxSelection: true,
-          suppressMenu: true,
-          suppressMovable: true,
-          suppressResize: true,
           suppressSorting: true,
           width: 15
         },
-        {headerName: 'Capability', field: 'title', cellStyle: {color: '#FF4081'}},
+        {headerName: 'Capability', field: 'title'},
         {headerName: 'Description', field: 'description'},
         {
           headerName: 'Edit',
           field: 'edit',
-          suppressMenu: true,
-          suppressMovable: true,
-          suppressResize: true,
           suppressSorting: true,
-          width: 20
+          width: 30
         }
       ]
       const rowData = []
 
       capabilitiesState.data.map(function (capability) {
-        rowData.push({id: capability._id, title: capability.title, description: capability.description, edit: editIcon})
+        rowData.push({id: capability._id, title: capability.title, description: capability.description, skills: capability.skills, edit: editIcon})
       })
-
+     
       return (
         <AgGridReact
           columnDefs={columnDefs}

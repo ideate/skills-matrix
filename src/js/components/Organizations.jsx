@@ -17,9 +17,6 @@ class Organizations extends Component {
       rowHeight: 48,
       editIcon: '<i class="fa fa-pencil-square-o fa-lg"/>',
       icons: {
-        columnRemoveFromGroup: '<i class="fa fa-remove"/>',
-        filter: '<i class="fa fa-filter"/>',
-        menu: '<i class="fa fa-bars"/>',
         sortAscending: '<i class="fa fa-sort-alpha-asc"/>',
         sortDescending: '<i class="fa fa-sort-alpha-desc"/>'
       }
@@ -41,10 +38,6 @@ class Organizations extends Component {
     dispatch(organizationsRead())
   }
   
-  handleResize (grid) {
-    grid.api.sizeColumnsToFit()
-  }
-  
   getTableHeight () {
     const tableHeight = (this.props.organizationsState.data.length * this.state.rowHeight) + this.state.headerHeight + 9
     
@@ -53,6 +46,10 @@ class Organizations extends Component {
     }
 
     return tableHeightStyle
+  }
+  
+  handleResize (grid) {
+    grid.api.sizeColumnsToFit()
   }
   
   onCellClicked (event) {
@@ -74,20 +71,14 @@ class Organizations extends Component {
         {
           headerName: '',
           checkboxSelection: true,
-          suppressMenu: true,
-          suppressMovable: true,
-          suppressResize: true,
           suppressSorting: true,
           width: 15
         },
-        {headerName: 'Organization', field: 'title', cellStyle: {color: '#FF4081'}},
+        {headerName: 'Organization', field: 'title'},
         {headerName: 'Description', field: 'description'},
         {
           headerName: 'Edit',
           field: 'edit',
-          suppressMenu: true,
-          suppressMovable: true,
-          suppressResize: true,
           suppressSorting: true,
           width: 20
         }
