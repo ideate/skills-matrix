@@ -42,9 +42,9 @@ router.put('/:capability', function (req, res, next) {
   Capabilities.findOneAndUpdate({'_id': req.body._id}, req.body, {new: true}, function (err, capabilities) {
     if (err) { return next(err) }
 
-    capabilities.populate({
-      path: 'capabilities'
-    }, function (err, capabilities) {
+    capabilities.populate(
+      'skills',
+      function (err, capabilities) {
       if (err) { return next(err) }
       
       res.json(capabilities)

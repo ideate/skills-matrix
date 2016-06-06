@@ -1,8 +1,8 @@
 import {apiUri} from '../../../../config'
-import {capabilityChange} from '../capability'
-import {capabilityEditChange} from '../capability-edit'
 import {checkFetchStatus} from './utilities'
 import fetch from 'isomorphic-fetch'
+import {capabilityChange, capabilityReset} from '../capability'
+import {capabilityEditChange, capabilityEditReset} from '../capability-edit'
 
 export const FAILURE = 'skills-matrix/async/capability-read/FAILURE'
 export const REQUEST = 'skills-matrix/async/capability-read/REQUEST'
@@ -26,6 +26,8 @@ export const capabilityReadSuccess = (data) => ({
 export const capabilityRead = (payload) =>
   (dispatch) => {
     dispatch(capabilityReadRequest())
+    dispatch(capabilityReset())
+    dispatch(capabilityEditReset())
 
     return fetch(`${apiUri}/capabilities/${payload}`, {
       method: 'GET',

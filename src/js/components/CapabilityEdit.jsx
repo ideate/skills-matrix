@@ -6,6 +6,8 @@ import IconButton from 'material-ui/IconButton'
 import {main} from '../styles/common'
 import NavigationClose from 'material-ui/svg-icons/navigation/close'
 import RaisedButton from 'material-ui/RaisedButton'
+import Select from 'react-select'
+import {skillsRead} from '../modules/async/skills-read'
 import TextField from 'material-ui/TextField'
 import {
   capabilityEditChange,
@@ -19,22 +21,46 @@ const style = {
 }
 
 class CapabilityEdit extends Component {
+  
+  constructor () {
+    super()
+
+    this.state = {
+      selectSkillValues: []
+    }
+  }
+  
   static propTypes = {
     capabilityEditState: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
-    params: PropTypes.object.isRequired
+    params: PropTypes.object.isRequired,
+    skillsState: PropTypes.object.isRequired
   }
 
   componentWillMount () {
     const {dispatch, params} = this.props
 
     dispatch(capabilityRead(params.id))
+    dispatch(skillsRead())
   }
 
   changeDescription = (event) => {
     const {dispatch} = this.props
 
     dispatch(capabilityEditChange({description: event.target.value}))
+  }
+  
+  changeSkills = (selectSkillValues) => {
+    const {dispatch} = this.props
+    const skillIdArray = []
+
+    this.setState({selectSkillValues})
+
+    selectSkillValues.map(function (selectedSkill) {
+      skillIdArray.push(selectedSkill.value)
+    })
+
+    dispatch(capabilityEditChange({skills: selectSkillValues}))
   }
 
   changeTitle = (event) => {
@@ -48,7 +74,7 @@ class CapabilityEdit extends Component {
 
     dispatch(capabilityEditReset())
   }
-
+  
   update = () => {
     const {dispatch, capabilityEditState} = this.props
 
@@ -94,6 +120,10 @@ class CapabilityEdit extends Component {
               onChange={this.changeDescription}
             />
           </div>
+          <br />
+          <div>
+            {this.renderSkills(capabilityEditState.skills)}
+          </div>
           <div>
             <RaisedButton
               label='Cancel'
@@ -118,8 +148,37 @@ class CapabilityEdit extends Component {
       </div>
     )
   }
+  
+  renderSkills (skills) {
+    const {skillsState} = this.props
+    const selectSkillValues = this.state.selectSkillValues
+    const selectSkillOptions = []
+
+    if (skills && skills.length && !selectSkillValues.length) {
+      skills.map(function (skill) {
+        selectSkillValues.push({_id: skill._id, title: skill.title, description: skill.description, value: skill._id, label: skill.title})
+      })
+    }
+
+    if (skillsState && skillsState.data && skillsState.data.length) {
+      skillsState.data.map(function (skill) {
+        selectSkillOptions.push({_id: skill._id, title: skill.title, description: skill.description, value: skill._id, label: skill.title})
+      })
+    }
+  
+    return (
+      <Select
+        multi={true}
+        options={selectSkillOptions}
+        placeholder='No skills'
+        value={selectSkillValues}
+        onChange={this.changeSkills}
+      />
+    )
+  }
 }
 
 export default connect((state) => ({
-  capabilityEditState: state.capabilityEdit
+  capabilityEditState: state.capabilityEdit,
+  skillsState: state.skills
 }))(CapabilityEdit)
