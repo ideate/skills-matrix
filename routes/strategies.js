@@ -6,7 +6,7 @@ module.exports = router
 const mongoose = require('mongoose')
 const Strategies = mongoose.model('Strategies')
 
-/* GET /strategise */
+/* GET /strategies */
 router.get('/', function (req, res, next) {
   Strategies.find().sort({title: 1}).populate({
     path: 'strategies'
