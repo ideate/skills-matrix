@@ -17,7 +17,6 @@ export const dashboardsSelectReset = () => ({
 
 const initialState = {
   capabilities: [],
-  capabilitiesSelect: '',
   employees: [],
   employeesSelect: '',
   organizations: [],
@@ -41,7 +40,6 @@ export default (state = initialState, {payload = {}, type, ...action}) => {
     case SELECT_RESET:
       return {
         ...state,
-        capabilitiesSelect: '',
         employeesSelect: '',
         organizationsSelect: '',
         skills: [],

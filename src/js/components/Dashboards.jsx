@@ -25,12 +25,6 @@ class Dashboards extends Component {
     dispatch: PropTypes.func.isRequired
   }
 
-  changeDashboardsCapabilities = (event, index, value) => {
-    const {dispatch} = this.props
-
-    dispatch(dashboardsChange({capabilitiesSelect: value}))
-  }
-
   changeDashboardsEmployees = (event, index, value) => {
     const {dispatch} = this.props
 
@@ -87,15 +81,6 @@ class Dashboards extends Component {
             </SelectField>
             <br />
             <SelectField
-              floatingLabelText='Capabilities'
-              fullWidth = {true}
-              value={this.props.dashboardsState.capabilitiesSelect}
-              onChange={this.changeDashboardsCapabilities}
-            >
-              {this.renderCapabilities()}
-            </SelectField>
-            <br />
-            <SelectField
               floatingLabelText='Strategies'
               fullWidth = {true}
               value={this.props.dashboardsState.strategiesSelect}
@@ -146,24 +131,6 @@ class Dashboards extends Component {
         </main>
       </div>
     )
-  }
-
-  renderCapabilities () {
-    const {dashboardsState} = this.props
-
-    if (dashboardsState && dashboardsState.capabilities && dashboardsState.capabilities.length) {
-      return (
-        dashboardsState.capabilities.map(function (data) {
-          return (
-            <MenuItem
-              key={data._id}
-              primaryText={data.title}
-              value={data._id}
-            />
-          )
-        })
-      )
-    }
   }
 
   renderEmployees () {
@@ -314,7 +281,6 @@ class Dashboards extends Component {
     const {dashboardsState, dispatch} = this.props
 
     dispatch(dashboardsSearch({
-      capabilities: dashboardsState.capabilitiesSelect,
       organizations: dashboardsState.organizationsSelect,
       employees: dashboardsState.employeesSelect,
       strategies: dashboardsState.strategiesSelect
