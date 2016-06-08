@@ -28,7 +28,7 @@ import Strategy from './components/Strategy'
 import StrategyCreate from './components/StrategyCreate'
 import StrategyEdit from './components/StrategyEdit'
 import {syncHistoryWithStore} from 'react-router-redux'
-import {browserHistory, IndexRoute, Route, Router} from 'react-router'
+import {browserHistory, IndexRedirect, IndexRoute, Route, Router} from 'react-router'
 
 injectTapEventPlugin()
 
@@ -41,6 +41,9 @@ ReactDOM.render((
         component={App}
         path='/'
       >
+        <IndexRedirect
+          to="dashboards"
+        />
         <Route
           path='capabilities'
         >
