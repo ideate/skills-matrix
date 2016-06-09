@@ -1,7 +1,6 @@
 /*@import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic,100,300");*/
 
 /* Ag-Grid */
-/* Ag-Grid */
 .ag-material {
   -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
@@ -201,19 +200,6 @@
 /* Font Awesome */
 .fa-pencil-square-o:hover {
   transform: scale(1.2);
-}
-
-/* React-Select */
-.is-focused:not(.is-open) > .Select-control {
-  border-color: #00BCD4;
-}
-
-.Select-control {
-  margin: 15px 0px 15px 0px
-}
-
-.Select--multi .Select-value {
-  color: #00BCD4;
 }
 
 /* React-Select */
