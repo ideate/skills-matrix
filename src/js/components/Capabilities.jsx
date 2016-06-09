@@ -83,7 +83,7 @@ class Capabilities extends Component {
       const rowData = []
 
       capabilitiesState.data.map(function (capability) {
-        rowData.push({id: capability._id, title: capability.title, description: capability.description, edit: editIcon})
+        rowData.push({id: capability._id, title: capability.title, description: capability.description})
       })
      
       return (
