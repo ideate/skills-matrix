@@ -15,7 +15,6 @@ class Capabilities extends Component {
     this.state = {
       headerHeight: 48,
       rowHeight: 48,
-      editIcon: '<i class="fa fa-pencil-square-o fa-lg"/>',
       icons: {
         sortAscending: '<i class="fa fa-sort-alpha-asc"/>',
         sortDescending: '<i class="fa fa-sort-alpha-desc"/>'
@@ -29,7 +28,11 @@ class Capabilities extends Component {
   }
   
   componentDidUpdate () {
-    this.handleResize(this.refs.grid)
+    const grid = this.refs.grid
+    
+    if (grid) {
+      this.handleResize(grid)
+    }
   }
   
   componentWillMount () {
@@ -61,9 +64,7 @@ class Capabilities extends Component {
   }
   
   onCellClicked (event) {
-    if (event.value === this.state.editIcon) {
-      browserHistory.push('/capabilities/' + event.data.id)
-    }
+    browserHistory.push('/capabilities/' + event.data.id)
   }
   
   onGridReady (grid) {
@@ -76,25 +77,13 @@ class Capabilities extends Component {
     
     if (capabilitiesState && capabilitiesState.data && capabilitiesState.data.length) {
       const columnDefs = [
-        {
-          headerName: '',
-          checkboxSelection: true,
-          suppressSorting: true,
-          width: 15
-        },
-        {headerName: 'Capability', field: 'title'},
-        {headerName: 'Description', field: 'description'},
-        {
-          headerName: 'Edit',
-          field: 'edit',
-          suppressSorting: true,
-          width: 30
-        }
+        {headerName: 'Capability', field: 'title', cellStyle: {color: '#FF4081'}},
+        {headerName: 'Description', field: 'description'}
       ]
       const rowData = []
 
       capabilitiesState.data.map(function (capability) {
-        rowData.push({id: capability._id, title: capability.title, description: capability.description, skills: capability.skills, edit: editIcon})
+        rowData.push({id: capability._id, title: capability.title, description: capability.description})
       })
      
       return (

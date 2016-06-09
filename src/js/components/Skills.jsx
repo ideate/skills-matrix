@@ -28,7 +28,11 @@ class Skills extends Component {
   }
   
   componentDidUpdate () {
-    this.handleResize(this.refs.grid)
+    const grid = this.refs.grid
+    
+    if (grid) {
+      this.handleResize(grid)
+    }
   }
   
   componentWillMount () {

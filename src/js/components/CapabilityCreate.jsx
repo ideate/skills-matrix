@@ -5,6 +5,8 @@ import IconButton from 'material-ui/IconButton'
 import {main} from '../styles/common'
 import NavigationClose from 'material-ui/svg-icons/navigation/close'
 import RaisedButton from 'material-ui/RaisedButton'
+import Select from 'react-select'
+import {skillsRead} from '../modules/async/skills-read'
 import TextField from 'material-ui/TextField'
 import {
   capabilityCreateChange,
@@ -18,9 +20,19 @@ const style = {
 }
 
 class CapabilityCreate extends Component {
+  
+  constructor () {
+    super()
+
+    this.state = {
+      selectSkillValues: []
+    }
+  }
+  
   static propTypes = {
     capabilityCreateState: PropTypes.object.isRequired,
-    dispatch: PropTypes.func.isRequired
+    dispatch: PropTypes.func.isRequired,
+    skillsState: PropTypes.object.isRequired
   }
 
   changeDescription = (event) => {
@@ -28,24 +40,41 @@ class CapabilityCreate extends Component {
 
     dispatch(capabilityCreateChange({description: event.target.value}))
   }
+  
+  changeSkills = (selectSkillValues) => {
+    const {dispatch} = this.props
+    const skillIdArray = []
+    
+    this.setState({selectSkillValues})
+
+    selectSkillValues.map(function (selectedSkill) {
+      skillIdArray.push(selectedSkill.value)
+    })
+
+    dispatch(capabilityCreateChange({skills: skillIdArray}))
+  }
 
   changeTitle = (event) => {
     const {dispatch} = this.props
 
     dispatch(capabilityCreateChange({title: event.target.value}))
   }
+  
+  componentWillMount () {
+    const {dispatch} = this.props
+
+    dispatch(skillsRead())
+  }
 
   create = () => {
     const {dispatch, capabilityCreateState} = this.props
     const {
       description,
-      title
+      title,
+      skills
     } = capabilityCreateState
 
-    dispatch(capabilityCreate({
-      description,
-      title
-    }))
+    dispatch(capabilityCreate({description, title, skills}))
   }
 
   reset = () => {
@@ -63,7 +92,7 @@ class CapabilityCreate extends Component {
       description,
       title
     } = capabilityCreateState
-    
+
     return (
       <div>
         <Toolbar>
@@ -98,6 +127,10 @@ class CapabilityCreate extends Component {
               onChange={this.changeDescription}
             />
           </div>
+          <br />
+          <div>
+            {this.renderSkills()}
+          </div>
           <div>
             <RaisedButton
               label='Cancel'
@@ -122,8 +155,30 @@ class CapabilityCreate extends Component {
       </div>
     )
   }
+
+  renderSkills () {
+    const {skillsState} = this.props
+    const selectSkillOptions = []
+    
+    if (skillsState && skillsState.data && skillsState.data.length) {
+      skillsState.data.map(function (skill) {
+        selectSkillOptions.push({value: skill._id, label: skill.title})
+      })
+    }
+    
+    return (
+      <Select
+        multi={true}
+        options={selectSkillOptions}
+        placeholder='Select skills...'
+        value={this.state.selectSkillValues}
+        onChange={this.changeSkills}
+      />
+    )
+  }
 }
 
 export default connect((state) => ({
-  capabilityCreateState: state.capabilityCreate
+  capabilityCreateState: state.capabilityCreate,
+  skillsState: state.skills
 }))(CapabilityCreate)

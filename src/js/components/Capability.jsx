@@ -7,11 +7,21 @@ import IconButton from 'material-ui/IconButton'
 import {main} from '../styles/common'
 import NavigationClose from 'material-ui/svg-icons/navigation/close'
 import RaisedButton from 'material-ui/RaisedButton'
+import Select from 'react-select'
 import TextField from 'material-ui/TextField'
 import React, {Component, PropTypes} from 'react'
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
 
 class Capability extends Component {
+
+  constructor () {
+    super()
+
+    this.state = {
+      selectSkillValues: []
+    }
+  }
+  
   static propTypes = {
     capabilityState: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
@@ -40,7 +50,7 @@ class Capability extends Component {
     const {
       capabilityState
     } = this.props
-
+    
     return (
       <div>
         <Toolbar>
@@ -89,10 +99,35 @@ class Capability extends Component {
               value={capabilityState.description}
             />
           </div>
+          <br />
+          <div>
+            {this.renderSkills(capabilityState.skills)}
+          </div>
         </main>
       </div>
     )
   }
+  
+  renderSkills (skills) {
+    const selectSkillValues = []
+
+    if (skills && skills.length) {
+      skills.map(function (skill) {
+        selectSkillValues.push({value: skill._id, label: skill.title})
+      })
+    }
+
+    return (
+      <Select
+        disable={true}
+        multi={true}
+        placeholder='No skills'
+        searchable={false}
+        value={selectSkillValues}
+      />
+    )
+  }
+  
 }
 
 export default connect((state) => ({
