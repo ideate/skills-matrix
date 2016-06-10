@@ -12,7 +12,8 @@ export const strategyEditReset = () => ({
 
 const initialState = {
   description: '',
-  title: ''
+  title: '',
+  skills: []
 }
 
 export default (state = initialState, {payload = {}, type, ...action}) => {
