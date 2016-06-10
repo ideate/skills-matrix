@@ -197,6 +197,12 @@
   border-radius: 2px;
 }
 
+.ag-overlay-panel {
+   color: white;
+   font-family: Roboto,sans-serif; 
+   font-size: 22px;
+}
+
 /* Font Awesome */
 .fa-pencil-square-o:hover {
   transform: scale(1.2);

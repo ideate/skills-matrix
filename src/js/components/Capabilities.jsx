@@ -73,35 +73,35 @@ class Capabilities extends Component {
   
   renderCapabilities () {
     const {capabilitiesState} = this.props
-    const editIcon = this.state.editIcon
+    let columnDefs = []
+    const rowData = []
     
     if (capabilitiesState && capabilitiesState.data && capabilitiesState.data.length) {
-      const columnDefs = [
+      columnDefs = [
         {headerName: 'Capability', field: 'title', cellStyle: {color: '#FF4081'}},
         {headerName: 'Description', field: 'description'}
       ]
-      const rowData = []
 
       capabilitiesState.data.map(function (capability) {
         rowData.push({id: capability._id, title: capability.title, description: capability.description})
       })
-     
-      return (
-        <AgGridReact
-          columnDefs={columnDefs}
-          enableSorting='true'
-          headerHeight={this.state.headerHeight}
-          icons={this.state.icons}
-          ref='grid'
-          rowData={rowData}
-          rowHeight={this.state.rowHeight}
-          rowSelection='multiple'
-          suppressMovableColumns='true'
-          onCellClicked={this.onCellClicked.bind(this)}
-          onGridReady={this.onGridReady.bind(this)}
-        />
-      )
     }
+     
+    return (
+      <AgGridReact
+        columnDefs={columnDefs}
+        enableSorting='true'
+        headerHeight={this.state.headerHeight}
+        icons={this.state.icons}
+        ref='grid'
+        rowData={rowData}
+        rowHeight={this.state.rowHeight}
+        rowSelection='multiple'
+        suppressMovableColumns='true'
+        onCellClicked={this.onCellClicked.bind(this)}
+        onGridReady={this.onGridReady.bind(this)}
+      />
+    )
   }
 
   render () {

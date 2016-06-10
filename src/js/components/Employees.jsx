@@ -15,7 +15,6 @@ class Employees extends Component {
     this.state = {
       headerHeight: 48,
       rowHeight: 48,
-      editIcon: '<i class="fa fa-pencil-square-o fa-lg"/>',
       icons: {
         sortAscending: '<i class="fa fa-sort-alpha-asc"/>',
         sortDescending: '<i class="fa fa-sort-alpha-desc"/>'
@@ -29,7 +28,11 @@ class Employees extends Component {
   }
   
   componentDidUpdate () {
-    this.handleResize(this.refs.grid)
+    const grid = this.refs.grid
+    
+    if (grid) {
+      this.handleResize(grid)
+    }
   }
   
   componentWillMount () {
@@ -61,9 +64,7 @@ class Employees extends Component {
   }
   
   onCellClicked (event) {
-    if (event.value === this.state.editIcon) {
-      browserHistory.push('/employees/' + event.data.id)
-    }
+    browserHistory.push('/employees/' + event.data.id)
   }
   
   onGridReady (grid) {
@@ -72,47 +73,35 @@ class Employees extends Component {
   
   renderEmployees () {
     const {employeesState} = this.props
-    const editIcon = this.state.editIcon
+    let columnDefs = []
+    const rowData = []
 
     if (employeesState && employeesState.data && employeesState.data.length) {
-      const columnDefs = [
-        {
-          headerName: '',
-          checkboxSelection: true,
-          suppressSorting: true,
-          width: 15
-        },
-        {headerName: 'Employee', field: 'title'},
-        {headerName: 'Description', field: 'description'},
-        {
-          headerName: 'Edit',
-          field: 'edit',
-          suppressSorting: true,
-          width: 20
-        }
+      columnDefs = [
+        {headerName: 'Employee', field: 'title', cellStyle: {color: '#FF4081'}},
+        {headerName: 'Description', field: 'description'}
       ]
-      const rowData = []
 
       employeesState.data.map(function (employee) {
-        rowData.push({id: employee._id, title: employee.title, description: employee.description, edit: editIcon})
+        rowData.push({id: employee._id, title: employee.title, description: employee.description})
       })
-      
-      return (
-        <AgGridReact
-          columnDefs={columnDefs}
-          enableSorting='true'
-          headerHeight={this.state.headerHeight}
-          icons={this.state.icons}
-          ref='grid'
-          rowData={rowData}
-          rowHeight={this.state.rowHeight}
-          rowSelection='multiple'
-          suppressMovableColumns='true'
-          onCellClicked={this.onCellClicked.bind(this)}
-          onGridReady={this.onGridReady.bind(this)}
-        />
-      )
     }
+      
+    return (
+      <AgGridReact
+        columnDefs={columnDefs}
+        enableSorting='true'
+        headerHeight={this.state.headerHeight}
+        icons={this.state.icons}
+        ref='grid'
+        rowData={rowData}
+        rowHeight={this.state.rowHeight}
+        rowSelection='multiple'
+        suppressMovableColumns='true'
+        onCellClicked={this.onCellClicked.bind(this)}
+        onGridReady={this.onGridReady.bind(this)}
+      />
+    )
   }
 
   render () {

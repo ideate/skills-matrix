@@ -73,33 +73,34 @@ class Skills extends Component {
   
   renderSkills () {
     const {skillsState} = this.props
+    let columnDefs = []
+    const rowData = []
 
     if (skillsState && skillsState.data && skillsState.data.length) {
-      const columnDefs = [
+      columnDefs = [
         {headerName: 'Skill', field: 'title', cellStyle: {color: '#FF4081'}},
         {headerName: 'Description', field: 'description'}
       ]
-      const rowData = []
       
       skillsState.data.map(function (skill) {
         rowData.push({id: skill._id, title: skill.title, description: skill.description})
       })
-      
-      return (
-        <AgGridReact
-          columnDefs={columnDefs}
-          enableSorting='true'
-          headerHeight={this.state.headerHeight}
-          icons={this.state.icons}
-          ref='grid'
-          rowData={rowData}
-          rowHeight={this.state.rowHeight}
-          suppressMovableColumns='true'
-          onCellClicked={this.onCellClicked.bind(this)}
-          onGridReady={this.onGridReady.bind(this)}
-        />
-      )
     }
+      
+    return (
+      <AgGridReact
+        columnDefs={columnDefs}
+        enableSorting='true'
+        headerHeight={this.state.headerHeight}
+        icons={this.state.icons}
+        ref='grid'
+        rowData={rowData}
+        rowHeight={this.state.rowHeight}
+        suppressMovableColumns='true'
+        onCellClicked={this.onCellClicked.bind(this)}
+        onGridReady={this.onGridReady.bind(this)}
+      />
+    )
   }
 
   render () {

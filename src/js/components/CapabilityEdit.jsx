@@ -60,7 +60,7 @@ class CapabilityEdit extends Component {
       skillIdArray.push(selectedSkill.value)
     })
 
-    dispatch(capabilityEditChange({skills: selectSkillValues}))
+    dispatch(capabilityEditChange({skills: skillIdArray}))
   }
 
   changeTitle = (event) => {
