@@ -12,7 +12,8 @@ export const organizationCreateReset = () => ({
 
 const initialState = {
   description: '',
-  title: ''
+  title: '',
+  employees: []
 }
 
 export default (state = initialState, {payload = {}, type, ...action}) => {

@@ -3,6 +3,8 @@ import {capabilityDelete} from '../modules/async/capability-delete'
 import {capabilityRead} from '../modules/async/capability-read'
 import {capabilityReset} from '../modules/capability'
 import {connect} from 'react-redux'
+import Dialog from 'material-ui/Dialog'
+import FlatButton from 'material-ui/FlatButton'
 import IconButton from 'material-ui/IconButton'
 import {main} from '../styles/common'
 import NavigationClose from 'material-ui/svg-icons/navigation/close'
@@ -13,15 +15,11 @@ import React, {Component, PropTypes} from 'react'
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
 
 class Capability extends Component {
-
-  constructor () {
-    super()
-
-    this.state = {
-      selectSkillValues: []
-    }
-  }
   
+  state = {
+    open: false
+  }
+
   static propTypes = {
     capabilityState: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
@@ -39,6 +37,20 @@ class Capability extends Component {
 
     dispatch(capabilityDelete(params.id))
   }
+  
+  handleOpen = () => {
+    this.setState({open: true})
+  }
+  
+  handleClose = () => {
+    this.setState({open: false})
+  }
+  
+  handleDelete = () => {
+    this.setState({open: false})
+    this.delete()
+    browserHistory.push('/capabilities')
+  }
 
   reset = () => {
     const {dispatch} = this.props
@@ -50,6 +62,21 @@ class Capability extends Component {
     const {
       capabilityState
     } = this.props
+    
+    const actions = [
+      <FlatButton
+        key='cancel'
+        label='Cancel'
+        primary={true}
+        onTouchTap={this.handleClose}
+      />,
+      <FlatButton
+        key='delete'
+        label='Delete'
+        primary={true}
+        onTouchTap={this.handleDelete}
+      />
+    ]
     
     return (
       <div>
@@ -66,12 +93,16 @@ class Capability extends Component {
             <RaisedButton
               label='Delete'
               primary={false}
-              onTouchTap={() => {
-                this.delete()
-                browserHistory.push('/capabilities')
-              }}
+              onTouchTap={this.handleOpen}
             />
-          
+            <Dialog
+              actions={actions}
+              modal={false}
+              open={this.state.open}
+              onRequestClose={this.handleClose}
+            >
+              Are you sure you want to delete the {capabilityState.title} capability?
+            </Dialog>
             <IconButton
               onTouchTap={() => {
                 this.reset()
@@ -116,7 +147,7 @@ class Capability extends Component {
         selectSkillValues.push({value: skill._id, label: skill.title})
       })
     }
-
+  
     return (
       <Select
         disable={true}
