@@ -1,5 +1,7 @@
 import {browserHistory} from 'react-router'
 import {connect} from 'react-redux'
+import Dialog from 'material-ui/Dialog'
+import FlatButton from 'material-ui/FlatButton'
 import IconButton from 'material-ui/IconButton'
 import {main} from '../styles/common'
 import NavigationClose from 'material-ui/svg-icons/navigation/close'
@@ -12,6 +14,11 @@ import React, {Component, PropTypes} from 'react'
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
 
 class Strategy extends Component {
+  
+  state = {
+    open: false
+  }
+  
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     params: PropTypes.object.isRequired,
@@ -30,6 +37,20 @@ class Strategy extends Component {
     dispatch(strategyDelete(params.id))
   }
   
+  handleOpen = () => {
+    this.setState({open: true})
+  }
+  
+  handleClose = () => {
+    this.setState({open: false})
+  }
+  
+  handleDelete = () => {
+    this.setState({open: false})
+    this.delete()
+    browserHistory.push('/strategies')
+  }
+  
   reset = () => {
     const {dispatch} = this.props
 
@@ -40,6 +61,21 @@ class Strategy extends Component {
     const {
       strategyState
     } = this.props
+    
+    const actions = [
+      <FlatButton
+        key='cancel'
+        label='Cancel'
+        primary={true}
+        onTouchTap={this.handleClose}
+      />,
+      <FlatButton
+        key='delete'
+        label='Delete'
+        primary={true}
+        onTouchTap={this.handleDelete}
+      />
+    ]
 
     return (
       <div>
@@ -56,12 +92,16 @@ class Strategy extends Component {
             <RaisedButton
               label='Delete'
               primary={false}
-              onTouchTap={() => {
-                browserHistory.push('/strategies')
-                this.delete()
-              }}
+              onTouchTap={this.handleOpen}
             />
-          
+            <Dialog
+              actions={actions}
+              modal={false}
+              open={this.state.open}
+              onRequestClose={this.handleClose}
+            >
+              Are you sure you want to delete the {strategyState.title} strategy?
+            </Dialog>
             <IconButton
               onTouchTap={() => {
                 browserHistory.push('/strategies')
