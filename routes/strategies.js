@@ -39,15 +39,15 @@ router.get('/:strategy', function (req, res, next) {
 
 /* PUT /strategies/:strategy */
 router.put('/:strategy', function (req, res, next) {
-  Strategies.findOneAndUpdate({'_id': req.body._id}, req.body, {new: true}, function (err, data) {
+  Strategies.findOneAndUpdate({'_id': req.body._id}, req.body, {new: true}, function (err, strategies) {
     if (err) { return next(err) }
 
-    data.populate({
-      path: 'strategies'
-    }, function (err, data) {
+    strategies.populate(
+      'skills',
+      function (err, strategies) {
       if (err) { return next(err) }
       
-      res.json(data)
+      res.json(strategies)
     })
   })
 })

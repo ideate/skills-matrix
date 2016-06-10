@@ -2,7 +2,7 @@ import {apiUri} from '../../../../config'
 import {checkFetchStatus} from './utilities'
 import {dashboardsChange} from '../dashboards'
 import fetch from 'isomorphic-fetch'
-import {strategiesChange} from '../strategies'
+import {strategiesChange, strategiesReset} from '../strategies'
 
 export const FAILURE = 'skills-matrix/async/strategies-read/FAILURE'
 export const REQUEST = 'skills-matrix/async/strategies-read/REQUEST'
@@ -26,6 +26,7 @@ export const strategiesReadSuccess = (data) => ({
 export const strategiesRead = (payload) =>
   (dispatch) => {
     dispatch(strategiesReadRequest())
+    dispatch(strategiesReset())
 
     return fetch(`${apiUri}/strategies`, {
       method: 'GET',

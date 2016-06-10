@@ -4,6 +4,8 @@ import IconButton from 'material-ui/IconButton'
 import {main} from '../styles/common'
 import NavigationClose from 'material-ui/svg-icons/navigation/close'
 import RaisedButton from 'material-ui/RaisedButton'
+import Select from 'react-select'
+import {skillsRead} from '../modules/async/skills-read'
 import {strategyRead} from '../modules/async/strategy-read'
 import {strategyUpdate} from '../modules/async/strategy-update'
 import TextField from 'material-ui/TextField'
@@ -19,15 +21,26 @@ const style = {
 }
 
 class StrategyEdit extends Component {
+  
+  constructor () {
+    super()
+
+    this.state = {
+      selectSkillValues: []
+    }
+  }
+  
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     params: PropTypes.object.isRequired,
+    skillsState: PropTypes.object.isRequired,
     strategyEditState: PropTypes.object.isRequired
   }
 
   componentWillMount () {
     const {dispatch, params} = this.props
 
+    dispatch(skillsRead())
     dispatch(strategyRead(params.id))
   }
 
@@ -35,6 +48,19 @@ class StrategyEdit extends Component {
     const {dispatch} = this.props
 
     dispatch(strategyEditChange({description: event.target.value}))
+  }
+  
+  changeSkills = (selectSkillValues) => {
+    const {dispatch} = this.props
+    const skillIdArray = []
+
+    this.setState({selectSkillValues})
+
+    selectSkillValues.map(function (selectedSkill) {
+      skillIdArray.push(selectedSkill.value)
+    })
+
+    dispatch(strategyEditChange({skills: skillIdArray}))
   }
 
   changeTitle = (event) => {
@@ -94,6 +120,10 @@ class StrategyEdit extends Component {
               onChange={this.changeDescription}
             />
           </div>
+          <br />
+          <div>
+            {this.renderSkills(strategyEditState.skills)}
+          </div>
           <div>
             <RaisedButton
               label='Cancel'
@@ -118,8 +148,37 @@ class StrategyEdit extends Component {
       </div>
     )
   }
+  
+  renderSkills (skills) {
+    const {skillsState} = this.props
+    const selectSkillValues = this.state.selectSkillValues
+    const selectSkillOptions = []
+
+    if (skills && skills.length && !selectSkillValues.length) {
+      skills.map(function (skill) {
+        selectSkillValues.push({_id: skill._id, title: skill.title, description: skill.description, value: skill._id, label: skill.title})
+      })
+    }
+
+    if (skillsState && skillsState.data && skillsState.data.length) {
+      skillsState.data.map(function (skill) {
+        selectSkillOptions.push({_id: skill._id, title: skill.title, description: skill.description, value: skill._id, label: skill.title})
+      })
+    }
+  
+    return (
+      <Select
+        multi={true}
+        options={selectSkillOptions}
+        placeholder='No skills'
+        value={selectSkillValues}
+        onChange={this.changeSkills}
+      />
+    )
+  }
 }
 
 export default connect((state) => ({
-  strategyEditState: state.strategyEdit
+  strategyEditState: state.strategyEdit,
+  skillsState: state.skills
 }))(StrategyEdit)

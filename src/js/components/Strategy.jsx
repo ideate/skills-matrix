@@ -6,6 +6,7 @@ import IconButton from 'material-ui/IconButton'
 import {main} from '../styles/common'
 import NavigationClose from 'material-ui/svg-icons/navigation/close'
 import RaisedButton from 'material-ui/RaisedButton'
+import Select from 'react-select'
 import {strategyDelete} from '../modules/async/strategy-delete'
 import {strategyRead} from '../modules/async/strategy-read'
 import {strategyReset} from '../modules/strategy'
@@ -129,10 +130,35 @@ class Strategy extends Component {
               value={strategyState.description}
             />
           </div>
+          <br />
+          <div>
+            {this.renderSkills(strategyState.skills)}
+          </div>
         </main>
       </div>
     )
   }
+  
+  renderSkills (skills) {
+    const selectSkillValues = []
+
+    if (skills && skills.length) {
+      skills.map(function (skill) {
+        selectSkillValues.push({value: skill._id, label: skill.title})
+      })
+    }
+  
+    return (
+      <Select
+        disable={true}
+        multi={true}
+        placeholder='No skills'
+        searchable={false}
+        value={selectSkillValues}
+      />
+    )
+  }
+  
 }
 
 export default connect((state) => ({
