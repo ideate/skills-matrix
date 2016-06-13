@@ -13,18 +13,16 @@ module.exports = router
 /* POST /dashboards */
 /*
   req.body =
-  capabilities: [],
   employees:[],
   organizations: [],
   strategies: []
 */
 router.post('/', function (req, res, next) {
   console.log(req.body)
-
+  
   const promiseEmployees = new Promise((resolve, reject) => {
     if (req.body.employees) {
       Employees.findOne({'_id': req.body.employees})
-      // .populate('skills')
       .exec(function (err, data) {
         if (err) {
           console.error('error', err)
@@ -39,24 +37,18 @@ router.post('/', function (req, res, next) {
   const promiseOrganizations = new Promise((resolve, reject) => {
     if (req.body.organizations) {
       Organizations.findOne({'_id': req.body.organizations})
-      // .populate({
-      //   path: 'employees',
-      //   populate: {
-      //     path: 'skills',
-      //     model: 'Skills'
-      //   }
-      // })
+      .populate('employees')
       .exec(function (err, data) {
         if (err) {
           console.error('error', err)
         }
+
         // GET ALL SKILLS FOR EACH EMPLOYEE AND RETURN AGGREGATE LIST
         if(data.employees && data.employees.length){
           const skills = []
 
           data.employees.forEach((employee) => {
             if(employee.skills && employee.skills.length){
-              // console.log(value)
               employee.skills.forEach(function(skill) {
                 skills.push(skill)
               })
@@ -76,7 +68,6 @@ router.post('/', function (req, res, next) {
   const promiseStrategies = new Promise((resolve, reject) => {
     if (req.body.strategies) {
       Strategies.findOne({'_id': req.body.strategies})
-      // .populate('skills')
       .exec(function (err, data) {
         if (err) {
           console.error('error', err)
@@ -108,7 +99,7 @@ router.post('/', function (req, res, next) {
       skills = {
         skills: Object.keys(skills)
       }
-
+      
       res.json(skills)
     },
     (reason) => {
