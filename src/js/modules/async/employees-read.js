@@ -1,8 +1,8 @@
 import {apiUri} from '../../../../config'
 import {checkFetchStatus} from './utilities'
 import {dashboardsChange} from '../dashboards'
-import {employeesChange} from '../employees'
 import fetch from 'isomorphic-fetch'
+import {employeesChange, employeesReset} from '../employees'
 
 export const FAILURE = 'skills-matrix/async/employees-read/FAILURE'
 export const REQUEST = 'skills-matrix/async/employees-read/REQUEST'
@@ -26,6 +26,7 @@ export const employeesReadSuccess = (data) => ({
 export const employeesRead = (payload) =>
   (dispatch) => {
     dispatch(employeesReadRequest())
+    dispatch(employeesReset())
 
     return fetch(`${apiUri}/employees`, {
       method: 'GET',

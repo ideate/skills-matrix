@@ -5,6 +5,8 @@ import IconButton from 'material-ui/IconButton'
 import {main} from '../styles/common'
 import NavigationClose from 'material-ui/svg-icons/navigation/close'
 import RaisedButton from 'material-ui/RaisedButton'
+import Select from 'react-select'
+import {skillsRead} from '../modules/async/skills-read'
 import TextField from 'material-ui/TextField'
 import {
   employeeCreateChange,
@@ -18,9 +20,19 @@ const style = {
 }
 
 class EmployeeCreate extends Component {
+  
+  constructor () {
+    super()
+
+    this.state = {
+      selectSkillValues: []
+    }
+  }
+  
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
-    employeeCreateState: PropTypes.object.isRequired
+    employeeCreateState: PropTypes.object.isRequired,
+    skillsState: PropTypes.object.isRequired
   }
 
   changeDescription = (event) => {
@@ -28,21 +40,43 @@ class EmployeeCreate extends Component {
 
     dispatch(employeeCreateChange({description: event.target.value}))
   }
+  
+  changeSkills = (selectSkillValues) => {
+    const {dispatch} = this.props
+    const skillIdArray = []
+    
+    this.setState({selectSkillValues})
+
+    if (selectSkillValues) {
+      selectSkillValues.map(function (selectedSkill) {
+        skillIdArray.push(selectedSkill.value)
+      })
+    }
+
+    dispatch(employeeCreateChange({skills: skillIdArray}))
+  }
 
   changeTitle = (event) => {
     const {dispatch} = this.props
 
     dispatch(employeeCreateChange({title: event.target.value}))
   }
+  
+  componentWillMount () {
+    const {dispatch} = this.props
+
+    dispatch(skillsRead())
+  }
 
   create = () => {
     const {dispatch, employeeCreateState} = this.props
     const {
       description,
-      title
+      title,
+      skills
     } = employeeCreateState
 
-    dispatch(employeeCreate({description, title}))
+    dispatch(employeeCreate({description, title, skills}))
   }
 
   reset = () => {
@@ -95,6 +129,10 @@ class EmployeeCreate extends Component {
               onChange={this.changeDescription}
             />
           </div>
+          <br />
+          <div>
+            {this.renderSkills()}
+          </div>
           <div>
             <RaisedButton
               label='Cancel'
@@ -119,8 +157,30 @@ class EmployeeCreate extends Component {
       </div>
     )
   }
+  
+  renderSkills () {
+    const {skillsState} = this.props
+    const selectSkillOptions = []
+    
+    if (skillsState && skillsState.data && skillsState.data.length) {
+      skillsState.data.map(function (skill) {
+        selectSkillOptions.push({value: skill._id, label: skill.title})
+      })
+    }
+    
+    return (
+      <Select
+        multi={true}
+        options={selectSkillOptions}
+        placeholder='Select skills...'
+        value={this.state.selectSkillValues}
+        onChange={this.changeSkills}
+      />
+    )
+  }
 }
 
 export default connect((state) => ({
-  employeeCreateState: state.employeeCreate
+  employeeCreateState: state.employeeCreate,
+  skillsState: state.skills
 }))(EmployeeCreate)

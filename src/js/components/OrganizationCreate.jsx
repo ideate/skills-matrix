@@ -47,9 +47,11 @@ class OrganizationCreate extends Component {
     
     this.setState({selectEmployeeValues})
 
-    selectEmployeeValues.map(function (selectedEmployee) {
-      employeeIdArray.push(selectedEmployee.value)
-    })
+    if (selectEmployeeValues) {
+      selectEmployeeValues.map(function (selectedEmployee) {
+        employeeIdArray.push(selectedEmployee.value)
+      })
+    }
 
     dispatch(organizationCreateChange({employees: employeeIdArray}))
   }
