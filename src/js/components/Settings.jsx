@@ -1,4 +1,3 @@
-import {header, main} from '../styles/common'
 import React, {Component} from 'react'
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
 
