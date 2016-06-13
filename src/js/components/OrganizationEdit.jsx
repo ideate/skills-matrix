@@ -56,9 +56,11 @@ class OrganizationEdit extends Component {
     
     this.setState({selectEmployeeValues})
 
-    selectEmployeeValues.map(function (selectedEmployee) {
-      employeeIdArray.push(selectedEmployee.value)
-    })
+    if (selectEmployeeValues) {
+      selectEmployeeValues.map(function (selectedEmployee) {
+        employeeIdArray.push(selectedEmployee.value)
+      })
+    }
     
     dispatch(organizationEditChange({employees: employeeIdArray}))
   }

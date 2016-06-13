@@ -47,9 +47,11 @@ class StrategyCreate extends Component {
     
     this.setState({selectSkillValues})
 
-    selectSkillValues.map(function (selectedSkill) {
-      skillIdArray.push(selectedSkill.value)
-    })
+    if (selectSkillValues) {
+      selectSkillValues.map(function (selectedSkill) {
+        skillIdArray.push(selectedSkill.value)
+      })
+    }
 
     dispatch(strategyCreateChange({skills: skillIdArray}))
   }

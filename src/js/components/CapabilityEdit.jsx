@@ -56,9 +56,11 @@ class CapabilityEdit extends Component {
 
     this.setState({selectSkillValues})
 
-    selectSkillValues.map(function (selectedSkill) {
-      skillIdArray.push(selectedSkill.value)
-    })
+    if (selectSkillValues) {
+      selectSkillValues.map(function (selectedSkill) {
+        skillIdArray.push(selectedSkill.value)
+      })
+    }
 
     dispatch(capabilityEditChange({skills: skillIdArray}))
   }

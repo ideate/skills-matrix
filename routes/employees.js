@@ -42,9 +42,9 @@ router.put('/:employee', function (req, res, next) {
   Employees.findOneAndUpdate({'_id': req.body._id}, req.body, {new: true}, function (err, employees) {
     if (err) { return next(err) }
 
-    employees.populate({
-      path: 'employees'
-    }, function (err, employees) {
+    employees.populate(
+      'skills',
+      function (err, employees) {
       if (err) { return next(err) }
       
       res.json(employees)

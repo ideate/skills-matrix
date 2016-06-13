@@ -47,9 +47,11 @@ class CapabilityCreate extends Component {
     
     this.setState({selectSkillValues})
 
-    selectSkillValues.map(function (selectedSkill) {
-      skillIdArray.push(selectedSkill.value)
-    })
+    if (selectSkillValues) {
+      selectSkillValues.map(function (selectedSkill) {
+        skillIdArray.push(selectedSkill.value)
+      })
+    }
 
     dispatch(capabilityCreateChange({skills: skillIdArray}))
   }
