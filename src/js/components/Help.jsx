@@ -1,16 +1,16 @@
 import {header, main} from '../styles/common'
 import React, {Component} from 'react'
+import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
 
 class Help extends Component {
   render () {
     return (
       <div>
-        <header style={header}>
-          <h1>Help</h1>
-        </header>
-        <main style={main}>
-          <h3>Main</h3>
-        </main>
+        <Toolbar>
+          <ToolbarGroup float='left'>
+            <ToolbarTitle text='Help' />
+          </ToolbarGroup>
+        </Toolbar>
       </div>
     )
   }
