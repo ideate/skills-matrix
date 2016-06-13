@@ -10,6 +10,11 @@ import RaisedButton from 'material-ui/RaisedButton'
 import Select from 'react-select'
 import TextField from 'material-ui/TextField'
 import {
+  displayemployees,
+  displayOrganization,
+  displayorganizations
+} from '../../../config'
+import {
   organizationEditChange,
   organizationEditReset
 } from '../modules/organization-edit'
@@ -92,13 +97,13 @@ class OrganizationEdit extends Component {
       <div>
         <Toolbar>
           <ToolbarGroup float='left'>
-            <ToolbarTitle text='Edit an Organization' />
+            <ToolbarTitle text={`Edit ${displayOrganization}`} />
           </ToolbarGroup>
           <ToolbarGroup float='right'>
             <IconButton
               onTouchTap={() => {
                 this.reset()
-                browserHistory.push(`/organizations/${this.props.params.id}`)
+                browserHistory.push(`/${displayorganizations}/${this.props.params.id}`)
               }}
             >
               <NavigationClose/>
@@ -132,7 +137,7 @@ class OrganizationEdit extends Component {
               style={style}
               onTouchTap={() => {
                 this.reset()
-                browserHistory.push(`/organizations/${this.props.params.id}`)
+                browserHistory.push(`/${displayorganizations}/${this.props.params.id}`)
               }}
             />
             <RaisedButton
@@ -142,7 +147,7 @@ class OrganizationEdit extends Component {
               onTouchTap={() => {
                 this.update()
                 this.reset()
-                browserHistory.push(`/organizations/${this.props.params.id}`)
+                browserHistory.push(`/${displayorganizations}/${this.props.params.id}`)
               }}
             />
           </div>
@@ -172,7 +177,7 @@ class OrganizationEdit extends Component {
       <Select
         multi={true}
         options={selectEmployeeOptions}
-        placeholder='No employees'
+        placeholder={`No ${displayemployees}`}
         value={selectEmployeeValues}
         onChange={this.changeEmployees}
       />

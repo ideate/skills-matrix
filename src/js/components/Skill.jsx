@@ -10,6 +10,11 @@ import {skillDelete} from '../modules/async/skill-delete'
 import {skillRead} from '../modules/async/skill-read'
 import {skillReset} from '../modules/skill'
 import TextField from 'material-ui/TextField'
+import {
+  displayskill,
+  displaySkill,
+  displayskills
+} from '../../../config'
 import React, {Component, PropTypes} from 'react'
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
 
@@ -48,7 +53,7 @@ class Skill extends Component {
   handleDelete = () => {
     this.setState({open: false})
     this.delete()
-    browserHistory.push('/skills')
+    browserHistory.push(`/${displayskills}`)
   }
 
   reset = () => {
@@ -81,13 +86,13 @@ class Skill extends Component {
       <div>
         <Toolbar>
           <ToolbarGroup float='left'>
-            <ToolbarTitle text='Skill' />
+            <ToolbarTitle text={displaySkill} />
           </ToolbarGroup>
           <ToolbarGroup float='right'>
             <RaisedButton
               label='Edit'
               primary={true}
-              onTouchTap={() => (browserHistory.push(`/skills/${this.props.params.id}/edit`))}
+              onTouchTap={() => (browserHistory.push(`/${displayskills}/${this.props.params.id}/edit`))}
             />
             <RaisedButton
               label='Delete'
@@ -100,11 +105,11 @@ class Skill extends Component {
               open={this.state.open}
               onRequestClose={this.handleClose}
             >
-              Are you sure you want to delete the {skillState.title} skill?
+              Are you sure you want to delete this {displayskill}?
             </Dialog>
             <IconButton
               onTouchTap={() => {
-                browserHistory.push('/skills')
+                browserHistory.push(`/${displayskills}`)
                 this.reset()
               }}
             >

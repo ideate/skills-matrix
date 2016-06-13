@@ -4,6 +4,11 @@ import {connect} from 'react-redux'
 import {employeesRead} from '../modules/async/employees-read'
 import {main} from '../styles/common'
 import RaisedButton from 'material-ui/RaisedButton'
+import {
+  displayEmployee,
+  displayemployees,
+  displayEmployees,
+} from '../../../config'
 import React, {Component, PropTypes} from 'react'
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
 
@@ -64,7 +69,7 @@ class Employees extends Component {
   }
   
   onCellClicked (event) {
-    browserHistory.push('/employees/' + event.data.id)
+    browserHistory.push(`/${displayemployees}/${event.data.id}`)
   }
   
   onGridReady (grid) {
@@ -78,7 +83,7 @@ class Employees extends Component {
 
     if (employeesState && employeesState.data && employeesState.data.length) {
       columnDefs = [
-        {headerName: 'Employee', field: 'title', cellStyle: {color: '#FF4081'}},
+        {headerName: displayEmployee, field: 'title', cellStyle: {color: '#FF4081'}},
         {headerName: 'Description', field: 'description'}
       ]
 
@@ -109,13 +114,13 @@ class Employees extends Component {
       <div>
         <Toolbar>
           <ToolbarGroup float='left'>
-            <ToolbarTitle text='Employees' />
+            <ToolbarTitle text={displayEmployees} />
           </ToolbarGroup>
           <ToolbarGroup float='right'>
             <RaisedButton
               label='Create'
               primary={true}
-              onTouchTap={() => (browserHistory.push('/employees/create'))}
+              onTouchTap={() => (browserHistory.push(`/${displayemployees}/create`))}
             />
           </ToolbarGroup>
         </Toolbar>

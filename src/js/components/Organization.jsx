@@ -11,6 +11,12 @@ import {organizationReset} from '../modules/organization'
 import RaisedButton from 'material-ui/RaisedButton'
 import Select from 'react-select'
 import TextField from 'material-ui/TextField'
+import {
+  displayemployees,
+  displayorganization,
+  displayOrganization,
+  displayorganizations
+} from '../../../config'
 import React, {Component, PropTypes} from 'react'
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
 
@@ -49,7 +55,7 @@ class Organization extends Component {
   handleDelete = () => {
     this.setState({open: false})
     this.delete()
-    browserHistory.push('/organizations')
+    browserHistory.push(`/${displayorganizations}`)
   }
 
   reset = () => {
@@ -82,13 +88,13 @@ class Organization extends Component {
       <div>
         <Toolbar>
           <ToolbarGroup float='left'>
-            <ToolbarTitle text='Organization' />
+            <ToolbarTitle text={displayOrganization} />
           </ToolbarGroup>
           <ToolbarGroup float='right'>
             <RaisedButton
               label='Edit'
               primary={true}
-              onTouchTap={() => (browserHistory.push(`/organizations/${this.props.params.id}/edit`))}
+              onTouchTap={() => (browserHistory.push(`/${displayorganizations}/${this.props.params.id}/edit`))}
             />
             <RaisedButton
               label='Delete'
@@ -101,12 +107,12 @@ class Organization extends Component {
               open={this.state.open}
               onRequestClose={this.handleClose}
             >
-              Are you sure you want to delete the {organizationState.title} organization?
+              Are you sure you want to delete this {displayorganization}?
             </Dialog>
             <IconButton
               onTouchTap={() => {
                 this.reset()
-                browserHistory.push('/organizations')
+                browserHistory.push(`/${displayorganizations}`)
               }}
             >
               <NavigationClose/>
@@ -152,7 +158,7 @@ class Organization extends Component {
       <Select
         disable={true}
         multi={true}
-        placeholder='No employees'
+        placeholder={`No ${displayemployees}`}
         searchable={false}
         value={selectEmployeeValues}
       />

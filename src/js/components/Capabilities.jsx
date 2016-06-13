@@ -4,6 +4,11 @@ import {capabilitiesRead} from '../modules/async/capabilities-read'
 import {connect} from 'react-redux'
 import {main} from '../styles/common'
 import RaisedButton from 'material-ui/RaisedButton'
+import {
+  displayCapabilities,
+  displaycapabilities,
+  displayCapability
+} from '../../../config'
 import React, {Component, PropTypes} from 'react'
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
 
@@ -64,7 +69,7 @@ class Capabilities extends Component {
   }
   
   onCellClicked (event) {
-    browserHistory.push('/capabilities/' + event.data.id)
+    browserHistory.push(`/${displaycapabilities}/${event.data.id}`)
   }
   
   onGridReady (grid) {
@@ -78,7 +83,7 @@ class Capabilities extends Component {
     
     if (capabilitiesState && capabilitiesState.data && capabilitiesState.data.length) {
       columnDefs = [
-        {headerName: 'Capability', field: 'title', cellStyle: {color: '#FF4081'}},
+        {headerName: displayCapability, field: 'title', cellStyle: {color: '#FF4081'}},
         {headerName: 'Description', field: 'description'}
       ]
 
@@ -109,13 +114,13 @@ class Capabilities extends Component {
       <div>
         <Toolbar>
           <ToolbarGroup float='left'>
-            <ToolbarTitle text='Capabilities' />
+            <ToolbarTitle text={displayCapabilities} />
           </ToolbarGroup>
           <ToolbarGroup float='right'>
             <RaisedButton
               label='Create'
               primary={true}
-              onTouchTap={() => (browserHistory.push('/capabilities/create'))}
+              onTouchTap={() => (browserHistory.push(`/${displaycapabilities}/create`))}
             />
           </ToolbarGroup>
         </Toolbar>

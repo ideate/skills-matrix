@@ -9,6 +9,11 @@ import Select from 'react-select'
 import {skillsRead} from '../modules/async/skills-read'
 import TextField from 'material-ui/TextField'
 import {
+  displayEmployee,
+  displayemployees,
+  displayskills
+} from '../../../config'
+import {
   employeeCreateChange,
   employeeCreateReset
 } from '../modules/employee-create'
@@ -99,13 +104,13 @@ class EmployeeCreate extends Component {
       <div>
         <Toolbar>
           <ToolbarGroup float='left'>
-            <ToolbarTitle text='Create an Employee' />
+            <ToolbarTitle text={`Create ${displayEmployee}`} />
           </ToolbarGroup>
           <ToolbarGroup float='right'>
             <IconButton
               onTouchTap={() => {
                 this.reset()
-                browserHistory.push('/employees')
+                browserHistory.push(`/${displayemployees}`)
               }}
             >
               <NavigationClose/>
@@ -139,7 +144,7 @@ class EmployeeCreate extends Component {
               style={style}
               onTouchTap={() => {
                 this.reset()
-                browserHistory.push('/employees')
+                browserHistory.push(`/${displayemployees}`)
               }}
             />
             <RaisedButton
@@ -149,7 +154,7 @@ class EmployeeCreate extends Component {
               onTouchTap={() => {
                 this.create()
                 this.reset()
-                browserHistory.push('/employees')
+                browserHistory.push(`/${displayemployees}`)
               }}
             />
           </div>
@@ -172,7 +177,7 @@ class EmployeeCreate extends Component {
       <Select
         multi={true}
         options={selectSkillOptions}
-        placeholder='Select skills...'
+        placeholder={`Select ${displayskills}`}
         value={this.state.selectSkillValues}
         onChange={this.changeSkills}
       />

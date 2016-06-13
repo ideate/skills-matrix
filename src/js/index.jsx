@@ -29,6 +29,13 @@ import StrategyCreate from './components/StrategyCreate'
 import StrategyEdit from './components/StrategyEdit'
 import {syncHistoryWithStore} from 'react-router-redux'
 import {browserHistory, IndexRedirect, IndexRoute, Route, Router} from 'react-router'
+import {
+  displaycapabilities,
+  displayemployees,
+  displayorganizations,
+  displayskills,
+  displaystrategies
+} from '../../config'
 
 injectTapEventPlugin()
 
@@ -45,7 +52,7 @@ ReactDOM.render((
           to='dashboards'
         />
         <Route
-          path='capabilities'
+          path={displaycapabilities}
         >
           <IndexRoute
             component={Capabilities}
@@ -68,7 +75,7 @@ ReactDOM.render((
           path='dashboards'
         />
         <Route
-          path='employees'
+          path={displayemployees}
         >
           <IndexRoute
             component={Employees}
@@ -92,7 +99,7 @@ ReactDOM.render((
           path='help'
         />
         <Route
-          path='organizations'
+          path={displayorganizations}
         >
           <IndexRoute
             component={Organizations}
@@ -115,7 +122,7 @@ ReactDOM.render((
           path='settings'
         />
         <Route
-          path='skills'
+          path={displayskills}
         >
           <IndexRoute
             component={Skills}
@@ -134,7 +141,7 @@ ReactDOM.render((
           />
         </Route>
         <Route
-          path='strategies'
+          path={displaystrategies}
         >
           <IndexRoute
             component={Strategies}

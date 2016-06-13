@@ -10,6 +10,13 @@ import Select from 'react-select'
 import {skillsRead} from '../modules/async/skills-read'
 import TextField from 'material-ui/TextField'
 import {
+  displayemployee,
+  displayEmployee,
+  displayemployees,
+  displayEmployees,
+  displayskills
+} from '../../../config'
+import {
   employeeEditChange,
   employeeEditReset
 } from '../modules/employee-edit'
@@ -92,13 +99,13 @@ class EmployeeEdit extends Component {
       <div>
         <Toolbar>
           <ToolbarGroup float='left'>
-            <ToolbarTitle text='Edit an Employee' />
+            <ToolbarTitle text={`Edit ${displayEmployee}`} />
           </ToolbarGroup>
           <ToolbarGroup float='right'>
             <IconButton
               onTouchTap={() => {
                 this.reset()
-                browserHistory.push(`/employees/${this.props.params.id}`)
+                browserHistory.push(`/${displayemployees}/${this.props.params.id}`)
               }}
             >
               <NavigationClose/>
@@ -132,7 +139,7 @@ class EmployeeEdit extends Component {
               style={style}
               onTouchTap={() => {
                 this.reset()
-                browserHistory.push(`/employees/${this.props.params.id}`)
+                browserHistory.push(`/${displayemployees}/${this.props.params.id}`)
               }}
             />
             <RaisedButton
@@ -142,7 +149,7 @@ class EmployeeEdit extends Component {
               onTouchTap={() => {
                 this.update()
                 this.reset()
-                browserHistory.push(`/employees/${this.props.params.id}`)
+                browserHistory.push(`/${displayemployees}/${this.props.params.id}`)
               }}
             />
           </div>
@@ -172,7 +179,7 @@ class EmployeeEdit extends Component {
       <Select
         multi={true}
         options={selectSkillOptions}
-        placeholder='No skills'
+        placeholder={`No ${displayskills}`}
         value={selectSkillValues}
         onChange={this.changeSkills}
       />

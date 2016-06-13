@@ -12,6 +12,11 @@ import {
   capabilityCreateChange,
   capabilityCreateReset
 } from '../modules/capability-create'
+import {
+  displaycapabilities,
+  displayCapability,
+  displayskills
+} from '../../../config'
 import React, {Component, PropTypes} from 'react'
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
 
@@ -99,13 +104,13 @@ class CapabilityCreate extends Component {
       <div>
         <Toolbar>
           <ToolbarGroup float='left'>
-            <ToolbarTitle text='Create a Capability' />
+            <ToolbarTitle text={`Create ${displayCapability}`} />
           </ToolbarGroup>
           <ToolbarGroup float='right'>
             <IconButton
               onTouchTap={() => {
                 this.reset()
-                browserHistory.push('/capabilities')
+                browserHistory.push(`/${displaycapabilities}`)
               }}
             >
               <NavigationClose/>
@@ -139,7 +144,7 @@ class CapabilityCreate extends Component {
               style={style}
               onTouchTap={() => {
                 this.reset()
-                browserHistory.push('/capabilities')
+                browserHistory.push(`/${displaycapabilities}`)
               }}
             />
             <RaisedButton
@@ -149,7 +154,7 @@ class CapabilityCreate extends Component {
               onTouchTap={() => {
                 this.create()
                 this.reset()
-                browserHistory.push('/capabilities')
+                browserHistory.push(`/${displaycapabilities}`)
               }}
             />
           </div>
@@ -172,7 +177,7 @@ class CapabilityCreate extends Component {
       <Select
         multi={true}
         options={selectSkillOptions}
-        placeholder='Select skills...'
+        placeholder={`Select ${displayskills}`}
         value={this.state.selectSkillValues}
         onChange={this.changeSkills}
       />

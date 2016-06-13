@@ -9,6 +9,12 @@ import RaisedButton from 'material-ui/RaisedButton'
 import Select from 'react-select'
 import TextField from 'material-ui/TextField'
 import {
+  displayemployees,
+  displayorganization,
+  displayOrganization,
+  displayorganizations
+} from '../../../config'
+import {
   organizationCreateChange,
   organizationCreateReset
 } from '../modules/organization-create'
@@ -99,13 +105,13 @@ class OrganizationCreate extends Component {
       <div>
         <Toolbar>
           <ToolbarGroup float='left'>
-            <ToolbarTitle text='Create an Organization' />
+            <ToolbarTitle text={`Create ${displayOrganization}`} />
           </ToolbarGroup>
           <ToolbarGroup float='right'>
             <IconButton
               onTouchTap={() => {
                 this.reset()
-                browserHistory.push('/organizations')
+                browserHistory.push(`/${displayorganizations}`)
               }}
             >
               <NavigationClose/>
@@ -139,7 +145,7 @@ class OrganizationCreate extends Component {
               style={style}
               onTouchTap={() => {
                 this.reset()
-                browserHistory.push('/organizations')
+                browserHistory.push(`/${displayorganizations}`)
               }}
             />
             <RaisedButton
@@ -149,7 +155,7 @@ class OrganizationCreate extends Component {
               onTouchTap={() => {
                 this.create()
                 this.reset()
-                browserHistory.push('/organizations')
+                browserHistory.push(`/${displayorganizations}`)
               }}
             />
           </div>
@@ -172,7 +178,7 @@ class OrganizationCreate extends Component {
       <Select
         multi={true}
         options={selectEmployeeOptions}
-        placeholder='Select employees...'
+        placeholder={`Select ${displayemployees}`}
         value={this.state.selectEmployeeValues}
         onChange={this.changeEmployees}
       />

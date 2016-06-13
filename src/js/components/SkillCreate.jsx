@@ -6,6 +6,11 @@ import NavigationClose from 'material-ui/svg-icons/navigation/close'
 import RaisedButton from 'material-ui/RaisedButton'
 import {skillCreate} from '../modules/async/skill-create'
 import TextField from 'material-ui/TextField'
+import {
+  displayskill,
+  displaySkill,
+  displayskills
+} from '../../../config'
 import React, {Component, PropTypes} from 'react'
 import {
   skillCreateChange,
@@ -65,13 +70,13 @@ class SkillCreate extends Component {
       <div>
         <Toolbar>
           <ToolbarGroup float='left'>
-            <ToolbarTitle text='Create a Skill' />
+            <ToolbarTitle text={`Create ${displaySkill}`} />
           </ToolbarGroup>
           <ToolbarGroup float='right'>
             <IconButton
               onTouchTap={() => {
                 this.reset()
-                browserHistory.push('/skills')
+                browserHistory.push(`/${displayskills}`)
               }}
             >
               <NavigationClose/>
@@ -101,7 +106,7 @@ class SkillCreate extends Component {
               style={style}
               onTouchTap={() => {
                 this.reset()
-                browserHistory.push('/skills')
+                browserHistory.push(`/${displayskills}`)
               }}
             />
             <RaisedButton
@@ -111,7 +116,7 @@ class SkillCreate extends Component {
               onTouchTap={() => {
                 this.create()
                 this.reset()
-                browserHistory.push('/skills')
+                browserHistory.push(`/${displayskills}`)
               }}
             />
           </div>

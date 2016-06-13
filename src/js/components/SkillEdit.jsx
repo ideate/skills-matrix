@@ -7,6 +7,11 @@ import RaisedButton from 'material-ui/RaisedButton'
 import {skillRead} from '../modules/async/skill-read'
 import {skillUpdate} from '../modules/async/skill-update'
 import TextField from 'material-ui/TextField'
+import {
+  displayskill,
+  displaySkill,
+  displayskills
+} from '../../../config'
 import React, {Component, PropTypes} from 'react'
 import {
   skillEditChange,
@@ -64,13 +69,13 @@ class SkillEdit extends Component {
       <div>
         <Toolbar>
           <ToolbarGroup float='left'>
-            <ToolbarTitle text='Edit a Skill' />
+            <ToolbarTitle text={`Edit ${displaySkill}`} />
           </ToolbarGroup>
           <ToolbarGroup float='right'>
             <IconButton
               onTouchTap={() => {
                 this.reset()
-                browserHistory.push(`/skills/${this.props.params.id}`)
+                browserHistory.push(`/${displayskills}/${this.props.params.id}`)
               }}
             >
               <NavigationClose/>
@@ -100,7 +105,7 @@ class SkillEdit extends Component {
               style={style}
               onTouchTap={() => {
                 this.reset()
-                browserHistory.push(`/skills/${this.props.params.id}`)
+                browserHistory.push(`/${displayskills}/${this.props.params.id}`)
               }}
             />
             <RaisedButton
@@ -110,7 +115,7 @@ class SkillEdit extends Component {
               onTouchTap={() => {
                 this.update()
                 this.reset()
-                browserHistory.push(`/skills/${this.props.params.id}`)
+                browserHistory.push(`/${displayskills}/${this.props.params.id}`)
               }}
             />
           </div>

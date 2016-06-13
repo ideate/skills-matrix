@@ -9,6 +9,11 @@ import {skillsRead} from '../modules/async/skills-read'
 import {strategyRead} from '../modules/async/strategy-read'
 import {strategyUpdate} from '../modules/async/strategy-update'
 import TextField from 'material-ui/TextField'
+import {
+  displayskills,
+  displaystrategies,
+  displayStrategy
+} from '../../../config'
 import React, {Component, PropTypes} from 'react'
 import {
   strategyEditChange,
@@ -92,13 +97,13 @@ class StrategyEdit extends Component {
       <div>
         <Toolbar>
           <ToolbarGroup float='left'>
-            <ToolbarTitle text='Edit a Strategy' />
+            <ToolbarTitle text={`Edit ${displayStrategy}`} />
           </ToolbarGroup>
           <ToolbarGroup float='right'>
             <IconButton
               onTouchTap={() => {
                 this.reset()
-                browserHistory.push(`/strategies/${this.props.params.id}`)
+                browserHistory.push(`/${displaystrategies}/${this.props.params.id}`)
               }}
             >
               <NavigationClose/>
@@ -132,7 +137,7 @@ class StrategyEdit extends Component {
               style={style}
               onTouchTap={() => {
                 this.reset()
-                browserHistory.push(`/strategies/${this.props.params.id}`)
+                browserHistory.push(`/${displaystrategies}/${this.props.params.id}`)
               }}
             />
             <RaisedButton
@@ -142,7 +147,7 @@ class StrategyEdit extends Component {
               onTouchTap={() => {
                 this.update()
                 this.reset()
-                browserHistory.push(`/strategies/${this.props.params.id}`)
+                browserHistory.push(`/${displaystrategies}/${this.props.params.id}`)
               }}
             />
           </div>
@@ -172,7 +177,7 @@ class StrategyEdit extends Component {
       <Select
         multi={true}
         options={selectSkillOptions}
-        placeholder='No skills'
+        placeholder={`No ${displayskills}`}
         value={selectSkillValues}
         onChange={this.changeSkills}
       />

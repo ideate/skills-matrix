@@ -4,6 +4,11 @@ import {connect} from 'react-redux'
 import {main} from '../styles/common'
 import RaisedButton from 'material-ui/RaisedButton'
 import {strategiesRead} from '../modules/async/strategies-read'
+import {
+  displaystrategies,
+  displayStrategies,
+  displayStrategy
+} from '../../../config'
 import React, {Component, PropTypes} from 'react'
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
 
@@ -64,7 +69,7 @@ class Strategies extends Component {
   }
   
   onCellClicked (event) {
-    browserHistory.push('/strategies/' + event.data.id)
+    browserHistory.push(`/${displaystrategies}/${event.data.id}`)
   }
   
   onGridReady (grid) {
@@ -78,7 +83,7 @@ class Strategies extends Component {
 
     if (strategiesState && strategiesState.data && strategiesState.data.length) {
       columnDefs = [
-        {headerName: 'Strategy', field: 'title', cellStyle: {color: '#FF4081'}},
+        {headerName: displayStrategy, field: 'title', cellStyle: {color: '#FF4081'}},
         {headerName: 'Description', field: 'description'}
       ]
 
@@ -109,13 +114,13 @@ class Strategies extends Component {
       <div>
         <Toolbar>
           <ToolbarGroup float='left'>
-            <ToolbarTitle text='Strategies' />
+            <ToolbarTitle text={displayStrategies} />
           </ToolbarGroup>
           <ToolbarGroup float='right'>
             <RaisedButton
               label='Create'
               primary={true}
-              onTouchTap={() => (browserHistory.push('/strategies/create'))}
+              onTouchTap={() => (browserHistory.push(`/${displaystrategies}/create`))}
             />
           </ToolbarGroup>
         </Toolbar>
