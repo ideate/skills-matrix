@@ -42,7 +42,7 @@ ReactDOM.render((
         path='/'
       >
         <IndexRedirect
-          to="dashboards"
+          to='dashboards'
         />
         <Route
           path='capabilities'

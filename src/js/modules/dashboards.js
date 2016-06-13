@@ -21,7 +21,7 @@ const initialState = {
   employeesSelect: '',
   organizations: [],
   organizationsSelect: '',
-  skills:[],
+  skills: [],
   strategies: [],
   strategiesSelect: ''
 }

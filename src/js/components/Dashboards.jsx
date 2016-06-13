@@ -218,27 +218,27 @@ class Dashboards extends Component {
       let skillsCount = 0
       
       dashboardsState.capabilities.forEach(function (capability) {
-        if(capability.skills && capability.skills.length && capability.skills.length > skillsCount) {
+        if (capability.skills && capability.skills.length && capability.skills.length > skillsCount) {
           skillsCount = capability.skills.length
         }
       })
 
-      for (let i = 0; i < skillsCount; i++){
+      for (let i = 0; i < skillsCount; i++) {
         rows.push(
           <TableRow key={i}>
             {
               dashboardsState.capabilities.map(function (capability) {
                 let primary = false
                 
-                if(dashboardsState.skills && dashboardsState.skills.length > 0){
-                  if(capability.skills && capability.skills.length && capability.skills.length > i) {
-                    if(dashboardsState.skills.indexOf(capability.skills[i]._id) > -1) {
+                if (dashboardsState.skills && dashboardsState.skills.length > 0) {
+                  if (capability.skills && capability.skills.length && capability.skills.length > i) {
+                    if (dashboardsState.skills.indexOf(capability.skills[i]._id) > -1) {
                       primary = true
                     }
                   }
                 }
 
-                if(capability.skills && capability.skills.length && capability.skills.length > i) {
+                if (capability.skills && capability.skills.length && capability.skills.length > i) {
                   return (
                     <TableRowColumn>
                       <RaisedButton
@@ -250,7 +250,7 @@ class Dashboards extends Component {
                       />
                     </TableRowColumn>
                   )
-                }else{
+                } else {
                   return (
                     <TableRowColumn/>
                   )
