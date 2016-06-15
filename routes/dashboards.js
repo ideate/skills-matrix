@@ -22,12 +22,25 @@ router.post('/', function (req, res, next) {
   
   const promiseEmployees = new Promise((resolve, reject) => {
     if (req.body.employees) {
-      Employees.findOne({'_id': req.body.employees})
+      Employees.find({'_id': {$in : req.body.employees}})
       .exec(function (err, data) {
         if (err) {
           console.error('error', err)
         }
-        resolve(data.skills)
+        
+        // GET ALL SKILLS FOR EACH EMPLOYEE AND RETURN AGGREGATE LIST
+        const skills = []
+        
+        data.forEach((employee) => {
+          if(employee.skills && employee.skills.length){
+            employee.skills.forEach(function(skill) {
+              skills.push(skill)
+            })
+          }
+        })
+      
+      
+        resolve(skills)
       })
     } else {
       resolve([])
@@ -36,29 +49,31 @@ router.post('/', function (req, res, next) {
 
   const promiseOrganizations = new Promise((resolve, reject) => {
     if (req.body.organizations) {
-      Organizations.findOne({'_id': req.body.organizations})
+      Organizations.find({'_id': {$in : req.body.organizations}})
       .populate('employees')
       .exec(function (err, data) {
         if (err) {
           console.error('error', err)
         }
 
-        // GET ALL SKILLS FOR EACH EMPLOYEE AND RETURN AGGREGATE LIST
-        if(data.employees && data.employees.length){
-          const skills = []
-
-          data.employees.forEach((employee) => {
-            if(employee.skills && employee.skills.length){
-              employee.skills.forEach(function(skill) {
-                skills.push(skill)
-              })
-            }
-          })
-
-          resolve(skills)
-        } else {
-          resolve([])
-        }
+        const skills = []
+        
+        data.forEach((organization) => {
+          // GET ALL SKILLS FOR EACH EMPLOYEE AND RETURN AGGREGATE LIST
+          if(organization.employees && organization.employees.length){
+            organization.employees.forEach((employee) => {
+              if(employee.skills && employee.skills.length){
+                employee.skills.forEach(function(skill) {
+                  skills.push(skill)
+                })
+              }
+            })
+          } else {
+            resolve([])
+          }
+        })
+        
+        resolve(skills)
       })
     } else {
       resolve([])
@@ -67,12 +82,24 @@ router.post('/', function (req, res, next) {
 
   const promiseStrategies = new Promise((resolve, reject) => {
     if (req.body.strategies) {
-      Strategies.findOne({'_id': req.body.strategies})
+      Strategies.find({'_id': {$in : req.body.strategies}})
       .exec(function (err, data) {
         if (err) {
           console.error('error', err)
         }
-        resolve(data.skills)
+        
+        // GET ALL SKILLS FOR EACH STRATEGY AND RETURN AGGREGATE LIST
+        const skills = []
+
+        data.forEach((strategy) => {
+          if(strategy.skills && strategy.skills.length){
+            strategy.skills.forEach(function(skill) {
+              skills.push(skill)
+            })
+          }
+        })
+
+        resolve(skills)
       })
     } else {
       resolve([])
