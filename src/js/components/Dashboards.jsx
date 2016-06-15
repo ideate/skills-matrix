@@ -5,10 +5,9 @@ import {dashboardsSearch} from '../modules/async/dashboards-search'
 import {employeesRead} from '../modules/async/employees-read'
 import FlatButton from 'material-ui/FlatButton'
 import {main} from '../styles/common'
-import MenuItem from 'material-ui/MenuItem'
 import {organizationsRead} from '../modules/async/organizations-read'
 import RaisedButton from 'material-ui/RaisedButton'
-import SelectField from 'material-ui/SelectField'
+import Select from 'react-select'
 import {strategiesRead} from '../modules/async/strategies-read'
 import {dashboardsChange, dashboardsSelectReset} from '../modules/dashboards'
 import React, {Component, PropTypes} from 'react'
@@ -25,22 +24,43 @@ class Dashboards extends Component {
     dispatch: PropTypes.func.isRequired
   }
 
-  changeDashboardsEmployees = (event, index, value) => {
+  changeDashboardsEmployees = (employeeSelect) => {
     const {dispatch} = this.props
+    const employeeSkills = []
+    
+    if (employeeSelect) {
+      employeeSelect.map(function (selectedSkill) {
+        employeeSkills.push(selectedSkill.value)
+      })
+    }
 
-    dispatch(dashboardsChange({employeesSelect: value}))
+    dispatch(dashboardsChange({employeesSelect: employeeSkills}))
   }
 
-  changeDashboardsOrganizations = (event, index, value) => {
+  changeDashboardsOrganizations = (organizationSelect) => {
     const {dispatch} = this.props
+    const organizationSkills = []
+    
+    if (organizationSelect) {
+      organizationSelect.map(function (selectedSkill) {
+        organizationSkills.push(selectedSkill.value)
+      })
+    }
 
-    dispatch(dashboardsChange({organizationsSelect: value}))
+    dispatch(dashboardsChange({organizationsSelect: organizationSkills}))
   }
 
-  changeDashboardsStrategies = (event, index, value) => {
+  changeDashboardsStrategies = (strategySelect) => {
     const {dispatch} = this.props
+    const strategySkills = []
+    
+    if (strategySelect) {
+      strategySelect.map(function (selectedSkill) {
+        strategySkills.push(selectedSkill.value)
+      })
+    }
 
-    dispatch(dashboardsChange({strategiesSelect: value}))
+    dispatch(dashboardsChange({strategiesSelect: strategySkills}))
   }
 
   componentWillMount () {
@@ -62,33 +82,10 @@ class Dashboards extends Component {
         </Toolbar>
         <main style={main}>
           <div>
-            <SelectField
-              floatingLabelText='Organizations'
-              fullWidth = {true}
-              value={this.props.dashboardsState.organizationsSelect}
-              onChange={this.changeDashboardsOrganizations}
-            >
+            <br />
               {this.renderOrganizations()}
-            </SelectField>
-            <br />
-            <SelectField
-              floatingLabelText='Employees'
-              fullWidth = {true}
-              value={this.props.dashboardsState.employeesSelect}
-              onChange={this.changeDashboardsEmployees}
-            >
               {this.renderEmployees()}
-            </SelectField>
-            <br />
-            <SelectField
-              floatingLabelText='Strategies'
-              fullWidth = {true}
-              value={this.props.dashboardsState.strategiesSelect}
-              onChange={this.changeDashboardsStrategies}
-            >
               {this.renderStrategies()}
-            </SelectField>
-            <br />
             <br />
           </div>
           <div>
@@ -135,55 +132,64 @@ class Dashboards extends Component {
 
   renderEmployees () {
     const {dashboardsState} = this.props
+    const selectEmployeeOptions = []
 
     if (dashboardsState && dashboardsState.employees && dashboardsState.employees.length) {
+      dashboardsState.employees.map(function (data) {
+        selectEmployeeOptions.push({value: data._id, label: data.title})
+      })
+      
       return (
-        dashboardsState.employees.map(function (data) {
-          return (
-            <MenuItem
-              key={data._id}
-              primaryText={data.title}
-              value={data._id}
-            />
-          )
-        })
-      )
+        <Select
+          multi={true}
+          options={selectEmployeeOptions}
+          placeholder='Select employees...'
+          value={this.props.dashboardsState.employeesSelect}
+          onChange={this.changeDashboardsEmployees}
+        />
+        )
     }
   }
 
   renderOrganizations () {
     const {dashboardsState} = this.props
+    const selectOrganizationOptions = []
 
     if (dashboardsState && dashboardsState.organizations && dashboardsState.organizations.length) {
+      dashboardsState.organizations.map(function (data) {
+        selectOrganizationOptions.push({value: data._id, label: data.title})
+      })
+      
       return (
-        dashboardsState.organizations.map(function (data) {
-          return (
-            <MenuItem
-              key={data._id}
-              primaryText={data.title}
-              value={data._id}
-            />
-          )
-        })
-      )
+        <Select
+          multi={true}
+          options={selectOrganizationOptions}
+          placeholder='Select organizations...'
+          value={this.props.dashboardsState.organizationsSelect}
+          onChange={this.changeDashboardsOrganizations}
+        />
+        )
     }
   }
 
   renderStrategies () {
     const {dashboardsState} = this.props
+    const selectStrategyOptions = []
 
     if (dashboardsState && dashboardsState.strategies && dashboardsState.strategies.length) {
+      dashboardsState.strategies.map(function (data) {
+        selectStrategyOptions.push({value: data._id, label: data.title})
+      })
+      
       return (
-        dashboardsState.strategies.map(function (data) {
-          return (
-            <MenuItem
-              key={data._id}
-              primaryText={data.title}
-              value={data._id}
-            />
-          )
-        })
-      )
+        <Select
+          multi={true}
+          options={selectStrategyOptions}
+          placeholder='Select strategies...'
+          value={this.props.dashboardsState.strategiesSelect}
+          onChange={this.changeDashboardsStrategies}
+        />
+        )
     }
   }
 
@@ -273,7 +279,7 @@ class Dashboards extends Component {
 
   reset = () => {
     const {dispatch} = this.props
-
+    
     dispatch(dashboardsSelectReset())
   }
   
