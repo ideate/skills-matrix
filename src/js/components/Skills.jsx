@@ -4,6 +4,12 @@ import {connect} from 'react-redux'
 import {main} from '../styles/common'
 import RaisedButton from 'material-ui/RaisedButton'
 import {skillsRead} from '../modules/async/skills-read'
+import {
+  displaySkill,
+  displayskill,
+  displaySkills,
+  displayskills
+} from '../../../config'
 import React, {Component, PropTypes} from 'react'
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
 
@@ -64,7 +70,7 @@ class Skills extends Component {
   }
   
   onCellClicked (event) {
-    browserHistory.push('/skills/' + event.data.id)
+    browserHistory.push(`/${displayskill}/${event.data.id}`)
   }
   
   onGridReady (grid) {
@@ -78,7 +84,7 @@ class Skills extends Component {
 
     if (skillsState && skillsState.data && skillsState.data.length) {
       columnDefs = [
-        {headerName: 'Skill', field: 'title', cellStyle: {color: '#FF4081'}},
+        {headerName: displaySkill, field: 'title', cellStyle: {color: '#FF4081'}},
         {headerName: 'Description', field: 'description'}
       ]
       
@@ -108,13 +114,13 @@ class Skills extends Component {
       <div>
         <Toolbar>
           <ToolbarGroup float='left'>
-            <ToolbarTitle text='Skills' />
+            <ToolbarTitle text={displaySkills} />
           </ToolbarGroup>
           <ToolbarGroup float='right'>
             <RaisedButton
               label='Create'
               primary={true}
-              onTouchTap={() => (browserHistory.push('/skills/create'))}
+              onTouchTap={() => (browserHistory.push(`/${displayskills}/create`))}
             />
           </ToolbarGroup>
         </Toolbar>

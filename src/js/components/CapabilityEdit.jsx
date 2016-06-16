@@ -13,6 +13,11 @@ import {
   capabilityEditChange,
   capabilityEditReset
 } from '../modules/capability-edit'
+import {
+  displaycapabilities,
+  displayCapability,
+  displayskills
+} from '../../../config'
 import React, {Component, PropTypes} from 'react'
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
 
@@ -92,13 +97,13 @@ class CapabilityEdit extends Component {
       <div>
         <Toolbar>
           <ToolbarGroup float='left'>
-            <ToolbarTitle text='Edit a Capability' />
+            <ToolbarTitle text={`Edit ${displayCapability}`} />
           </ToolbarGroup>
           <ToolbarGroup float='right'>
             <IconButton
               onTouchTap={() => {
                 this.reset()
-                browserHistory.push(`/capabilities/${this.props.params.id}`)
+                browserHistory.push(`/${displaycapabilities}/${this.props.params.id}`)
               }}
             >
               <NavigationClose/>
@@ -132,7 +137,7 @@ class CapabilityEdit extends Component {
               style={style}
               onTouchTap={() => {
                 this.reset()
-                browserHistory.push(`/capabilities/${this.props.params.id}`)
+                browserHistory.push(`/${displaycapabilities}/${this.props.params.id}`)
               }}
             />
             <RaisedButton
@@ -142,7 +147,7 @@ class CapabilityEdit extends Component {
               onTouchTap={() => {
                 this.update()
                 this.reset()
-                browserHistory.push(`/capabilities/${this.props.params.id}`)
+                browserHistory.push(`/${displaycapabilities}/${this.props.params.id}`)
               }}
             />
           </div>
@@ -172,7 +177,7 @@ class CapabilityEdit extends Component {
       <Select
         multi={true}
         options={selectSkillOptions}
-        placeholder='No skills'
+        placeholder={`No ${displayskills}`}
         value={selectSkillValues}
         onChange={this.changeSkills}
       />

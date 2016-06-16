@@ -11,6 +11,12 @@ import {strategyDelete} from '../modules/async/strategy-delete'
 import {strategyRead} from '../modules/async/strategy-read'
 import {strategyReset} from '../modules/strategy'
 import TextField from 'material-ui/TextField'
+import {
+  displayskills,
+  displaystrategies,
+  displayStrategy,
+  displaystrategy
+} from '../../../config'
 import React, {Component, PropTypes} from 'react'
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
 
@@ -49,7 +55,7 @@ class Strategy extends Component {
   handleDelete = () => {
     this.setState({open: false})
     this.delete()
-    browserHistory.push('/strategies')
+    browserHistory.push(`/${displaystrategies}`)
   }
   
   reset = () => {
@@ -82,13 +88,13 @@ class Strategy extends Component {
       <div>
         <Toolbar>
           <ToolbarGroup float='left'>
-            <ToolbarTitle text='Strategy' />
+            <ToolbarTitle text={displayStrategy} />
           </ToolbarGroup>
           <ToolbarGroup float='right'>
             <RaisedButton
               label='Edit'
               primary={true}
-              onTouchTap={() => (browserHistory.push(`/strategies/${this.props.params.id}/edit`))}
+              onTouchTap={() => (browserHistory.push(`/${displaystrategies}/${this.props.params.id}/edit`))}
             />
             <RaisedButton
               label='Delete'
@@ -101,11 +107,11 @@ class Strategy extends Component {
               open={this.state.open}
               onRequestClose={this.handleClose}
             >
-              Are you sure you want to delete the {strategyState.title} strategy?
+              Are you sure you want to delete this {displaystrategy}?
             </Dialog>
             <IconButton
               onTouchTap={() => {
-                browserHistory.push('/strategies')
+                browserHistory.push(`/${displaystrategies}`)
                 this.reset()
               }}
             >
@@ -152,7 +158,7 @@ class Strategy extends Component {
       <Select
         disable={true}
         multi={true}
-        placeholder='No skills'
+        placeholder={`No ${displayskills}`}
         searchable={false}
         value={selectSkillValues}
       />

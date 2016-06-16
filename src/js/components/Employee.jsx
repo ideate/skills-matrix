@@ -11,6 +11,12 @@ import NavigationClose from 'material-ui/svg-icons/navigation/close'
 import RaisedButton from 'material-ui/RaisedButton'
 import Select from 'react-select'
 import TextField from 'material-ui/TextField'
+import {
+  displayemployee,
+  displayEmployee,
+  displayemployees,
+  displayskills
+} from '../../../config'
 import React, {Component, PropTypes} from 'react'
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
 
@@ -49,7 +55,7 @@ class Employee extends Component {
   handleDelete = () => {
     this.setState({open: false})
     this.delete()
-    browserHistory.push('/employees')
+    browserHistory.push(`/${displayemployees}`)
   }
 
   reset = () => {
@@ -82,13 +88,13 @@ class Employee extends Component {
       <div>
         <Toolbar>
           <ToolbarGroup float='left'>
-            <ToolbarTitle text='Employee' />
+            <ToolbarTitle text={displayEmployee} />
           </ToolbarGroup>
           <ToolbarGroup float='right'>
             <RaisedButton
               label='Edit'
               primary={true}
-              onTouchTap={() => (browserHistory.push(`/employees/${this.props.params.id}/edit`))}
+              onTouchTap={() => (browserHistory.push(`/${displayemployees}/${this.props.params.id}/edit`))}
             />
             <RaisedButton
               label='Delete'
@@ -101,12 +107,12 @@ class Employee extends Component {
               open={this.state.open}
               onRequestClose={this.handleClose}
             >
-              Are you sure you want to delete employee {employeeState.title}?
+              Are you sure you want to delete this {displayemployee}?
             </Dialog>
             <IconButton
               onTouchTap={() => {
                 this.reset()
-                browserHistory.push('/employees')
+                browserHistory.push(`/${displayemployees}`)
               }}
             >
               <NavigationClose/>
@@ -152,7 +158,7 @@ class Employee extends Component {
       <Select
         disable={true}
         multi={true}
-        placeholder='No skills'
+        placeholder={`No ${displayskills}`}
         searchable={false}
         value={selectSkillValues}
       />

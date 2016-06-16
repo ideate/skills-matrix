@@ -10,6 +10,15 @@ import RaisedButton from 'material-ui/RaisedButton'
 import Select from 'react-select'
 import {strategiesRead} from '../modules/async/strategies-read'
 import {dashboardsChange, dashboardsSelectReset} from '../modules/dashboards'
+import {
+  displaycapabilities,
+  displayemployees,
+  displayEmployees,
+  displayorganizations,
+  displayOrganizations,
+  displaystrategies,
+  displayStrategies
+} from '../../../config'
 import React, {Component, PropTypes} from 'react'
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
@@ -143,7 +152,7 @@ class Dashboards extends Component {
         <Select
           multi={true}
           options={selectEmployeeOptions}
-          placeholder='Select employees...'
+          placeholder={`Select ${displayemployees}`}
           value={this.props.dashboardsState.employeesSelect}
           onChange={this.changeDashboardsEmployees}
         />
@@ -164,7 +173,7 @@ class Dashboards extends Component {
         <Select
           multi={true}
           options={selectOrganizationOptions}
-          placeholder='Select organizations...'
+          placeholder=`Select ${displayorganizations}`
           value={this.props.dashboardsState.organizationsSelect}
           onChange={this.changeDashboardsOrganizations}
         />
@@ -185,7 +194,7 @@ class Dashboards extends Component {
         <Select
           multi={true}
           options={selectStrategyOptions}
-          placeholder='Select strategies...'
+          placeholder=`Select ${displaystrategies}`
           value={this.props.dashboardsState.strategiesSelect}
           onChange={this.changeDashboardsStrategies}
         />
@@ -205,7 +214,7 @@ class Dashboards extends Component {
                 label={capability.title}
                 secondary={true}
                 onTouchTap={() => {
-                  browserHistory.push(`/capabilities/${capability._id}`)
+                  browserHistory.push(`/${displaycapabilities}/${capability._id}`)
                 }}
               />
             </TableHeaderColumn>

@@ -4,6 +4,13 @@ import {connect} from 'react-redux'
 import {main} from '../styles/common'
 import {organizationsRead} from '../modules/async/organizations-read'
 import RaisedButton from 'material-ui/RaisedButton'
+import {
+  displayemployees,
+  displayorganization,
+  displayOrganization,
+  displayOrganizations,
+  displayorganizations
+} from '../../../config'
 import React, {Component, PropTypes} from 'react'
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
 
@@ -64,7 +71,7 @@ class Organizations extends Component {
   }
   
   onCellClicked (event) {
-    browserHistory.push('/organizations/' + event.data.id)
+    browserHistory.push(`/${displayorganizations}/${event.data.id}`)
   }
   
   onGridReady (grid) {
@@ -76,13 +83,13 @@ class Organizations extends Component {
       <div>
         <Toolbar>
           <ToolbarGroup float='left'>
-            <ToolbarTitle text='Organizations' />
+            <ToolbarTitle text={displayOrganizations} />
           </ToolbarGroup>
           <ToolbarGroup float='right'>
             <RaisedButton
               label='Create'
               primary={true}
-              onTouchTap={() => (browserHistory.push('/organizations/create'))}
+              onTouchTap={() => (browserHistory.push(`/${displayorganizations}/create`))}
             />
           </ToolbarGroup>
         </Toolbar>
@@ -103,7 +110,7 @@ class Organizations extends Component {
 
     if (organizationsState && organizationsState.data && organizationsState.data.length) {
       columnDefs = [
-        {headerName: 'Organization', field: 'title', cellStyle: {color: '#FF4081'}},
+        {headerName: displayOrganization, field: 'title', cellStyle: {color: '#FF4081'}},
         {headerName: 'Description', field: 'description'}
       ]
 

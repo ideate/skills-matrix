@@ -23,6 +23,19 @@ import Snackbar from 'material-ui/Snackbar'
 import {snackbarReset} from '../modules/snackbar'
 import SocialPerson from 'material-ui/svg-icons/social/person'
 import {Wrapper} from './Wrapper'
+import {
+  displayApp,
+  displaycapabilities,
+  displayCapabilities,
+  displayemployees,
+  displayEmployees,
+  displayorganizations,
+  displayOrganizations,
+  displayskills,
+  displaySkills,
+  displaystrategies,
+  displayStrategies,
+} from '../../../config'
 import Radium, {StyleRoot} from 'radium'
 import React, {Component, PropTypes} from 'react'
 
@@ -109,29 +122,29 @@ class App extends Component {
                     <Divider />
                     <MenuItem
                       leftIcon={<ActionGroupWork />}
-                      primaryText='Organizations'
-                      onTouchTap={() => (browserHistory.push('/organizations'))}
+                      primaryText={displayOrganizations}
+                      onTouchTap={() => (browserHistory.push(`/${displayorganizations}`))}
                     />
                     <MenuItem
                       leftIcon={<SocialPerson />}
-                      primaryText='Employees'
-                      onTouchTap={() => (browserHistory.push('/employees'))}
+                      primaryText={displayEmployees}
+                      onTouchTap={() => (browserHistory.push(`/${displayemployees}`))}
                     />
                     <Divider />
                     <MenuItem
                       leftIcon={<ActionBuild />}
-                      primaryText='Skills'
-                      onTouchTap={() => (browserHistory.push('/skills'))}
+                      primaryText={displaySkills}
+                      onTouchTap={() => (browserHistory.push(`/${displayskills}`))}
                     />
                     <MenuItem
                       leftIcon={<ActionLightbulbOutline />}
-                      primaryText='Capabilities'
-                      onTouchTap={() => (browserHistory.push('/capabilities'))}
+                      primaryText={displayCapabilities}
+                      onTouchTap={() => (browserHistory.push(`/${displaycapabilities}`))}
                     />
                     <MenuItem
                       leftIcon={<EditorInsertChart />}
-                      primaryText='Strategies'
-                      onTouchTap={() => (browserHistory.push('/strategies'))}
+                      primaryText={displayStrategies}
+                      onTouchTap={() => (browserHistory.push(`/${displaystrategies}`))}
                     />
                     <Divider />
                     <MenuItem
@@ -147,7 +160,7 @@ class App extends Component {
                   </IconMenu>
                 }
                 showMenuIconButton={false}
-                title='Skills Matrix'
+                title={displayApp}
               />
               <Snackbar
                 autoHideDuration={2000}
