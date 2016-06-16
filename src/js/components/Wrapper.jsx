@@ -19,8 +19,6 @@
 //   children: PropTypes.node
 // }
 
-
-
 import Radium from 'radium'
 import React, {PropTypes} from 'react'
 

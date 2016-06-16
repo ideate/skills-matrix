@@ -1,22 +1,29 @@
 import {browserHistory} from 'react-router'
 import {connect} from 'react-redux'
 import Dialog from 'material-ui/Dialog'
+import {employeesRead} from '../modules/async/employees-read'
 import FlatButton from 'material-ui/FlatButton'
 import IconButton from 'material-ui/IconButton'
 import {main} from '../styles/common'
 import NavigationClose from 'material-ui/svg-icons/navigation/close'
 import RaisedButton from 'material-ui/RaisedButton'
+import Select from 'react-select'
 import {skillDelete} from '../modules/async/skill-delete'
 import {skillRead} from '../modules/async/skill-read'
 import {skillReset} from '../modules/skill'
 import TextField from 'material-ui/TextField'
 import {
+  displayEmployees,
   displayskill,
   displaySkill,
   displayskills
 } from '../../../config'
 import React, {Component, PropTypes} from 'react'
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
+
+const style = {
+  opacity: '0.4'
+}
 
 class Skill extends Component {
   
@@ -26,6 +33,7 @@ class Skill extends Component {
   
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
+    employeesState: PropTypes.object.isRequired,
     params: PropTypes.object.isRequired,
     skillState: PropTypes.object.isRequired
   }
@@ -33,6 +41,7 @@ class Skill extends Component {
   componentWillMount () {
     const {dispatch, params} = this.props
 
+    dispatch(employeesRead())
     dispatch(skillRead(params.id))
   }
 
@@ -64,6 +73,7 @@ class Skill extends Component {
 
   render () {
     const {
+      employeesState,
       skillState
     } = this.props
     
@@ -81,7 +91,7 @@ class Skill extends Component {
         onTouchTap={this.handleDelete}
       />
     ]
-
+    
     return (
       <div>
         <Toolbar>
@@ -134,12 +144,42 @@ class Skill extends Component {
               value={skillState.description}
             />
           </div>
+          <br />
+          {this.renderEmployees(employeesState.data, skillState._id)}
         </main>
+      </div>
+    )
+  }
+  
+  renderEmployees (employees, skill) {
+    const employeesWithSkill = []
+    
+    for (let i = 0; i < employees.length; i++) {
+      for (let j = 0; j < employees[i].skills.length; j++) {
+        if (employees[i].skills[j] === skill) {
+          employeesWithSkill.push({value: skill, label: employees[i].title})
+          break
+        }
+      }
+    }
+    
+    return (
+      <div>
+        <br />
+        <small style={style}>{`${displayEmployees} with this skill`}</small>
+        <Select
+          disable={true}
+          multi={true}
+          placeholder={`No ${displayEmployees}`}
+          searchable={false}
+          value={employeesWithSkill}
+        />
       </div>
     )
   }
 }
 
 export default connect((state) => ({
+  employeesState: state.employees,
   skillState: state.skill
 }))(Skill)
