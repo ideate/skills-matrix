@@ -173,7 +173,7 @@ class Dashboards extends Component {
         <Select
           multi={true}
           options={selectOrganizationOptions}
-          placeholder=`Select ${displayorganizations}`
+          placeholder={`Select ${displayorganizations}`}
           value={this.props.dashboardsState.organizationsSelect}
           onChange={this.changeDashboardsOrganizations}
         />
@@ -194,7 +194,7 @@ class Dashboards extends Component {
         <Select
           multi={true}
           options={selectStrategyOptions}
-          placeholder=`Select ${displaystrategies}`
+          placeholder={`Select ${displaystrategies}`}
           value={this.props.dashboardsState.strategiesSelect}
           onChange={this.changeDashboardsStrategies}
         />
