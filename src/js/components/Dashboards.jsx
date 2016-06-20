@@ -13,11 +13,8 @@ import {dashboardsChange, dashboardsSelectReset} from '../modules/dashboards'
 import {
   displaycapabilities,
   displayemployees,
-  displayEmployees,
   displayorganizations,
-  displayOrganizations,
-  displaystrategies,
-  displayStrategies
+  displaystrategies
 } from '../../../config'
 import React, {Component, PropTypes} from 'react'
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'

@@ -7,7 +7,7 @@ import RaisedButton from 'material-ui/RaisedButton'
 import {
   displayEmployee,
   displayemployees,
-  displayEmployees,
+  displayEmployees
 } from '../../../config'
 import React, {Component, PropTypes} from 'react'
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'

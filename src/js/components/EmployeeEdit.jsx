@@ -10,10 +10,8 @@ import Select from 'react-select'
 import {skillsRead} from '../modules/async/skills-read'
 import TextField from 'material-ui/TextField'
 import {
-  displayemployee,
   displayEmployee,
   displayemployees,
-  displayEmployees,
   displayskills
 } from '../../../config'
 import {

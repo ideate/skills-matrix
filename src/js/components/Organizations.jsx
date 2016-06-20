@@ -5,8 +5,6 @@ import {main} from '../styles/common'
 import {organizationsRead} from '../modules/async/organizations-read'
 import RaisedButton from 'material-ui/RaisedButton'
 import {
-  displayemployees,
-  displayorganization,
   displayOrganization,
   displayOrganizations,
   displayorganizations

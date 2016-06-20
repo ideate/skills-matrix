@@ -1,6 +1,6 @@
 module.exports = {
   apiUri: 'https://skills-matrix-cafedavid.c9users.io/api',
-  displayApp: 'App',
+  displayApp: 'Skills Matrix',
   displayCapabilities: 'Capabilities',
   displayCapability: 'Capability',
   displaycapabilities: 'capabilities',
@@ -23,8 +23,11 @@ module.exports = {
   displaystrategy: 'strategy',
   domain: 'skills-matrix-cafedavid.c9users.io',
   hotModuleReloadUri: 'skills-matrix-cafedavid.c9users.io',
-  mongourl: 'mongodb://localhost:27017',
+  mongoUri: 'mongodb://localhost:27017/skills-matrix',
   port: process.env.PORT,
   protocol: 'https',
-  sessionsecret: 'SECRETS'
+  serverCertificate: '',
+  serverCertificateAuthority: '',
+  serverKey: '',
+  sessionSecret: 'SECRETS'
 }

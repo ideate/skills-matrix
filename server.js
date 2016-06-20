@@ -24,7 +24,7 @@ require('./models/Organizations')
 require('./models/Skills')
 require('./models/Strategies')
 
-mongoose.connect(config.mongourl)
+mongoose.connect(config.mongoUri)
 
 const authentication = require('./routes/authentication')
 const capabilities = require('./routes/capabilities')
@@ -105,7 +105,10 @@ if (app.get('env') === 'development') {
   })
 }
 
-if (config.mongoUri) {
+if (config.mongoUri &&
+  config.serverCertificate &&
+  config.serverCertificateAuthority &&
+  config.serverKey) {
   const session = require('express-session')
   const connectMongo = require('connect-mongo')
   const MongoStore = connectMongo(session)
@@ -136,11 +139,11 @@ if (config.mongoUri) {
     app.set('db', database)
 
     const serverOptions = {
-      key: fs.readFileSync(config.serverKey),
-      cert: fs.readFileSync(config.serverCertificate),
       ca: fs.readFileSync(config.serverCertificateAuthority),
-      requestCert: true,
+      cert: fs.readFileSync(config.serverCertificate),
+      key: fs.readFileSync(config.serverKey),
       rejectUnauthorized: true,
+      requestCert: true,
       secureProtocol: 'TLSv1_2_method'
     }
 

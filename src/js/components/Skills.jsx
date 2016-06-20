@@ -6,7 +6,6 @@ import RaisedButton from 'material-ui/RaisedButton'
 import {skillsRead} from '../modules/async/skills-read'
 import {
   displaySkill,
-  displayskill,
   displaySkills,
   displayskills
 } from '../../../config'
@@ -70,7 +69,7 @@ class Skills extends Component {
   }
   
   onCellClicked (event) {
-    browserHistory.push(`/${displayskill}/${event.data.id}`)
+    browserHistory.push(`/${displayskills}/${event.data.id}`)
   }
   
   onGridReady (grid) {
