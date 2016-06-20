@@ -34,7 +34,7 @@ import {
   displayskills,
   displaySkills,
   displaystrategies,
-  displayStrategies,
+  displayStrategies
 } from '../../../config'
 import Radium, {StyleRoot} from 'radium'
 import React, {Component, PropTypes} from 'react'

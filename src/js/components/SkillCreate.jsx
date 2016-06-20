@@ -7,7 +7,6 @@ import RaisedButton from 'material-ui/RaisedButton'
 import {skillCreate} from '../modules/async/skill-create'
 import TextField from 'material-ui/TextField'
 import {
-  displayskill,
   displaySkill,
   displayskills
 } from '../../../config'

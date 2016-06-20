@@ -120,6 +120,14 @@ class EmployeeCreate extends Component {
         <main style={main}>
           <div>
             <TextField
+              floatingLabelText='Visibility'
+              fullWidth={true}
+              value={title}
+              onChange={this.changeTitle}
+            />
+          </div>
+          <div>
+            <TextField
               floatingLabelText='Title'
               fullWidth={true}
               value={title}

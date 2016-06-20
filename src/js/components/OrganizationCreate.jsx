@@ -10,7 +10,6 @@ import Select from 'react-select'
 import TextField from 'material-ui/TextField'
 import {
   displayemployees,
-  displayorganization,
   displayOrganization,
   displayorganizations
 } from '../../../config'

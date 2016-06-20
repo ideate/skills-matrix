@@ -8,7 +8,6 @@ import {skillRead} from '../modules/async/skill-read'
 import {skillUpdate} from '../modules/async/skill-update'
 import TextField from 'material-ui/TextField'
 import {
-  displayskill,
   displaySkill,
   displayskills
 } from '../../../config'
