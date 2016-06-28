@@ -37,18 +37,20 @@ router.get('/:employee', function (req, res, next) {
   })
 })
 
-/* PUT /employees/:employee */
 router.put('/:employee', function (req, res, next) {
-  Employees.findOneAndUpdate({'_id': req.body._id}, req.body, {new: true}, function (err, employees) {
+  Employees.findOneAndUpdate({'_id': req.params.employee}, req.body, {new: true}, function (err, employees) {
     if (err) { return next(err) }
-
-    employees.populate(
-      'skills',
-      function (err, employees) {
-      if (err) { return next(err) }
-      
-      res.json(employees)
-    })
+    if (employees && employees.skills) {
+      employees.populate(
+        'skills',
+        function (err, employees) {
+        if (err) { return next(err) }
+        
+        res.json(employees)
+      })
+    } else {
+        res.json(employees)
+    }
   })
 })
 

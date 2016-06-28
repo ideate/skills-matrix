@@ -23,6 +23,7 @@ import strategy from './strategy'
 import strategyCreate from './strategy-create'
 import strategyEdit from './strategy-edit'
 import user from './async/user'
+import visibilitySelectField from './visibility-select-field'
 
 export const rootReducer = combineReducers({
   capabilities,
@@ -48,6 +49,7 @@ export const rootReducer = combineReducers({
   strategyCreate,
   strategyEdit,
   user,
+  visibilitySelectField,
   
   // for react-router-redux
   routing

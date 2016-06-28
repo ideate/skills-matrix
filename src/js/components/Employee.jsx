@@ -11,6 +11,7 @@ import NavigationClose from 'material-ui/svg-icons/navigation/close'
 import RaisedButton from 'material-ui/RaisedButton'
 import Select from 'react-select'
 import TextField from 'material-ui/TextField'
+import VisibilitySelectField from './VisibilitySelectField'
 import {
   displayemployee,
   displayEmployee,
@@ -120,6 +121,7 @@ class Employee extends Component {
           </ToolbarGroup>
         </Toolbar>
         <main style={main}>
+          <VisibilitySelectField />
           <div>
             <TextField
               disabled={false}

@@ -1,19 +1,17 @@
-export const CHANGE = 'skills-matrix/employee-create/CHANGE'
-export const RESET = 'skills-matrix/employee-create/RESET'
+export const CHANGE = 'skills-matrix/visibility-select-field/CHANGE'
+export const RESET = 'skills-matrix/visibility-select-field/RESET'
 
-export const employeeCreateChange = (value) => ({
+export const visibilitySelectFieldChange = (value) => ({
   payload: {value},
   type: CHANGE
 })
 
-export const employeeCreateReset = () => ({
+export const visibilitySelectFieldReset = () => ({
   type: RESET
 })
 
 const initialState = {
-  description: '',
-  title: '',
-  skills: [],
+  disabled: true,
   visibility: ''
 }
 

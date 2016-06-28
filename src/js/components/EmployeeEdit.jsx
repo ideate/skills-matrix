@@ -9,6 +9,8 @@ import RaisedButton from 'material-ui/RaisedButton'
 import Select from 'react-select'
 import {skillsRead} from '../modules/async/skills-read'
 import TextField from 'material-ui/TextField'
+import VisibilitySelectField from './VisibilitySelectField'
+import {visibilitySelectFieldChange} from '../modules/visibility-select-field'
 import {
   displayEmployee,
   displayemployees,
@@ -39,7 +41,8 @@ class EmployeeEdit extends Component {
     dispatch: PropTypes.func.isRequired,
     employeeEditState: PropTypes.object.isRequired,
     params: PropTypes.object.isRequired,
-    skillsState: PropTypes.object.isRequired
+    skillsState: PropTypes.object.isRequired,
+    visibilitySelectFieldState: PropTypes.object.isRequired
   }
 
   componentWillMount () {
@@ -47,6 +50,7 @@ class EmployeeEdit extends Component {
 
     dispatch(employeeRead(params.id))
     dispatch(skillsRead())
+    dispatch(visibilitySelectFieldChange({disabled: false}))
   }
 
   changeDescription = (event) => {
@@ -83,9 +87,13 @@ class EmployeeEdit extends Component {
   }
 
   update = () => {
-    const {dispatch, employeeEditState} = this.props
+    const {dispatch, employeeEditState, visibilitySelectFieldState} = this.props
+    
+    const {
+      visibility
+    } = visibilitySelectFieldState
 
-    dispatch(employeeUpdate(employeeEditState))
+    dispatch(employeeUpdate({...employeeEditState, visibility}))
   }
 
   render () {
@@ -111,6 +119,7 @@ class EmployeeEdit extends Component {
           </ToolbarGroup>
         </Toolbar>
         <main style={main}>
+          <VisibilitySelectField />
           <div>
             <TextField
               floatingLabelText='Title'
@@ -187,5 +196,6 @@ class EmployeeEdit extends Component {
 
 export default connect((state) => ({
   employeeEditState: state.employeeEdit,
-  skillsState: state.skills
+  skillsState: state.skills,
+  visibilitySelectFieldState: state.visibilitySelectField
 }))(EmployeeEdit)
