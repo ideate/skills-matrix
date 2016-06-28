@@ -31,11 +31,11 @@ module.exports = {
   serverCertificateAuthority: '',
   serverKey: '',
   sessionSecret: 'SECRETS',
-  // LEAST RESTRICTIVE TO MOST RESTRICTIVE, ORDER MATTERS
+  // N + 1 CAN SEE EVERYTHING, ORDER MATTERS
   visibility: [
-    'employee',
-    'manager',
-    'vp',
-    'executive'
+    'Employee',
+    'Manager',
+    'Vice President',
+    'Executive'
   ]
 }
