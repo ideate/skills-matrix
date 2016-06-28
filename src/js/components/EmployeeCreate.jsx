@@ -8,6 +8,7 @@ import RaisedButton from 'material-ui/RaisedButton'
 import Select from 'react-select'
 import {skillsRead} from '../modules/async/skills-read'
 import TextField from 'material-ui/TextField'
+import VisibilitySelectField from './VisibilitySelectField'
 import {
   displayEmployee,
   displayemployees,
@@ -19,6 +20,10 @@ import {
 } from '../modules/employee-create'
 import React, {Component, PropTypes} from 'react'
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
+import {
+  visibilitySelectFieldChange,
+  visibilitySelectFieldReset
+} from '../modules/visibility-select-field'
 
 const style = {
   margin: 12
@@ -37,7 +42,8 @@ class EmployeeCreate extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     employeeCreateState: PropTypes.object.isRequired,
-    skillsState: PropTypes.object.isRequired
+    skillsState: PropTypes.object.isRequired,
+    visibilitySelectFieldState: PropTypes.object.isRequired
   }
 
   changeDescription = (event) => {
@@ -71,23 +77,35 @@ class EmployeeCreate extends Component {
     const {dispatch} = this.props
 
     dispatch(skillsRead())
+    dispatch(visibilitySelectFieldReset())
+    dispatch(visibilitySelectFieldChange({disabled: false}))
   }
 
   create = () => {
-    const {dispatch, employeeCreateState} = this.props
+    const {
+      dispatch,
+      employeeCreateState,
+      visibilitySelectFieldState
+    } = this.props
+    
     const {
       description,
       title,
       skills
     } = employeeCreateState
 
-    dispatch(employeeCreate({description, title, skills}))
+    const {
+      visibility
+    } = visibilitySelectFieldState
+
+    dispatch(employeeCreate({description, title, skills, visibility}))
   }
 
   reset = () => {
     const {dispatch} = this.props
 
     dispatch(employeeCreateReset())
+    dispatch(visibilitySelectFieldReset())
   }
 
   render () {
@@ -118,14 +136,7 @@ class EmployeeCreate extends Component {
           </ToolbarGroup>
         </Toolbar>
         <main style={main}>
-          <div>
-            <TextField
-              floatingLabelText='Visibility'
-              fullWidth={true}
-              value={title}
-              onChange={this.changeTitle}
-            />
-          </div>
+          <VisibilitySelectField />
           <div>
             <TextField
               floatingLabelText='Title'
@@ -195,5 +206,6 @@ class EmployeeCreate extends Component {
 
 export default connect((state) => ({
   employeeCreateState: state.employeeCreate,
-  skillsState: state.skills
+  skillsState: state.skills,
+  visibilitySelectFieldState: state.visibilitySelectField
 }))(EmployeeCreate)

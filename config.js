@@ -21,6 +21,7 @@ module.exports = {
   displaystrategies: 'strategies',
   displayStrategy: 'Strategy',
   displaystrategy: 'strategy',
+  displayVisibility: 'Visbility',
   domain: 'skills-matrix-cafedavid.c9users.io',
   hotModuleReloadUri: 'skills-matrix-cafedavid.c9users.io',
   mongoUri: 'mongodb://localhost:27017/skills-matrix',
@@ -29,5 +30,12 @@ module.exports = {
   serverCertificate: '',
   serverCertificateAuthority: '',
   serverKey: '',
-  sessionSecret: 'SECRETS'
+  sessionSecret: 'SECRETS',
+  // LEAST RESTRICTIVE TO MOST RESTRICTIVE, ORDER MATTERS
+  visibility: [
+    'employee',
+    'manager',
+    'vp',
+    'executive'
+  ]
 }

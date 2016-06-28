@@ -1,6 +1,7 @@
 import {apiUri} from '../../../../config'
 import {checkFetchStatus} from './utilities'
 import fetch from 'isomorphic-fetch'
+import {visibilitySelectFieldChange} from '../visibility-select-field'
 import {employeeChange, employeeReset} from '../employee'
 import {employeeEditChange, employeeEditReset} from '../employee-edit'
 
@@ -42,6 +43,7 @@ export const employeeRead = (payload) =>
       dispatch(employeeReadSuccess(json))
       dispatch(employeeChange(json))
       dispatch(employeeEditChange(json))
+      dispatch(visibilitySelectFieldChange(json))
     })
   }
 
