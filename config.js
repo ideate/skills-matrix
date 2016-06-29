@@ -1,5 +1,6 @@
 module.exports = {
   apiUri: 'https://skills-matrix-cafedavid.c9users.io/api',
+  bannerText: 'Company Proprietary',
   displayApp: 'Skills Matrix',
   displayCapabilities: 'Capabilities',
   displayCapability: 'Capability',
@@ -23,6 +24,8 @@ module.exports = {
   displaystrategy: 'strategy',
   displayVisibility: 'Visbility',
   domain: 'skills-matrix-cafedavid.c9users.io',
+  footerLeftText: ['Contact', 'Division'],
+  footerRightText: ['Version', 'Date'],
   hotModuleReloadUri: 'skills-matrix-cafedavid.c9users.io',
   mongoUri: 'mongodb://localhost:27017/skills-matrix',
   port: process.env.PORT,
