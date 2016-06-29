@@ -6,12 +6,14 @@ import ActionLightbulbOutline from 'material-ui/svg-icons/action/lightbulb-outli
 import ActionSettings from 'material-ui/svg-icons/action/settings'
 import AppBar from 'material-ui/AppBar'
 import AppCanvas from 'material-ui/internal/AppCanvas'
+import {Banner} from './Banner'
 import {browserHistory} from 'react-router'
 import CircularProgress from 'material-ui/CircularProgress'
 import {connect} from 'react-redux'
 import Divider from 'material-ui/Divider'
 import EditorInsertChart from 'material-ui/svg-icons/editor/insert-chart'
 import {fetchUser} from '../modules/async/user'
+import {Footer} from './Footer'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import {GlobalStyles} from './GlobalStyles'
 import IconButton from 'material-ui/IconButton'
@@ -40,6 +42,9 @@ import Radium, {StyleRoot} from 'radium'
 import React, {Component, PropTypes} from 'react'
 
 const style = {
+  flexWrapper: {
+    flex: 1
+  },
   loading: {
     wrapper: {
       left: '50%',
@@ -49,6 +54,11 @@ const style = {
       transform: 'translate(-50%, -50%)',
       width: '15%'
     }
+  },
+  wrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: '100vh'
   }
 }
 
@@ -104,71 +114,76 @@ class App extends Component {
     } else {
       content = (
         <div>
-          <Wrapper>
-              <AppBar
-                iconElementRight={
-                  <IconMenu
-                    anchorOrigin={{horizontal: 'middle', vertical: 'bottom'}}
-                    iconButtonElement={
-                      <IconButton><MoreVertIcon /></IconButton>
-                    }
-                    targetOrigin={{horizontal: 'right', vertical: 'top'}}
-                  >
-                    <MenuItem
-                      leftIcon={<ActionDashboard />}
-                      primaryText='Dashboards'
-                      onTouchTap={() => (browserHistory.push('/dashboards'))}
-                    />
-                    <Divider />
-                    <MenuItem
-                      leftIcon={<ActionGroupWork />}
-                      primaryText={displayOrganizations}
-                      onTouchTap={() => (browserHistory.push(`/${displayorganizations}`))}
-                    />
-                    <MenuItem
-                      leftIcon={<SocialPerson />}
-                      primaryText={displayEmployees}
-                      onTouchTap={() => (browserHistory.push(`/${displayemployees}`))}
-                    />
-                    <Divider />
-                    <MenuItem
-                      leftIcon={<ActionBuild />}
-                      primaryText={displaySkills}
-                      onTouchTap={() => (browserHistory.push(`/${displayskills}`))}
-                    />
-                    <MenuItem
-                      leftIcon={<ActionLightbulbOutline />}
-                      primaryText={displayCapabilities}
-                      onTouchTap={() => (browserHistory.push(`/${displaycapabilities}`))}
-                    />
-                    <MenuItem
-                      leftIcon={<EditorInsertChart />}
-                      primaryText={displayStrategies}
-                      onTouchTap={() => (browserHistory.push(`/${displaystrategies}`))}
-                    />
-                    <Divider />
-                    <MenuItem
-                      leftIcon={<ActionHelp />}
-                      primaryText='Help'
-                      onTouchTap={() => (browserHistory.push('/help'))}
-                    />
-                    <MenuItem
-                      leftIcon={<ActionSettings />}
-                      primaryText='Settings'
-                      onTouchTap={() => (browserHistory.push('/settings'))}
-                    />
-                  </IconMenu>
-                }
-                showMenuIconButton={false}
-                title={displayApp}
-              />
-              <Snackbar
-                autoHideDuration={2000}
-                message={this.props.snackbarState.message}
-                open={this.props.snackbarState.open}
-                onRequestClose = {this.snackbarReset}
-              />
-            {children}
+          <Wrapper style={style.wrapper}>
+            <Banner />
+            <AppBar
+              iconElementRight={
+                <IconMenu
+                  anchorOrigin={{horizontal: 'middle', vertical: 'bottom'}}
+                  iconButtonElement={
+                    <IconButton><MoreVertIcon /></IconButton>
+                  }
+                  targetOrigin={{horizontal: 'right', vertical: 'top'}}
+                >
+                  <MenuItem
+                    leftIcon={<ActionDashboard />}
+                    primaryText='Dashboards'
+                    onTouchTap={() => (browserHistory.push('/dashboards'))}
+                  />
+                  <Divider />
+                  <MenuItem
+                    leftIcon={<ActionGroupWork />}
+                    primaryText={displayOrganizations}
+                    onTouchTap={() => (browserHistory.push(`/${displayorganizations}`))}
+                  />
+                  <MenuItem
+                    leftIcon={<SocialPerson />}
+                    primaryText={displayEmployees}
+                    onTouchTap={() => (browserHistory.push(`/${displayemployees}`))}
+                  />
+                  <Divider />
+                  <MenuItem
+                    leftIcon={<ActionBuild />}
+                    primaryText={displaySkills}
+                    onTouchTap={() => (browserHistory.push(`/${displayskills}`))}
+                  />
+                  <MenuItem
+                    leftIcon={<ActionLightbulbOutline />}
+                    primaryText={displayCapabilities}
+                    onTouchTap={() => (browserHistory.push(`/${displaycapabilities}`))}
+                  />
+                  <MenuItem
+                    leftIcon={<EditorInsertChart />}
+                    primaryText={displayStrategies}
+                    onTouchTap={() => (browserHistory.push(`/${displaystrategies}`))}
+                  />
+                  <Divider />
+                  <MenuItem
+                    leftIcon={<ActionHelp />}
+                    primaryText='Help'
+                    onTouchTap={() => (browserHistory.push('/help'))}
+                  />
+                  <MenuItem
+                    leftIcon={<ActionSettings />}
+                    primaryText='Settings'
+                    onTouchTap={() => (browserHistory.push('/settings'))}
+                  />
+                </IconMenu>
+              }
+              showMenuIconButton={false}
+              title={displayApp}
+            />
+            <Snackbar
+              autoHideDuration={2000}
+              message={this.props.snackbarState.message}
+              open={this.props.snackbarState.open}
+              onRequestClose = {this.snackbarReset}
+            />
+            <div style={style.flexWrapper}>
+              {children}
+            </div>
+            <Footer />
+            <Banner />
           </Wrapper>
         </div>
       )
