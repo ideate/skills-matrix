@@ -55,7 +55,7 @@ app.use(function (req, res, next) {
 })
 
 app.use(function (req, res, next) {
-  if(req.path === '/api/authenticate') {
+  if (req.path === '/api/authenticate') {
     next()
   } else {
     authUtils.authenticate(req, res)

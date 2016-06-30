@@ -117,27 +117,29 @@ router.post('/', function (req, res, next) {
 // INPUT: ARRAY OF STRATEGY IDS
 // OUTPUT: ARRAY OF SKILL IDS
 router.post('/strategies', function (req, res, next) {
-  Strategies.find({'_id': {$in : req.body.strategies}})
-  .exec(function (err, data) {
-    if (err) {
-      console.error('error', err)
-    }
-    
-    // GET ALL SKILLS FOR EACH STRATEGY AND RETURN AGGREGATE LIST
-    let skills = []
-
-    data.forEach((strategy) => {
-      if(strategy.skills && strategy.skills.length){
-        strategy.skills.forEach(function(skill) {
-          skills.push(skill)
-        })
+  if (req.body.strategies) {
+    Strategies.find({'_id': {$in : req.body.strategies}})
+    .exec(function (err, data) {
+      if (err) {
+        console.error('error', err)
       }
-    })
-    
-    skills = {
-      skills: Object.keys(skills)
-    }
+      
+      // GET ALL SKILLS FOR EACH STRATEGY AND RETURN AGGREGATE LIST
+      let skills = {}
+  
+      data.forEach((strategy) => {
+        if(strategy.skills && strategy.skills.length){
+          strategy.skills.forEach(function(skill) {
+            skills[skill] = skill
+          })
+        }
+      })
 
-    res.json(skills)
-  })
+      skills = {
+        skills: Object.keys(skills)
+      }
+
+      res.json(skills)
+    })
+  }
 })

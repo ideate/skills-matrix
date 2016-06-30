@@ -52,6 +52,7 @@
     "webpack-hot-middleware": "^2.10.0"
   },
   "dependencies": {
+    "bluebird": "^3.4.1",
     "body-parser": "^1.15.1",
     "color": "^0.11.1",
     "compression": "^1.6.2",

@@ -2,6 +2,8 @@ import {browserHistory} from 'react-router'
 import {capabilitiesRead} from '../modules/async/capabilities-read'
 import {connect} from 'react-redux'
 import {dashboardsSearch} from '../modules/async/dashboards-search'
+import {dashboardsStrategiesRead} from '../modules/async/dashboards-strategies-read'
+import {dashboardsStrategiesReset} from '../modules/dashboards-strategies'
 import {employeesRead} from '../modules/async/employees-read'
 import FlatButton from 'material-ui/FlatButton'
 import {main} from '../styles/common'
@@ -9,6 +11,7 @@ import {organizationsRead} from '../modules/async/organizations-read'
 import RaisedButton from 'material-ui/RaisedButton'
 import Select from 'react-select'
 import {strategiesRead} from '../modules/async/strategies-read'
+import {Card, CardHeader} from 'material-ui/Card'
 import {dashboardsChange, dashboardsSelectReset} from '../modules/dashboards'
 import {
   displaycapabilities,
@@ -20,13 +23,31 @@ import React, {Component, PropTypes} from 'react'
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
 
+const headerStyle = {
+  padding: '0px',
+  textAlign: 'center'
+}
+
 const style = {
   margin: 12
+}
+
+const tableStyle = {
+  padding: '.2em'
+}
+
+const titleStyle = {
+  padding: '10px'
+}
+
+const textStyle = {
+  paddingRight: '0px'
 }
 
 class Dashboards extends Component {
   static propTypes = {
     dashboardsState: PropTypes.object.isRequired,
+    dashboardsStrategiesState: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired
   }
 
@@ -87,13 +108,10 @@ class Dashboards extends Component {
           </ToolbarGroup>
         </Toolbar>
         <main style={main}>
-          <div>
-            <br />
-              {this.renderOrganizations()}
-              {this.renderEmployees()}
-              {this.renderStrategies()}
-            <br />
-          </div>
+          {this.renderOrganizations()}
+          {this.renderEmployees()}
+          {this.renderStrategies()}
+          <br />
           <div>
             <RaisedButton
               label='Reset'
@@ -206,7 +224,8 @@ class Dashboards extends Component {
       return (
         dashboardsState.capabilities.map(function (capability) {
           return (
-            <TableHeaderColumn key={capability._id}>
+            <TableHeaderColumn key={capability._id}
+              style={headerStyle}>
               <FlatButton
                 label={capability.title}
                 secondary={true}
@@ -222,11 +241,12 @@ class Dashboards extends Component {
   }
 
   renderTableRows () {
-    const {dashboardsState} = this.props
-
+    const {dashboardsState, dashboardsStrategiesState} = this.props
+    
     if (dashboardsState && dashboardsState.capabilities && dashboardsState.capabilities.length) {
       // GET LARGEST CAPABILITIES.SKILLS COUNT (# OF ROWS TO RENDER)
       const rows = []
+
       let skillsCount = 0
       
       dashboardsState.capabilities.forEach(function (capability) {
@@ -237,29 +257,55 @@ class Dashboards extends Component {
 
       for (let i = 0; i < skillsCount; i++) {
         rows.push(
-          <TableRow key={i}>
+            <TableRow key={i}>
             {
               dashboardsState.capabilities.map(function (capability) {
-                let primary = false
+                let color = ''
                 
+                let cardStyle = {
+                  height: '6em',
+                  textAlign: 'center',
+                  width: '100%'
+                }
+      
                 if (dashboardsState.skills && dashboardsState.skills.length > 0) {
                   if (capability.skills && capability.skills.length && capability.skills.length > i) {
                     if (dashboardsState.skills.indexOf(capability.skills[i]._id) > -1) {
-                      primary = true
+                      cardStyle = {...cardStyle,
+                        backgroundColor: '#00BCD4'
+                      }
+                      color = 'white'
+                    }
+                  }
+                }
+                
+                if (dashboardsStrategiesState.skills && dashboardsStrategiesState.skills.length > 0) {
+                  if (capability.skills && capability.skills.length && capability.skills.length > i) {
+                    if (dashboardsStrategiesState.skills.indexOf(capability.skills[i]._id) > -1) {
+                      cardStyle = {...cardStyle,
+                        backgroundColor: '#00BCD4',
+                        border: '.25em solid #FF4081'}
+                      color = 'white'
                     }
                   }
                 }
 
                 if (capability.skills && capability.skills.length && capability.skills.length > i) {
                   return (
-                    <TableRowColumn>
-                      <RaisedButton
-                        label={capability.skills[i].title}
-                        primary={primary}
-                        onTouchTap={() => {
-                          browserHistory.push(`/skills/${capability.skills[i]._id}`)
-                        }}
-                      />
+                      <TableRowColumn style={tableStyle}>
+                        <Card
+                          style={cardStyle}
+                          onTouchTap={() => {
+                            browserHistory.push(`/skills/${capability.skills[i]._id}`)
+                          }}
+                        >
+                          <CardHeader
+                            style={titleStyle}
+                            textStyle={textStyle}
+                            title={capability.skills[i].title}
+                            titleColor={color}
+                          />
+                        </Card>
                     </TableRowColumn>
                   )
                 } else {
@@ -272,7 +318,7 @@ class Dashboards extends Component {
           </TableRow>
         )
       }
-
+      
       return (
         <TableBody
           displayRowCheckbox={false}
@@ -287,6 +333,7 @@ class Dashboards extends Component {
     const {dispatch} = this.props
     
     dispatch(dashboardsSelectReset())
+    dispatch(dashboardsStrategiesReset())
   }
   
   search = () => {
@@ -294,12 +341,16 @@ class Dashboards extends Component {
 
     dispatch(dashboardsSearch({
       organizations: dashboardsState.organizationsSelect,
-      employees: dashboardsState.employeesSelect,
+      employees: dashboardsState.employeesSelect
+    }))
+
+    dispatch(dashboardsStrategiesRead({
       strategies: dashboardsState.strategiesSelect
     }))
   }
 }
 
 export default connect((state) => ({
-  dashboardsState: state.dashboards
+  dashboardsState: state.dashboards,
+  dashboardsStrategiesState: state.dashboardsStrategies
 }))(Dashboards)
