@@ -1,3 +1,5 @@
+'use strict'
+
 const bodyParser = require('body-parser')
 const path = require('path')
 const spawn = require('child_process').spawn
@@ -27,6 +29,7 @@ require('./models/Strategies')
 mongoose.connect(config.mongoUri)
 
 const authentication = require('./routes/authentication')
+const authUtils = require('./utils/authentication')
 const capabilities = require('./routes/capabilities')
 const dashboards = require('./routes/dashboards')
 const employees = require('./routes/employees')
@@ -49,6 +52,21 @@ app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
   next()
+})
+
+app.use(function (req, res, next) {
+  if(req.path === '/api/authenticate') {
+    next()
+  } else {
+    authUtils.authenticate(req, res)
+    .then((user) => next())
+    .catch(error => {
+      const err = new Error('Could not authenticate you: ' + error)
+      
+      err.status = 503
+      next(err)
+    })
+  }
 })
 
 app.use('/api/authenticate', authentication)
