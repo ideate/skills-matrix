@@ -163,10 +163,10 @@ class Skill extends Component {
       }
     }
     
-    return (
+    return(
       <div>
         <br />
-        <small style={style}>{`${displayEmployees} with this skill`}</small>
+        <small style={style}>{`${displayEmployees} with this ${displayskill}`}</small>
         <Select
           disable={true}
           multi={true}

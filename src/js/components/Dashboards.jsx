@@ -23,25 +23,40 @@ import React, {Component, PropTypes} from 'react'
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
 
-const headerStyle = {
-  padding: '0px',
-  textAlign: 'center'
-}
-
 const style = {
-  margin: 12
-}
-
-const tableStyle = {
-  padding: '.2em'
-}
-
-const titleStyle = {
-  padding: '10px'
-}
-
-const textStyle = {
-  paddingRight: '0px'
+  buttonLabel: {
+    padding: '0px'
+  },
+  button: {
+    height: 'inherit',
+    lineHeight: 'inherit',
+    whiteSpace: 'normal',
+    width: '100%'
+  },
+  grid: {
+    float: 'right',
+    width: '79%'
+  },
+  header: {
+    padding: '0px',
+    textAlign: 'center'
+  },
+  margin: {
+    margin: 12
+  },
+  nav: {
+    float: 'left',
+    width: '20%'
+  },
+  table: {
+    padding: '.2em'
+  },
+  title: {
+    padding: '10px'
+  },
+  text: {
+    paddingRight: '0px'
+  }
 }
 
 class Dashboards extends Component {
@@ -108,30 +123,30 @@ class Dashboards extends Component {
           </ToolbarGroup>
         </Toolbar>
         <main style={main}>
-          {this.renderOrganizations()}
-          {this.renderEmployees()}
-          {this.renderStrategies()}
-          <br />
-          <div>
-            <RaisedButton
-              label='Reset'
-              style={style}
-              onTouchTap={() => {
-                this.reset()
-              }}
-            />
-            <RaisedButton
-              label='Search'
-              primary={true}
-              style={style}
-              onTouchTap={() => {
-                this.search()
-              }}
-            />
+          <div style={style.nav}>
+            {this.renderOrganizations()}
+            {this.renderEmployees()}
+            {this.renderStrategies()}
+            <br />
+            <div>
+              <RaisedButton
+                label='Reset'
+                style={style.margin}
+                onTouchTap={() => {
+                  this.reset()
+                }}
+              />
+              <RaisedButton
+                label='Search'
+                primary={true}
+                style={style.margin}
+                onTouchTap={() => {
+                  this.search()
+                }}
+              />
+            </div>
           </div>
-          <br />
-          <br />
-          <div>
+          <div style={style.grid}>
             <Table
               multiSelectable={false}
               selectable={false}
@@ -225,10 +240,12 @@ class Dashboards extends Component {
         dashboardsState.capabilities.map(function (capability) {
           return (
             <TableHeaderColumn key={capability._id}
-              style={headerStyle}>
+              style={style.header}>
               <FlatButton
                 label={capability.title}
+                labelStyle={style.buttonLabel}
                 secondary={true}
+                style={style.button}
                 onTouchTap={() => {
                   browserHistory.push(`/${displaycapabilities}/${capability._id}`)
                 }}
@@ -283,16 +300,14 @@ class Dashboards extends Component {
                   if (capability.skills && capability.skills.length && capability.skills.length > i) {
                     if (dashboardsStrategiesState.skills.indexOf(capability.skills[i]._id) > -1) {
                       cardStyle = {...cardStyle,
-                        backgroundColor: '#00BCD4',
                         border: '.25em solid #FF4081'}
-                      color = 'white'
                     }
                   }
                 }
 
                 if (capability.skills && capability.skills.length && capability.skills.length > i) {
                   return (
-                      <TableRowColumn style={tableStyle}>
+                      <TableRowColumn style={style.table}>
                         <Card
                           style={cardStyle}
                           onTouchTap={() => {
@@ -300,8 +315,8 @@ class Dashboards extends Component {
                           }}
                         >
                           <CardHeader
-                            style={titleStyle}
-                            textStyle={textStyle}
+                            style={style.title}
+                            textStyle={style.text}
                             title={capability.skills[i].title}
                             titleColor={color}
                           />
