@@ -120,11 +120,9 @@ class App extends Component {
             <AppBar
               iconElementRight={
                 <div>
-                  <RaisedButton
-                    icon={<ActionDashboard />}
-                    label='Dashboards'
-                    onTouchTap={() => (browserHistory.push('/dashboards'))}
-                  />
+                  <IconButton onTouchTap={() => (browserHistory.push('/dashboards'))}>
+                    <ActionDashboard />
+                  </IconButton>
                   <IconMenu
                     anchorOrigin={{horizontal: 'middle', vertical: 'bottom'}}
                     iconButtonElement={
