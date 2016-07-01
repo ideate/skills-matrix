@@ -33,8 +33,7 @@ export default (state = initialState, {payload = {}, type, ...action}) => {
     case SELECT_RESET:
       return {
         ...state,
-        skills: [],
-        strategiesSelect: ''
+        skills: []
       }
     default:
       return state
