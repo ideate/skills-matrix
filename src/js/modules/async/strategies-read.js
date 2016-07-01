@@ -1,6 +1,7 @@
 import {apiUri} from '../../../../config'
 import {checkFetchStatus} from './utilities'
 import {dashboardsChange} from '../dashboards'
+import {dashboardsStrategiesReset} from '../dashboards-strategies'
 import fetch from 'isomorphic-fetch'
 import {strategiesChange, strategiesReset} from '../strategies'
 
@@ -26,6 +27,7 @@ export const strategiesReadSuccess = (data) => ({
 export const strategiesRead = (payload) =>
   (dispatch) => {
     dispatch(strategiesReadRequest())
+    dispatch(dashboardsStrategiesReset())
     dispatch(strategiesReset())
 
     return fetch(`${apiUri}/strategies`, {
