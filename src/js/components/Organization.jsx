@@ -2,9 +2,7 @@ import {browserHistory} from 'react-router'
 import {connect} from 'react-redux'
 import Dialog from 'material-ui/Dialog'
 import FlatButton from 'material-ui/FlatButton'
-import IconButton from 'material-ui/IconButton'
 import {main} from '../styles/common'
-import NavigationClose from 'material-ui/svg-icons/navigation/close'
 import {organizationDelete} from '../modules/async/organization-delete'
 import {organizationRead} from '../modules/async/organization-read'
 import {organizationReset} from '../modules/organization'
@@ -19,6 +17,19 @@ import {
 } from '../../../config'
 import React, {Component, PropTypes} from 'react'
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
+
+const style = {
+  buttonLabel: {
+    fontSize: '20px',
+    padding: '0px',
+    textTransform: 'none'
+  },
+  button: {
+    margin: '10px 10px 0px 0px',
+    minWidth: '0px',
+    textAlign: 'left'
+  }
+}
 
 class Organization extends Component {
   
@@ -88,10 +99,11 @@ class Organization extends Component {
       <div>
         <Toolbar>
           <ToolbarGroup float='left'>
-            <ToolbarTitle
-              text={`${displayOrganizations} /`}
+            <FlatButton
+              label={`${displayOrganizations} /`}
+              labelStyle={style.buttonLabel}
+              style={style.button}
               onTouchTap={() => {
-                this.reset()
                 browserHistory.push(`/${displayorganizations}`)
               }}
             />

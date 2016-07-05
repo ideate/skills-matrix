@@ -5,9 +5,7 @@ import {employeeDelete} from '../modules/async/employee-delete'
 import {employeeRead} from '../modules/async/employee-read'
 import {employeeReset} from '../modules/employee'
 import FlatButton from 'material-ui/FlatButton'
-import IconButton from 'material-ui/IconButton'
 import {main} from '../styles/common'
-import NavigationClose from 'material-ui/svg-icons/navigation/close'
 import RaisedButton from 'material-ui/RaisedButton'
 import Select from 'react-select'
 import TextField from 'material-ui/TextField'
@@ -20,6 +18,19 @@ import {
 } from '../../../config'
 import React, {Component, PropTypes} from 'react'
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
+
+const style = {
+  buttonLabel: {
+    fontSize: '20px',
+    padding: '0px',
+    textTransform: 'none'
+  },
+  button: {
+    margin: '10px 10px 0px 0px',
+    minWidth: '0px',
+    textAlign: 'left'
+  }
+}
 
 class Employee extends Component {
   
@@ -89,10 +100,11 @@ class Employee extends Component {
       <div>
         <Toolbar>
           <ToolbarGroup float='left'>
-            <ToolbarTitle
-              text={`${displayEmployees} /`}
+            <FlatButton
+              label={`${displayEmployees} /`}
+              labelStyle={style.buttonLabel}
+              style={style.button}
               onTouchTap={() => {
-                this.reset()
                 browserHistory.push(`/${displayemployees}`)
               }}
             />
