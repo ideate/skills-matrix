@@ -5,9 +5,7 @@ import {capabilityReset} from '../modules/capability'
 import {connect} from 'react-redux'
 import Dialog from 'material-ui/Dialog'
 import FlatButton from 'material-ui/FlatButton'
-import IconButton from 'material-ui/IconButton'
 import {main} from '../styles/common'
-import NavigationClose from 'material-ui/svg-icons/navigation/close'
 import RaisedButton from 'material-ui/RaisedButton'
 import Select from 'react-select'
 import TextField from 'material-ui/TextField'
@@ -19,6 +17,19 @@ import {
 } from '../../../config'
 import React, {Component, PropTypes} from 'react'
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
+
+const style = {
+  buttonLabel: {
+    fontSize: '20px',
+    padding: '0px',
+    textTransform: 'none'
+  },
+  button: {
+    margin: '10px 10px 0px 0px',
+    minWidth: '0px',
+    textAlign: 'left'
+  }
+}
 
 class Capability extends Component {
   
@@ -88,10 +99,11 @@ class Capability extends Component {
       <div>
         <Toolbar>
           <ToolbarGroup float='left'>
-            <ToolbarTitle
-              text={`${displayCapabilities} /`}
+            <FlatButton
+              label={`${displayCapabilities} /`}
+              labelStyle={style.buttonLabel}
+              style={style.button}
               onTouchTap={() => {
-                this.reset()
                 browserHistory.push(`/${displaycapabilities}`)
               }}
             />

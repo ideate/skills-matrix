@@ -3,9 +3,7 @@ import {connect} from 'react-redux'
 import Dialog from 'material-ui/Dialog'
 import {employeesRead} from '../modules/async/employees-read'
 import FlatButton from 'material-ui/FlatButton'
-import IconButton from 'material-ui/IconButton'
 import {main} from '../styles/common'
-import NavigationClose from 'material-ui/svg-icons/navigation/close'
 import RaisedButton from 'material-ui/RaisedButton'
 import Select from 'react-select'
 import {skillDelete} from '../modules/async/skill-delete'
@@ -22,7 +20,19 @@ import React, {Component, PropTypes} from 'react'
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
 
 const style = {
-  opacity: '0.4'
+  buttonLabel: {
+    fontSize: '20px',
+    padding: '0px',
+    textTransform: 'none'
+  },
+  button: {
+    margin: '10px 10px 0px 0px',
+    minWidth: '0px',
+    textAlign: 'left'
+  },
+  opacity: {
+    opacity: '0.4'
+  }
 }
 
 class Skill extends Component {
@@ -96,10 +106,11 @@ class Skill extends Component {
       <div>
         <Toolbar>
           <ToolbarGroup float='left'>
-            <ToolbarTitle
-              text={`${displaySkills} /`}
+            <FlatButton
+              label={`${displaySkills} /`}
+              labelStyle={style.buttonLabel}
+              style={style.button}
               onTouchTap={() => {
-                this.reset()
                 browserHistory.push(`/${displayskills}`)
               }}
             />
@@ -164,10 +175,10 @@ class Skill extends Component {
       }
     }
     
-    return(
+    return (
       <div>
         <br />
-        <small style={style}>{`${displayEmployees} with this ${displayskill}`}</small>
+        <small style={style.opacity}>{`${displayEmployees} with this ${displayskill}`}</small>
         <Select
           disable={true}
           multi={true}
