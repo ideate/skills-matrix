@@ -21,7 +21,6 @@ import IconMenu from 'material-ui/IconMenu'
 import MenuItem from 'material-ui/MenuItem'
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import RaisedButton from 'material-ui/RaisedButton'
 import Snackbar from 'material-ui/Snackbar'
 import {snackbarReset} from '../modules/snackbar'
 import SocialPerson from 'material-ui/svg-icons/social/person'
@@ -45,6 +44,9 @@ import React, {Component, PropTypes} from 'react'
 const style = {
   flexWrapper: {
     flex: 1
+  },
+  icons: {
+    fill: 'white'
   },
   loading: {
     wrapper: {
@@ -120,7 +122,8 @@ class App extends Component {
             <AppBar
               iconElementRight={
                 <div>
-                  <IconButton onTouchTap={() => (browserHistory.push('/dashboards'))}>
+                  <IconButton iconStyle={style.icons}
+                    onTouchTap={() => (browserHistory.push('/dashboards'))}>
                     <ActionDashboard />
                   </IconButton>
                   <IconMenu
@@ -128,6 +131,7 @@ class App extends Component {
                     iconButtonElement={
                       <IconButton><MoreVertIcon /></IconButton>
                     }
+                    iconStyle={style.icons}
                     targetOrigin={{horizontal: 'right', vertical: 'top'}}
                   >
                     <MenuItem
