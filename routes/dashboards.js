@@ -17,7 +17,7 @@ module.exports = router
   visibility: ''
 */
 router.post('/', function (req, res, next) {
-  const visibility = config.visibility
+  let visibility = config.visibility
   
   if (req.body.visibility && config.visibility.indexOf(req.body.visibility) > -1) {
     visibility = config.visibility.slice(config.visibility.indexOf(req.body.visibility))

@@ -21,18 +21,15 @@ class VisibilitySelectField extends Component {
 
   render () {
     return (
-      <div>
-        <SelectField
-          disabled={false}
-          floatingLabelStyle={{color: 'red'}}
-          floatingLabelText={displayVisibility}
-          fullWidth={true}
-          value={this.props.visibilitySelectFieldState.visibility}
-          onChange={this.changeVisibility}
-        >
-          {this.renderMenuItems()}
-        </SelectField>
-      </div>
+      <SelectField
+        disabled={false}
+        floatingLabelText={displayVisibility}
+        fullWidth={true}
+        value={this.props.visibilitySelectFieldState.visibility}
+        onChange={this.changeVisibility}
+      >
+        {this.renderMenuItems()}
+      </SelectField>
     )
   }
   

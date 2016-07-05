@@ -11,6 +11,7 @@ import {organizationsRead} from '../modules/async/organizations-read'
 import RaisedButton from 'material-ui/RaisedButton'
 import Select from 'react-select'
 import {strategiesRead} from '../modules/async/strategies-read'
+import VisibilitySelectField from './VisibilitySelectField'
 import {Card, CardHeader} from 'material-ui/Card'
 import {dashboardsChange, dashboardsSelectReset} from '../modules/dashboards'
 import {
@@ -22,6 +23,10 @@ import {
 import React, {Component, PropTypes} from 'react'
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
+import {
+  visibilitySelectFieldChange,
+  visibilitySelectFieldReset
+} from '../modules/visibility-select-field'
 
 const style = {
   buttonLabel: {
@@ -63,7 +68,8 @@ class Dashboards extends Component {
   static propTypes = {
     dashboardsState: PropTypes.object.isRequired,
     dashboardsStrategiesState: PropTypes.object.isRequired,
-    dispatch: PropTypes.func.isRequired
+    dispatch: PropTypes.func.isRequired,
+    visibilitySelectFieldState: PropTypes.object.isRequired
   }
 
   changeDashboardsEmployees = (employeeSelect) => {
@@ -112,6 +118,8 @@ class Dashboards extends Component {
     dispatch(employeesRead())
     dispatch(organizationsRead())
     dispatch(strategiesRead())
+    dispatch(visibilitySelectFieldReset())
+    dispatch(visibilitySelectFieldChange({disabled: false}))
   }
 
   render () {
@@ -124,8 +132,12 @@ class Dashboards extends Component {
         </Toolbar>
         <main style={main}>
           <div style={style.nav}>
+            <h3>Search fields</h3>
             {this.renderOrganizations()}
             {this.renderEmployees()}
+            <h3>Filter results</h3>
+            <VisibilitySelectField />
+            <h3>Apply layers</h3>
             {this.renderStrategies()}
             <br />
             <div>
@@ -349,14 +361,21 @@ class Dashboards extends Component {
     
     dispatch(dashboardsSelectReset())
     dispatch(dashboardsStrategiesReset())
+    dispatch(visibilitySelectFieldReset())
+    dispatch(visibilitySelectFieldChange({disabled: false}))
   }
   
   search = () => {
-    const {dashboardsState, dispatch} = this.props
+    const {
+      dashboardsState,
+      dispatch,
+      visibilitySelectFieldState
+    } = this.props
 
     dispatch(dashboardsSearch({
       organizations: dashboardsState.organizationsSelect,
-      employees: dashboardsState.employeesSelect
+      employees: dashboardsState.employeesSelect,
+      visibility: visibilitySelectFieldState.visibility
     }))
 
     dispatch(dashboardsStrategiesRead({
@@ -367,5 +386,6 @@ class Dashboards extends Component {
 
 export default connect((state) => ({
   dashboardsState: state.dashboards,
-  dashboardsStrategiesState: state.dashboardsStrategies
+  dashboardsStrategiesState: state.dashboardsStrategies,
+  visibilitySelectFieldState: state.visibilitySelectField
 }))(Dashboards)

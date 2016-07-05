@@ -136,7 +136,9 @@ class EmployeeCreate extends Component {
           </ToolbarGroup>
         </Toolbar>
         <main style={main}>
-          <VisibilitySelectField />
+          <div>
+            <VisibilitySelectField />
+          </div>
           <div>
             <TextField
               floatingLabelText='Title'
