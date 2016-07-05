@@ -13,7 +13,7 @@ import Select from 'react-select'
 import TextField from 'material-ui/TextField'
 import {
   displaycapabilities,
-  displayCapability,
+  displayCapabilities,
   displaycapability,
   displayskills
 } from '../../../config'
@@ -88,7 +88,16 @@ class Capability extends Component {
       <div>
         <Toolbar>
           <ToolbarGroup float='left'>
-            <ToolbarTitle text={displayCapability}/>
+            <ToolbarTitle
+              text={`${displayCapabilities} /`}
+              onTouchTap={() => {
+                this.reset()
+                browserHistory.push(`/${displaycapabilities}`)
+              }}
+            />
+            <ToolbarTitle
+              text={`${capabilityState.title}`}
+            />
           </ToolbarGroup>
           <ToolbarGroup float='right'>
             <RaisedButton
@@ -109,14 +118,6 @@ class Capability extends Component {
             >
               Are you sure you want to delete this {displaycapability}?
             </Dialog>
-            <IconButton
-              onTouchTap={() => {
-                this.reset()
-                browserHistory.push(`/${displaycapabilities}`)
-              }}
-            >
-              <NavigationClose/>
-            </IconButton>
           </ToolbarGroup>
         </Toolbar>
         <main style={main}>

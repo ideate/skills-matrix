@@ -15,7 +15,7 @@ import TextField from 'material-ui/TextField'
 import {
   displayEmployees,
   displayskill,
-  displaySkill,
+  displaySkills,
   displayskills
 } from '../../../config'
 import React, {Component, PropTypes} from 'react'
@@ -96,7 +96,16 @@ class Skill extends Component {
       <div>
         <Toolbar>
           <ToolbarGroup float='left'>
-            <ToolbarTitle text={displaySkill} />
+            <ToolbarTitle
+              text={`${displaySkills} /`}
+              onTouchTap={() => {
+                this.reset()
+                browserHistory.push(`/${displayskills}`)
+              }}
+            />
+            <ToolbarTitle
+              text={`${skillState.title}`}
+            />
           </ToolbarGroup>
           <ToolbarGroup float='right'>
             <RaisedButton
@@ -117,14 +126,6 @@ class Skill extends Component {
             >
               Are you sure you want to delete this {displayskill}?
             </Dialog>
-            <IconButton
-              onTouchTap={() => {
-                browserHistory.push(`/${displayskills}`)
-                this.reset()
-              }}
-            >
-              <NavigationClose/>
-            </IconButton>
           </ToolbarGroup>
         </Toolbar>
         <main style={main}>

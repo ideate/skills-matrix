@@ -14,7 +14,7 @@ import TextField from 'material-ui/TextField'
 import {
   displayemployees,
   displayorganization,
-  displayOrganization,
+  displayOrganizations,
   displayorganizations
 } from '../../../config'
 import React, {Component, PropTypes} from 'react'
@@ -88,7 +88,16 @@ class Organization extends Component {
       <div>
         <Toolbar>
           <ToolbarGroup float='left'>
-            <ToolbarTitle text={displayOrganization} />
+            <ToolbarTitle
+              text={`${displayOrganizations} /`}
+              onTouchTap={() => {
+                this.reset()
+                browserHistory.push(`/${displayorganizations}`)
+              }}
+            />
+            <ToolbarTitle
+              text={`${organizationState.title}`}
+            />
           </ToolbarGroup>
           <ToolbarGroup float='right'>
             <RaisedButton
@@ -109,14 +118,6 @@ class Organization extends Component {
             >
               Are you sure you want to delete this {displayorganization}?
             </Dialog>
-            <IconButton
-              onTouchTap={() => {
-                this.reset()
-                browserHistory.push(`/${displayorganizations}`)
-              }}
-            >
-              <NavigationClose/>
-            </IconButton>
           </ToolbarGroup>
         </Toolbar>
         <main style={main}>

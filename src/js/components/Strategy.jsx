@@ -14,7 +14,7 @@ import TextField from 'material-ui/TextField'
 import {
   displayskills,
   displaystrategies,
-  displayStrategy,
+  displayStrategies,
   displaystrategy
 } from '../../../config'
 import React, {Component, PropTypes} from 'react'
@@ -88,7 +88,16 @@ class Strategy extends Component {
       <div>
         <Toolbar>
           <ToolbarGroup float='left'>
-            <ToolbarTitle text={displayStrategy} />
+            <ToolbarTitle
+              text={`${displayStrategies} /`}
+              onTouchTap={() => {
+                this.reset()
+                browserHistory.push(`/${displaystrategies}`)
+              }}
+            />
+            <ToolbarTitle
+              text={`${strategyState.title}`}
+            />
           </ToolbarGroup>
           <ToolbarGroup float='right'>
             <RaisedButton
@@ -109,14 +118,6 @@ class Strategy extends Component {
             >
               Are you sure you want to delete this {displaystrategy}?
             </Dialog>
-            <IconButton
-              onTouchTap={() => {
-                browserHistory.push(`/${displaystrategies}`)
-                this.reset()
-              }}
-            >
-              <NavigationClose/>
-            </IconButton>
           </ToolbarGroup>
         </Toolbar>
         <main style={main}>
