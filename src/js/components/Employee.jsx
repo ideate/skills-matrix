@@ -14,7 +14,7 @@ import TextField from 'material-ui/TextField'
 import VisibilitySelectField from './VisibilitySelectField'
 import {
   displayemployee,
-  displayEmployee,
+  displayEmployees,
   displayemployees,
   displayskills
 } from '../../../config'
@@ -89,7 +89,16 @@ class Employee extends Component {
       <div>
         <Toolbar>
           <ToolbarGroup float='left'>
-            <ToolbarTitle text={displayEmployee} />
+            <ToolbarTitle
+              text={`${displayEmployees} /`}
+              onTouchTap={() => {
+                this.reset()
+                browserHistory.push(`/${displayemployees}`)
+              }}
+            />
+            <ToolbarTitle
+              text={`${employeeState.title}`}
+            />
           </ToolbarGroup>
           <ToolbarGroup float='right'>
             <RaisedButton
@@ -110,14 +119,6 @@ class Employee extends Component {
             >
               Are you sure you want to delete this {displayemployee}?
             </Dialog>
-            <IconButton
-              onTouchTap={() => {
-                this.reset()
-                browserHistory.push(`/${displayemployees}`)
-              }}
-            >
-              <NavigationClose/>
-            </IconButton>
           </ToolbarGroup>
         </Toolbar>
         <main style={main}>
