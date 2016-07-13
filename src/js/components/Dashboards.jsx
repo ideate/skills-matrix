@@ -18,6 +18,7 @@ import {
   displaycapabilities,
   displayemployees,
   displayorganizations,
+  displayskills,
   displaystrategies
 } from '../../../config'
 import React, {Component, PropTypes} from 'react'
@@ -323,7 +324,7 @@ class Dashboards extends Component {
                         <Card
                           style={cardStyle}
                           onTouchTap={() => {
-                            browserHistory.push(`/skills/${capability.skills[i]._id}`)
+                            browserHistory.push(`/${displayskills}/${capability.skills[i]._id}`)
                           }}
                         >
                           <CardHeader
